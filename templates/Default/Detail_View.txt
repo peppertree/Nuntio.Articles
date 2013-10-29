@@ -1,0 +1,107 @@
+[SCRIPT:Fancybox;/DesktopModules/Nuntio.Articles/templates/Default/fancybox/jquery.fancybox-1.3.4.pack.js]
+[SCRIPT:FancyboxEasing;/DesktopModules/Nuntio.Articles/templates/Default/fancybox/jquery.easing-1.3.pack.js]
+[SCRIPT:FancyboxMousewheel;/DesktopModules/Nuntio.Articles/templates/Default/fancybox/jquery.mousewheel-3.0.4.pack.js]
+[SCRIPT:Query;/DesktopModules/Nuntio.Articles/templates/Default/fancybox/jQuery.query.js]
+[SCRIPT:FancyboxCustom;/DesktopModules/Nuntio.Articles/templates/Default/fancybox/custom.js]
+[SCRIPT:NuntioWidgets;http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e8b1b2b348fa85b]
+[CSS:/DesktopModules/Nuntio.Articles/templates/Default/fancybox/jquery.fancybox-1.3.4.css]
+
+<div class="nuntio-item clearfix">
+	
+	
+	<div class="nuntio-heading clearfix">
+		<div class="nuntio-date">
+			<span class="nuntio-date-day">[PUBLISHDAY]</span>
+			<span class="nuntio-date-month">[PUBLISHMONTHSHORT]</span>
+		</div>
+		<h1 class="nuntio-title">[TITLE][EDIT]</h1>
+		<span class="nuntio-subtitle">[CREATEDBYUSER][HASCATEGORY], filed under [CATEGORYLIST][/HASCATEGORY], last update: [LASTUPDATEDDATE]</span>
+	</div>
+
+	[HASSUMMARY]
+	<div class="nuntio-summary clearfix">
+		[SUMMARY]
+	</div>
+	[/HASSUMMARY]
+
+    [HASCONTENT]
+	<div class="nuntio-content clearfix">
+		[HASPRIMARYIMAGE]<img src="[PRIMARYIMAGEURL]" alt="[IMAGETITLE]" width="180" class="imgPrimary" />[/HASPRIMARYIMAGE]			
+		<span class="break">[CONTENT]</span>
+
+		<p>[HASLINK]<a href="[NEWSLINKURL]" target="[NEWSLINKTARGET]">[TITLE]</a>[/HASLINK]</p>
+	</div>
+	[/HASCONTENT]	
+
+	[HASRELATEDARTICLES]<p><strong>This might interest you as well:</strong> <ul class="nuntio-related">[RELATEDARTICLESLIST]</ul>[/HASRELATEDARTICLES]</p>
+
+	[ISPUBLICATION]
+	<div class="nuntio-block clearfix">
+		<h2>In this issue:</h2>
+		<ul class="nuntio-publication">
+			[PUBLICATIONARTICLES]
+		</ul>
+	</div>
+	[/ISPUBLICATION]
+
+	[ISPUBLICATIONMEMBER]
+	<div class="nuntio-block clearfix">
+		<h2>Other Articles in this publication:</h2>
+		<ul class="nuntio-publication">
+			[PUBLICATIONMEMBERS]
+			<li class="nuntio-publication-link"><a href="[PUBLICATIONURL]">Back to publication</a></li>
+		</ul>
+	</div>
+	[/ISPUBLICATIONMEMBER]
+
+	<div class="clearfix" style="padding-top:20px;">
+
+		<div class="nuntio-share">
+			<div class="addthis_toolbox addthis_default_style ">
+				<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+				<a class="addthis_button_tweet"></a>
+				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+				<a class="addthis_counter addthis_pill_style"></a>
+			</div>
+		</div>
+		<div class="nuntio-right">
+			<a href="#" class="nuntio-link top">Back Top</a>
+		</div>
+
+	</div>
+
+
+	[HASIMAGES]
+	<div class="nuntio-block clearfix">
+		<h2>Photo Gallery</h2>
+		<ul class="nuntio-gallery">[IMAGEGALLERY]</ul></div>
+	[/HASIMAGES]
+
+	[HASATTACHMENTS]
+	<div class="nuntio-block clearfix">
+		<h2>Attachments</h2>
+		<ul class="nuntio-attachments">[ATTACHMENTS]</ul>
+	</div>
+	[/HASATTACHMENTS]
+
+
+
+	<div class="nuntio-block clearfix">
+		<h2>Comments[HASCOMMENTS] ([COMMENTCOUNT])[/HASCOMMENTS]</h2>
+	    [HASCOMMENTS][COMMENTLIST][/HASCOMMENTS]
+	    [HASNOCOMMENTS]<p><strong>There are no comments for this article yet.</strong></p>[/HASNOCOMMENTS] 		
+	</div>
+	
+	<div class="nuntio-block clearfix">
+		<h2>About [CREATEDBY:Displayname]</h2>
+	    <p><img src="[CREATEDBY:Photourl]" alt="Photo of [CREATEDBY:Displayname]" style="float:left;width:120px;margin-right:20px;margin-bottom:7px;" />[CREATEDBY:Biography]</p>	    
+	</div>
+
+	<div class="clearfix" style="padding-top:20px;padding-bottom:20px;">
+		<div class="nuntio-right"><a href="#" class="nuntio-link top">Back Top</a></div>
+		<div class="nuntio-right"><a href="[ALLNEWSLINKURL]" class="nuntio-link back">Back to Listing</a></div>
+		<div class="nuntio-right"><a href="[COMMENTURL]" class="nuntio-link comment">Add Comment</a></div>		
+	</div>
+
+
+</div>

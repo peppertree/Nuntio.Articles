@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="thismodule.Text" xml:space="preserve">
+    <value>...diesem Modul</value>
+  </data>
+  <data name="plTheme.Text" xml:space="preserve">
+    <value>Artikel Layout</value>
+  </data>
+  <data name="plTheme.Help" xml:space="preserve">
+    <value>Wählen Sie das Layout aus, das für die Darstellung von Artikeln verwendet werden soll</value>
+  </data>
+  <data name="plSelectNewsModule.Text" xml:space="preserve">
+    <value>Zeige Artikel von...</value>
+  </data>
+  <data name="plSelectNewsModule.Help" xml:space="preserve">
+    <value>Wählen Sie aus, von welcher Modulinstanz Artikel gezeigt werden sollen</value>
+  </data>
+  <data name="plNotificationDebug.Text" xml:space="preserve">
+    <value>Benachrichtigungs Debugging aktivieren</value>
+  </data>
+  <data name="plNotificationDebug.Help" xml:space="preserve">
+    <value>Aktiviert das Erstellen detaillierter Log-Dateien im Moduleverzeichnis. Ist diese Option aktiviert, wird für jeden Zeitplanerauftrag eine eigene Log-Datei erstellt. Diese Einstellung gilt für alle Artikelmodule in Ihrer Installation.</value>
+  </data>
+  <data name="AllCategories.Text" xml:space="preserve">
+    <value>-- Alle Kategorien --</value>
+  </data>
+  <data name="plCategories.Text" xml:space="preserve">
+    <value>Nach Kategorie filtern</value>
+  </data>
+  <data name="plCategories.Help" xml:space="preserve">
+    <value>Wählen Sie eine Kategorie aus, um nur Artikel aus dieser Kategorie anzuzeigen</value>
+  </data>
+  <data name="plRowCount.Text" xml:space="preserve">
+    <value>Max. Anzahl Artikel</value>
+  </data>
+  <data name="plRowCount.Help" xml:space="preserve">
+    <value>Geben Sie an, wieviele Artikel maximal angezeigt werden sollen.</value>
+  </data>
+  <data name="plAllowSubscriptions.Text" xml:space="preserve">
+    <value>E-Mail Abonnements aktivieren</value>
+  </data>
+  <data name="plAllowSubscriptions.Help" xml:space="preserve">
+    <value>Aktiviert E-Mail Benachrichtigungen für Besucher, die diesen Service wünschen. Weitere Informationen entnehmen Sie bitte dem Benutzerhandbuch.</value>
+  </data>
+  <data name="plOnlyRegisteredUsers.Text" xml:space="preserve">
+    <value>Nur registrierte Besucher</value>
+  </data>
+  <data name="plOnlyRegisteredUsers.Help" xml:space="preserve">
+    <value>Wenn diese Option aktiviert ist, können anonyme Besucher keine Benachrichtigungen abonnieren</value>
+  </data>
+  <data name="plNotifyAdmin.Text" xml:space="preserve">
+    <value>Benachrichtige Administrator?</value>
+  </data>
+  <data name="plNotifyAdmin.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, wenn der Administrator über neue Abonnements benachrichtigt werden soll</value>
+  </data>
+  <data name="plFromAddress.Text" xml:space="preserve">
+    <value>Absender Adresse</value>
+  </data>
+  <data name="plFromAddress.Help" xml:space="preserve">
+    <value>Geben Sie die Absender Adresse an, von der Benachrichtigungen über neue Artikel versendet werden sollen</value>
+  </data>
+  <data name="plAutoSubscribeRoles.Text" xml:space="preserve">
+    <value>Automatisch abonnierte Rollen</value>
+  </data>
+  <data name="plAutoSubscribeRoles.Help" xml:space="preserve">
+    <value>Wählen Sie hier aus, ob bestimmte Rollen automatisch neue Artikel abonnieren.</value>
+  </data>
+  <data name="plModuletitle.Text" xml:space="preserve">
+    <value>Übersetzter Modultitel</value>
+  </data>
+  <data name="plModuletitle.Help" xml:space="preserve">
+    <value>Sie können für jede verfügbare Sprache Ihres Portals einen eigenen Modultitel hinterlegen</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Einstellungen speichern</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="ControlTitle_controlpanel.Text" xml:space="preserve">
+    <value>Nuntio Artikel Konfiguration</value>
+  </data>
+  <data name="plSortOrder.Text" xml:space="preserve">
+    <value>Sortierung</value>
+  </data>
+  <data name="plSortOrder.Help" xml:space="preserve">
+    <value>Geben Sie an, ob Artikel nach Veröffentlichungsdatum in aufsteigender (asc) oder absteigenden (desc) Reihenfolge sortiert werden sollen</value>
+  </data>
+  <data name="asc.Text" xml:space="preserve">
+    <value>aufsteigend</value>
+  </data>
+  <data name="desc.Text" xml:space="preserve">
+    <value>absteigend</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>Bitte verwenden Sie das Benutzerhandbuch</value>
+  </data>
+  <data name="cmdImport.Text" xml:space="preserve">
+    <value>Importiere von DNN Ankündigungs Modul</value>
+  </data>
+  <data name="lblResult.Text" xml:space="preserve">
+    <value>Import Vorgang abgeschlossen!</value>
+  </data>
+  <data name="cmdImportDone.Text" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="cmdImportStart.Text" xml:space="preserve">
+    <value>Starte Import</value>
+  </data>
+  <data name="plEnablePaging.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um durch Artikel blättern zu können, wenn die Anzahl vorhandener Artikel den Wert für die Anzahl anzuzeigender Artikel übersteigt</value>
+  </data>
+  <data name="plEnablePaging.Text" xml:space="preserve">
+    <value>Blättern aktivieren</value>
+  </data>
+  <data name="plPagingMaxCount.Help" xml:space="preserve">
+    <value>Geben Sie an, wieviele Seiten beim Blättern maximal angezeigt werden sollen, geben Sie 0 an, wenn Sie keine Beschränkung wünschen.</value>
+  </data>
+  <data name="plPagingMaxCount.Text" xml:space="preserve">
+    <value>max. Anzahl Seiten</value>
+  </data>
+  <data name="plAuhorizedRoles.Help" xml:space="preserve">
+    <value>Geben Sie an, welche Rollen neue Artikel einreichen können</value>
+  </data>
+  <data name="plAuhorizedRoles.Text" xml:space="preserve">
+    <value>Autorisierte Rollen</value>
+  </data>
+  <data name="plModerateNews.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um Nicht-Editoren das Einreichen neuer Artikel zu erlauben</value>
+  </data>
+  <data name="plModerateNews.Text" xml:space="preserve">
+    <value>Moderation aktivieren</value>
+  </data>
+  <data name="plEnableSummary.Text" xml:space="preserve">
+    <value>Zusammenfassung aktivieren</value>
+  </data>
+  <data name="plEnableSummary.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um die Möglichkeit zu haben eine Zusammenfassung eines Artikels einzugeben</value>
+  </data>
+  <data name="plShowFutureItems.Text" xml:space="preserve">
+    <value>Zeige zukünftige Artikel</value>
+  </data>
+  <data name="plShowFutureItems.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um Artikel mit einem Veröffentlichungsdatum in der Zukunft anzuzeigen</value>
+  </data>
+  <data name="plUseOriginalVersion.Text" xml:space="preserve">
+    <value>Übersetzungs Fallback verwenden</value>
+  </data>
+  <data name="plUseOriginalVersion.Help" xml:space="preserve">
+    <value>Wenn diese Option aktiviert ist, wird die Originalversion eines Artikels angezeigt, falls keine Übersetzung in der aktuell gewählten Sprache gefunden werden kann.</value>
+  </data>
+  <data name="plSearch.Text" xml:space="preserve">
+    <value>Inhaltssuche</value>
+  </data>
+  <data name="plSearch.Help" xml:space="preserve">
+    <value>Wählen Sie die zu verwendende Suchschnittstelle aus</value>
+  </data>
+  <data name="DnnSearch.Text" xml:space="preserve">
+    <value>DNN Suche</value>
+  </data>
+  <data name="ModuleSearch.Text" xml:space="preserve">
+    <value>Modul Suche</value>
+  </data>
+  <data name="plShowPastItems.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um Artikel mit einem Veröffentlichungsdatum in der Vergangenheit anzuzeigen</value>
+  </data>
+  <data name="plShowPastItems.Text" xml:space="preserve">
+    <value>Zeige vergangene Artikel</value>
+  </data>
+  <data name="plAnonymousComments.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um annymen Besuchern das Verfassen von Kommentaren zu gestatten. Beachten Sie aber, dass Kommentare in den von Ihnen verwendeten Templates aktiviert sein müssen!</value>
+  </data>
+  <data name="plAnonymousComments.Text" xml:space="preserve">
+    <value>Anonyme Kommentare erlauben</value>
+  </data>
+  <data name="plAutoApproveAnonymousComments.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option um Beiträge nicht authentifizierter Besucher automatisch freizuschalten</value>
+  </data>
+  <data name="plAutoApproveAnonymousComments.Text" xml:space="preserve">
+    <value>Anonyme Kommentare freischalten</value>
+  </data>
+  <data name="plAutoApproveAuthenticatedComments.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option um Beiträge authentifizierter Besucher automatisch freizuschalten</value>
+  </data>
+  <data name="plAutoApproveAuthenticatedComments.Text" xml:space="preserve">
+    <value>Authentifizierte Kommentare freischalten</value>
+  </data>
+  <data name="plAllowTwitter.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um Beiträge automatiert an Twitter zu versenden. </value>
+  </data>
+  <data name="plAllowTwitter.Text" xml:space="preserve">
+    <value>Twitter Integration aktivieren</value>
+  </data>
+  <data name="plMakeFeaturedSticky.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um hervorgehobene Artikel immer oben in der Liste anzuzeigen</value>
+  </data>
+  <data name="plMakeFeaturedSticky.Text" xml:space="preserve">
+    <value>Hervorgehobene Artikel oben anzeigen</value>
+  </data>
+  <data name="plShowFeatured.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um Artikel anzuzeigen, die als hervorgehoben markiert sind</value>
+  </data>
+  <data name="plShowFeatured.Text" xml:space="preserve">
+    <value>Zeige hervorgehobene Artikel</value>
+  </data>
+  <data name="plShowNonFeatured.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, um Artikel anzuzeigen, die als nicht hervorgehoben markiert sind</value>
+  </data>
+  <data name="plShowNonFeatured.Text" xml:space="preserve">
+    <value>Zeige nicht hervorgehobene Artikel</value>
+  </data>
+  <data name="plIncludeNonPublications.Help" xml:space="preserve">
+    <value>Geben Sie an, ob die Artikelliste auch normale Artikel enthalten soll, die nicht als Publikation markiert sind.</value>
+  </data>
+  <data name="plIncludeNonPublications.Text" xml:space="preserve">
+    <value>Zeige normale Artikel</value>
+  </data>
+  <data name="plIncludePublications.Help" xml:space="preserve">
+    <value>Geben Sie an, ob die Artikelliste auch Artikel enthalten soll, die als Publikation markiert sind.</value>
+  </data>
+  <data name="plIncludePublications.Text" xml:space="preserve">
+    <value>Zeige Publikationen</value>
+  </data>
+  <data name="plModeratorRole.Help" xml:space="preserve">
+    <value>Die gewählte Rolle wird über neue Artikel benachrichtigt</value>
+  </data>
+  <data name="plModeratorRole.Text" xml:space="preserve">
+    <value>Moderator Rolle</value>
+  </data>
+  <data name="plEnforceEditPermissions.Help" xml:space="preserve">
+    <value>If checked, the edit option for articles is only visible to module editors. Otherwise, article owners are allowed to at least edit their own articles.</value>
+  </data>
+  <data name="plEnforceEditPermissions.Text" xml:space="preserve">
+    <value>Beabeiten Berechtigung erzwingen</value>
+  </data>
+  <data name="plAddToJournal.Help" xml:space="preserve">
+    <value>Aktivieren Sie diese Option, wenn neue Artikel im Journal der Webseite angezeigt werden sollen</value>
+  </data>
+  <data name="plAddToJournal.Text" xml:space="preserve">
+    <value>Aktualisierungen im Journal veröffentlichen</value>
+  </data>
+</root>

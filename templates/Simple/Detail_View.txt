@@ -1,0 +1,20 @@
+<div class="nuntio-item">
+	
+	<h2>[PUBLISHDATE]</h2>
+	<h1>[TITLE][EDIT]</h1>
+	<h3>[CREATEDBY:Displayname]</h3>
+	[HASSUMMARY]
+	<div><i>
+		[SUMMARY]
+	</div></p>
+	[/HASSUMMARY]
+
+    [HASCONTENT]
+	<div>		
+		[CONTENT]
+	</div>
+	[/HASCONTENT]	
+
+	<p><a href="[ALLNEWSLINKURL]" class="CommandButton">Back to Listing</a></p>
+
+</div>

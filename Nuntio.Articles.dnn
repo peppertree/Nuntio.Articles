@@ -1,0 +1,422 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="Nuntio Articles" type="Module" version="6.1.3">
+      <friendlyName>Nuntio Articles</friendlyName>
+      <description>
+        An article module for news articles in multiple languages.
+      </description>
+      <iconFile>nuntio.articles.extension.jpg</iconFile>
+      <owner>
+        <name>Philipp Becker</name>
+        <organization>Peppertree Solutions</organization>
+        <url><![CDATA[http://www.peppertree-solutions.com/community]]></url>
+        <email><![CDATA[support@peppertree-solutions.com]]></email>
+      </owner>
+      <license>
+	<![CDATA[
+    <div style="height:200px;overflow:scroll;">
+		<h3>Peppertree Solutions, Philipp Becker END USER LICENSE AGREEMENT (EULA)</h3>
+		<p>
+		This is a CONTRACT between you (either an individual or a single entity) and Peppertree Solutions, Philipp Becker, which covers your use of "Nuntio Articles" and related software components. All such software is referred to herein as the "Software Product." A software license issued to a designated user only by Peppertree Solutions, Philipp Becker or its authorized agents is required for each user of the Software Product. If you do not agree to the terms of this EULA, then do not install or use the Software Product or the Software Product License. By explicitly accepting this End-User License Agreement (EULA) you are acknowledging and agreeing to be bound by the following terms:
+		</p><p>
+		<strong>1. EVALUATION LICENSE WARNING</strong>
+		</p><p>
+		This Software Product under special circumstances may be used in conjunction with a free evaluation Software Product License. If you are using such an evaluation Software Product License, you may use the Software Product only to evaluate its suitability for purchase. Evaluation Software has been limited in some way either through timeouts, disabled save or restricted use. Peppertree Solutions, Philipp Becker BEARS NO LIABILITY FOR ANY DAMAGES RESULTING FROM USE (OR ATTEMPTED USE AFTER EXPIRATION) OF THE SOFTWARE PRODUCT AND HAS NO DUTY TO PROVIDE ANY SUPPORT BEFORE OR AFTER THE EXPIRATION DATE OF AN EVALUATION LICENSE.
+		</p><p>
+		<strong>2. GRANT OF NON-EXCLUSIVE LICENSE</strong>
+		</p><p>
+		Peppertree Solutions, Philipp Becker grants the non-exclusive, non-transferable right for a single website for use of this Software Product. Each additional website requires an additional Software Product License. 
+		</p><p>
+		You may install each Software Product License on a single portal installation. 
+		</p><p>
+		All rights not expressly granted to you are retained by Peppertree Solutions, Philipp Becker.
+		</p><p>
+		<strong>3. INTELLECTUAL PROPERTY RIGHTS RESERVED BY Peppertree Solutions, Philipp Becker</strong>
+		</p><p>
+		The Software Product is owned by Peppertree Solutions, Philipp Becker and is protected by German and international copyright laws and treaties, as well as other intellectual property laws and treaties. You must not remove or alter any copyright notices on any copies of the Software Product. This
+		Software Product copy is licensed, not sold. You may not use, copy, or distribute the Software Product, except as granted by this EULA, without written authorization from Peppertree Solutions, Philipp Becker or its designated agents. Furthermore, this EULA does not grant you any rights in connection with any trademarks or service marks of Peppertree Solutions, Philipp Becker. Peppertree Solutions, Philipp Becker reserves all intellectual property rights, including copyrights, and trademark rights.
+		</p><p>
+		<strong>4. NO RIGHT TO TRANSFER</strong>
+		</p><p>
+		You may not rent, lease, lend, or in any way distribute or transfer any rights in this EULA or the Software Product to third parties without
+		Peppertree Solutions, Philipp Becker's written approval, and subject to written agreement by the recipient of the terms of this EULA.
+		</p><p>
+		<strong>5. INDEMNIFICATION</strong>
+		</p><p>
+		You hereby agree to indemnify Peppertree Solutions, Philipp Becker against and hold harmless Peppertree Solutions, Philipp Becker from any claims, lawsuits or other losses that arise out of your breach of any provision of this EULA.
+		</p><p>
+		<strong>6. THIRD PARTY RIGHTS</strong>
+		</p><p>
+		Any software provided along with the Software Product that is associated with a separate license agreement is licensed to you under the terms of that license agreement. This license does not apply to those portions of the Software Product. Copies of these third party licenses are included in all copies of the Software Product.
+		</p><p>
+		<strong>7. SUPPORT SERVICES</strong>
+		</p><p>
+		Peppertree Solutions, Philipp Becker may provide you with support services related to the Software Product. Use of any such support services is governed by
+		Peppertree Solutions, Philipp Becker policies and programs described in online documentation and/or other Peppertree Solutions, Philipp Becker-provided materials.
+		</p><p>
+		As part of these support services, Peppertree Solutions, Philipp Becker may make available bug lists, planned feature lists, and other supplemental informational materials. Peppertree Solutions, Philipp Becker MAKES NO WARRANTY OF ANY KIND
+		FOR THESE MATERIALS AND ASSUMES NO LIABILITY WHATSOEVER FOR DAMAGES RESULTING FROM ANY USE OF THESE MATERIALS.  FURTHERMORE, YOU
+		MAY NOT USE ANY MATERIALS PROVIDED IN THIS WAY TO SUPPORT ANY CLAIM MADE AGAINST Peppertree Solutions, Philipp Becker.
+		</p><p>
+		Any supplemental software code or related materials that Peppertree Solutions, Philipp Becker provides to you as part of the support services, in periodic updates to the Software Product or otherwise, is to be considered part of the
+		Software Product and is subject to the terms and conditions of this EULA.
+		</p><p>
+		With respect to any technical information you provide to Peppertree Solutions, Philipp Becker as part of the support services, Peppertree Solutions, Philipp Becker may use such information for its business purposes without restriction, including product support and development. Peppertree Solutions, Philipp Becker Inc. will not use such technical information in a form that personally identifies you without first obtaining your permission.
+		</p><p>
+		<strong>8. TERMINATION WITHOUT PREJUDICE TO ANY OTHER RIGHTS</strong>
+		</p><p>
+		Peppertree Solutions, Philipp Becker may terminate this EULA if you fail to comply with any term or condition of this EULA. In such event, you must destroy all copies of the Software Product and Software Product Licenses.
+		</p><p>
+		<strong>9. EXPORT RESTRICTIONS</strong>
+		</p><p>
+		You will not download, export, or re-export the Software Product, any part thereof, or any software, tool, process, or service that is the direct product of the Software Product, to any country, person, or entity -- even to foreign units of your own company -- if such a transfer is in violation of U.S. export restrictions.
+		</p><p>
+		<strong>10. NO WARRANTIES</strong>
+		</p><p>
+		YOU ACCEPT THE SOFTWARE PRODUCT AND SOFTWARE PRODUCT LICENSE "AS IS,"
+		AND Peppertree Solutions, Philipp Becker AND ITS THIRD PARTY SUPPLIERS AND LICENSORS MAKE NO WARRANTY AS TO ITS USE, PERFORMANCE, OR OTHERWISE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, Peppertree Solutions, Philipp Becker AND ITS THIRD PARTY SUPPLIERS AND LICENSORS DISCLAIM ALL OTHER REPRESENTATIONS, WARRANTIES, AND CONDITIONS, EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. THE ENTIRE RISK ARISING OUT OF USE OR PERFORMANCE OF THE SOFTWARE PRODUCT REMAINS WITH YOU.
+		</p><p>
+		<strong>11. LIMITATION OF LIABILITY</strong>
+		</p><p>
+		THIS LIMITATION OF LIABILITY IS TO THE MAXIMUM EXTENT PERMITTED BY
+		APPLICABLE LAW. IN NO EVENT SHALL Peppertree Solutions, Philipp Becker OR ITS THIRD PARTY SUPPLIERS AND LICENSORS BE LIABLE FOR ANY COSTS OF SUBSTITUTE PRODUCTS OR SERVICES, OR FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, OR LOSS OF BUSINESS INFORMATION) ARISING OUT OF THIS EULA OR THE USE OF OR INABILITY TO USE THE SOFTWARE PRODUCT OR THE FAILURE TO PROVIDE SUPPORT SERVICES, EVEN IF Peppertree Solutions, Philipp Becker HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN ANY CASE, Peppertree Solutions, Philipp Becker'S, AND ITS THIRD PARTY SUPPLIERS' AND LICENSORS', ENTIRE LIABILITY ARISING OUT OF THIS EULA SHALL BE LIMITED TO THE LESSER OF THE AMOUNT ACTUALLY PAID BY YOU FOR THE SOFTWARE PRODUCT OR THE PRODUCT LIST PRICE; PROVIDED, HOWEVER, THAT IF YOU HAVE ENTERED INTO A Peppertree Solutions, Philipp Becker SUPPORT SERVICES AGREEMENT, Peppertree Solutions, Philipp Becker'S ENTIRE LIABILITY REGARDING SUPPORT SERVICES SHALL BE GOVERNED BY THE TERMS OF THAT AGREEMENT.
+		</p><p>
+		<strong>12. HIGH RISK ACTIVITIES</strong>
+		</p><p>
+		The Software Product is not fault-tolerant and is not designed, manufactured or intended for use or resale as on-line control equipment in hazardous environments requiring fail-safe performance, such as in the operation of nuclear facilities, aircraft navigation or communication systems, air traffic control, direct life support machines, or weapons systems, in which the failure of the Software Product, or any software, tool, process, or service that was developed using the Software Product, could lead directly to death, personal injury, or severe physical or environmental damage ("High Risk Activities").  Accordingly, Peppertree Solutions, Philipp Becker and its suppliers and licensors specifically disclaim any express or implied warranty of fitness for High Risk Activities. You agree that Peppertree Solutions, Philipp Becker and its suppliers and licensors will not be liable for any claims or damages arising from the use of the Software Product, or any software, tool, process, or service that was developed using the Software Product, in such applications.
+		</p><p>
+		<strong>13. GENERAL</strong>
+		</p><p>
+		If any provision of this EULA is held invalid, the remainder of this EULA shall continue in full force and effect.
+		</p><p>
+		A waiver by either party of any term or condition of this EULA or any breach thereof, in any one instance, shall not waive such term or condition or any subsequent breach thereof.
+		</p><p>
+		The parties confirm that this EULA and all related documentation is and will be in the English language. You are responsible for complying with any local laws in your jurisdiction which might impact your right to import, export or use the Software Product, and you represent that you have complied with any regulations or registration procedures required by applicable law to make this license enforceable.
+		</p><p>
+		<strong>14. CONTACT INFORMATION</strong>
+		</p><p>
+		If you have any questions about this EULA, or if you want to contact
+		Peppertree Solutions, Philipp Becker for any reason, please direct all correspondence to:
+		Philipp Becker, support@peppertree-solutions.com
+		</p></div>
+	]]> 
+      </license>
+      <releaseNotes>
+      	<![CDATA[ 
+          <h2>Version 06.01.03</h2>
+          <ul>
+            <li>Fix: unpublished articles do not save last updated version correctly</li>
+            <li>Fix: deleted articles icon missing in action menu</li>
+            <li>Fix: general exception errors logged in event log on response.end() calls</li>            
+            <li>Added: version compare on update to lower versioning transactions in database</li>
+            <li>Added: added default image for gravatar service in templates/theme/images folder</li>
+          </ul> 
+          <h2>Version 06.01.02</h2>
+          <ul>
+            <li>Fix: Loadingpanel prevents edit dialog from closing in some cases</li>
+            <li>Fix: Newsletter templates were not created properly in the previous version due to a packaging error.</li>            
+            <li>Fix: Some labels were not yet localized in the edit dialog</li>
+            <li>Fix: Make primary on images gallery did not work as expected</li>
+            <li>Fix: Added missing help text to token description in template help</li>
+            <li>Added: Support for Journal in DNN 6.2 (see <a href="http://www.peppertree-solutions.com/community/blog/articleid/21/dotnetnuke-journal-support.aspx" target="_blank">this article</a> on how journal integration works</li>
+            <li>Added: You can now attach multiple files to an article. Works the same way than images. Please note (and copy over to your theme) the new attachment item template in the default folder!</li>
+            <li>Added: You can now set a custom anchor link on each article</li>
+            <li>Added: Nag screen for users of the default template to encourage using a personalized template copy</li>
+          </ul> 
+          <h2>Version 06.01.00</h2>
+          <ul>
+            <li>Fix: Paging with 0 pages did not render unlimited pages</li>
+            <li>Fix: Required field validation message did not show when required fields are empty</li>
+            <li>Fix: Loadingpanel did not not show on version restore</li>
+            <li>Fix: Archive tree did not show to unauthenticated users</li>
+            <li>Added: Improvements to caching of localization engine</li>
+            <li>Added: Improvements to overall performance</li>
+            <li>Added: Search and paging capabilities to management panel</li>
+          </ul>         
+          <h2>Version 06.00.02</h2>
+          <ul>
+            <li>Fix: Javascript errors and other display issues</li>
+          </ul>         
+          <h2>Version 06.00.01</h2>
+          <ul>
+            <li>Fix: Soft deleting articles does not clear cache</li>
+            <li>Fix: Subscribers list not displaying correctly</li>
+            <li>Fix: Postback issue with using the subscription module</li>
+            <li>Fix: Sort by setting not working as expected</li>
+            <li>Fix: Archive module shows empty tree</li>
+            <li>Fix: Category counter not updated when deleting articles</li>
+          </ul>          
+          <h2>Version 06.00.00</h2>
+          <p><strong>This version is only compatible with DNN 6.1 and greater! Do not install on DNN 5!</strong></p>
+          <ul>
+            <li>Added: Management panel view mode</li>
+            <li>Added: Article publications</li>
+            <li>Added: Article versioning</li>
+            <li>Added: Related articles</li>
+            <li>Added: More article sorting options</li>
+            <li>Added: Settings to control width and height of pnaes in threaded view mode</li>
+            <li>Added: Intro article in threaded view mode</li>
+            <li>Added: Moderator role rather having a moderator e-mail address</li>
+            <li>Added: New setting to start off a given category in listing mode</li>
+            <li>Added: Publishdate / expirydate now also allows for setting the exact time</li>
+            <li>Fixed: Search does not return correct results in listing mode</li>
+            <li>Fixed: Unneeded popup message on image upload</li>
+          </ul> 
+          <h2>Version 05.02.00</h2> 
+          <ul>
+            <li>Added new module view: Threaded list</li>
+            <li>New: Sort categories by drag & drop</li>
+            <li>Fix: Comment dialog does not close correctly</li>
+            <li>Fix: Categories use fallback locale</li>
+            <li>New: Action Menu for expired articles</li>
+            <li>New: Action Menu for unapproved articles</li>
+            <li>New: Action Menu for articles with a publish date in the future</li>
+            <li>New: [EXTENSIONICON] token for getting the url to an extension image</li>
+            <li>Improved: Revised iPortable imlementation to support images and comments</li>
+          </ul> 
+          <h2>Version 05.01.02</h2> 
+          <ul>
+            <li>Minor bugfixing on dialogs UI</li>            
+          </ul>         
+          <h2>Version 05.01.01</h2> 
+          <ul>
+            <li>Fix: Galleries didn't work as expected in single language portals</li>            
+            <li>Fix: Cache wasn't cleared correctly in situations where multiple instances were on the same page</li>
+            <li>Fix: Category labels weren't displayed in single language portals</li>
+            <li>Fix: Template manager dialog could not be closed anymore</li>            
+          </ul> 
+          <h2>Version 05.01.00</h2> 
+          <ul>
+            <li>New: Image Gallery for articles</li>            
+            <li>New: Added dozens of tokens to support images, profile properties and more conditional scenarios</li>
+            <li>New: Re-designed default templates to accomodate for the new gallery features and a more modern layout</li>
+            <li>New: Added expiry date to articles.</li>
+            <li>New: Added featured flag to articles, including a new template file for featured articles.</li>
+            <li>New: Performance improvements through better caching and code refactoring</li>
+            <li>New: Added LastUpdatedBy and LastUpdatedDate fields to articles to improve tracking options for administrators</li>
+            <li>New: Added facebook compatible meta tags to allow for easier sharing of articles</li>
+          </ul> 
+          <h2>Version 05.00.01</h2> 
+          <ul>
+            <li>Fix: Administrators could no longer edit articles if they were not publsihed by them.</li>            
+          </ul>         
+          <h2>Version 05.00.00</h2> 
+          <ul>
+            <li>Added new dependency: Nuntio Articles now only supports DNN 5.6.2 and greater</li>
+            <li>Removed dependency: Nuntio Articles now makes use of the latest telerik components</li>
+          </ul> 		  
+          <h2>Version 04.02.07</h2>         
+          <ul>
+            <li>HASIMAGE Token introduced. The token can be used together with /HASIMAGE to render images in articles that are linked to an image file.</li>
+            <li>The corresponding ISNOTIMAGE token may be used to only render links that are not linked to image files.</li>
+            <li>Twitter integration can now be disabled in the settings of the module.</li>
+            <li>An error in the search implementaion had lead to multiple exception log entries. This has been fixed.</li>
+            <li>Another search implementation error had lead to articles being indexed by the DNN search even if DNN search was disabled in the settings of the module. This has been fixed as well.</li>
+          </ul>
+          <h2>Version 04.02.06</h2>         
+          <ul>
+            <li>Adds the option "Show Past Items" / "Show Future Items" to all article modules so that each will only display relevant articles / counters for the selected option.</li>
+            <li>Adds the option to not display the article counter in brackets after category / author / month names</li>
+            <li>Fixes several issues in some of the sql scripts.</li>
+          </ul>
+          <h2>Version 04.02.05</h2>         
+          <ul>
+            <li>New feature: DMX Integration support. You can now link an article to a DMX file directly from within the edit form. You will need the OpenSource add-on "DMX ContentProvider", available on the Codeplex platform. Maker sure your read <a href="http://www.dnnwerk.de/Support/Onlinehilfe/tabid/70/ArticleId/41/DMX-Integration-in-Nuntio-Modulen.aspx" target="_blank">this knowledgebase article</a> article to learn how integration works.</li>
+          </ul>
+          <h2>Version 04.02.04</h2>         
+          <ul>
+            <li>New feature: optionally post articles to twitter</li>
+            <li>FIX: articles become indexed twice under certain conditions</li>
+            <li>FIX: notification scheduled task breaks portal cache under certain conditions</li>
+          </ul>
+	      ]]>
+      </releaseNotes>
+      <components>
+        <component type="Script">
+          <scripts>
+            <basePath>DesktopModules\Nuntio.Articles</basePath>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.01.00.sqldataprovider</name>
+              <version>04.01.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.01.01.sqldataprovider</name>
+              <version>04.01.01</version>
+            </script>          
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.01.02.sqldataprovider</name>
+              <version>04.01.02</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.01.05.sqldataprovider</name>
+              <version>04.01.05</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.02.00.sqldataprovider</name>
+              <version>04.02.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.02.01.sqldataprovider</name>
+              <version>04.02.01</version>
+            </script>  
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.02.06.sqldataprovider</name>
+              <version>04.02.06</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.02.07.sqldataprovider</name>
+              <version>04.02.07</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>04.02.08.sqldataprovider</name>
+              <version>04.02.08</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>05.01.00.sqldataprovider</name>
+              <version>05.01.00</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>05.02.00.sqldataprovider</name>
+              <version>05.02.00</version>
+            </script>
+              <script type="Install">
+                  <path>Providers\DataProviders\SqlDataProvider</path>
+                  <name>05.02.01.sqldataprovider</name>
+                  <version>05.02.01</version>
+              </script>
+              <script type="Install">
+                  <path>Providers\DataProviders\SqlDataProvider</path>
+                  <name>06.00.00.sqldataprovider</name>
+                  <version>06.00.00</version>
+              </script>
+              <script type="Install">
+                  <path>Providers\DataProviders\SqlDataProvider</path>
+                  <name>06.00.01.sqldataprovider</name>
+                  <version>06.00.01</version>
+              </script>
+              <script type="Install">
+                  <path>Providers\DataProviders\SqlDataProvider</path>
+                  <name>06.00.02.sqldataprovider</name>
+                  <version>06.00.02</version>
+              </script>
+              <script type="Install">
+                  <path>Providers\DataProviders\SqlDataProvider</path>
+                  <name>06.01.01.sqldataprovider</name>
+                  <version>06.01.01</version>
+              </script>
+              <script type="Install">
+                  <path>Providers\DataProviders\SqlDataProvider</path>
+                  <name>06.01.02.sqldataprovider</name>
+                  <version>06.01.02</version>
+              </script>
+              <script type="UnInstall">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>uninstall.sqldataprovider</name>
+              <version>04.01.00</version>
+            </script>            
+          </scripts>
+        </component>
+        <component type="Module">
+          <desktopModule>                  
+            <moduleName>Nuntio Articles</moduleName>
+            <foldername>Nuntio.Articles</foldername>
+            <businessControllerClass>dnnWerk.Modules.Nuntio.Articles.ArticleController,dnnWerk.Nuntio.Articles</businessControllerClass>
+            <supportedFeatures>
+              <supportedFeature type="Portable" />
+              <supportedFeature type="Searchable" />
+            </supportedFeatures>
+            <moduleDefinitions>
+              <moduleDefinition>
+                <friendlyName>Nuntio Articles</friendlyName>
+                <defaultCacheTime>-1</defaultCacheTime>
+                <moduleControls>
+                  <moduleControl>
+                    <controlKey />
+                    <controlSrc>DesktopModules/Nuntio.Articles/Articles.ascx</controlSrc>
+                    <supportsPartialRendering>false</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl>http://www.peppertree-solutions.com/community</helpUrl>
+                    <viewOrder>0</viewOrder>
+                    <supportsPopUps>false</supportsPopUps>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Config</controlKey>
+                    <controlSrc>DesktopModules/Nuntio.Articles/Settings.ascx</controlSrc>
+                    <supportsPartialRendering>false</supportsPartialRendering>
+                    <controlTitle />
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl>http://www.peppertree-solutions.com/community</helpUrl>
+                    <viewOrder>0</viewOrder>
+                    <supportsPopUps>false</supportsPopUps>
+                  </moduleControl>                  
+                </moduleControls>
+              </moduleDefinition>
+            </moduleDefinitions>
+          </desktopModule>
+        </component>
+        <component type="Assembly">
+          <assemblies>       
+            <assembly>            
+              <path>bin</path>
+              <name>dnnWerk.Nuntio.Articles.dll</name>
+            </assembly>
+            <assembly>
+              <path>bin</path>
+              <name>dnnWerk.Nuntio.Localization.dll</name>
+            </assembly>                 
+          </assemblies>
+        </component>
+        <component type="File">
+          <files>
+            <basePath>DesktopModules\Nuntio.Articles</basePath>
+            <file>
+              <name>Articles.ascx</name>
+            </file>
+            <file>
+              <name>nuntio.articles.extension.jpg</name>              
+            </file>
+            <file>
+              <name>Rss.aspx</name>
+            </file>
+            <file>
+              <name>DialogHandler.aspx</name>
+            </file>
+            <file>
+              <name>Settings.ascx</name>
+            </file>
+            <file>
+              <name>Nuntio.Articles.dnn</name>
+            </file>
+            <file>
+              <name>module.css</name>
+            </file>              
+          </files>
+        </component>
+        <component type="Cleanup" version="04.01.00" fileName="04.01.00.txt" />
+        <component type="Cleanup" version="05.00.00" fileName="05.00.00.txt" />
+	    <component type="ResourceFile"> 
+	        <resourceFiles> 
+		        <basePath>DesktopModules\Nuntio.Articles</basePath>
+		        <resourceFile>
+		            <name>Resources.zip</name> 
+		        </resourceFile>
+	        </resourceFiles> 
+	    </component>        
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

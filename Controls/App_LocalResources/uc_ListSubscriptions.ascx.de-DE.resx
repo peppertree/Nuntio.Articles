@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string" />
+                            <xsd:attribute name="name" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+  <data name="ModuleHelp.Text">
+    <value>&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;Abonnements verwalten&lt;/h3&gt;
+&lt;p&gt;Abonnements können an zwei verschiedenen Stellen innerhalb des Portals verwaltet werden&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;Über die Option &lt;i&gt;Abonnements verwalten&lt;/i&gt; innerhalb der Hauptinstanz des Moduls&lt;/li&gt;
+    &lt;li&gt;Über den &lt;i&gt;Zeitplanerdienst&lt;/i&gt; Ihres Portals im Hostmenue&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Standardmäßig ist der Zeitintervall für das Versenden von Benachrichtigungen auf stündlich eingestellt. D.h. einmal pro Stunde prüft der Zeitplaner, ob noch nicht benachrichtigte Abonnements vorliegen und versendet diese. Wenn Sie dieses Verhalten ändern wollen, müssen Sie mit einem Host Konto angemeldet sein.&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;Gehen Sie zu Host &amp;gt; Zeitplanerdienst&lt;/li&gt;
+    &lt;li&gt;Klicken Sie auf den Bearbeiten Link bei &lt;i&gt;&lt;b&gt;
+    pnc.Publisher.MagicNews.NewsNotification&lt;/b&gt;&lt;/i&gt;&lt;/li&gt;
+    &lt;li&gt;Setzen Sie den Wert für &lt;b&gt;&lt;i&gt;Zeitintervall&lt;/i&gt;&lt;/b&gt; auf den von Ihnen gewünschten Wert&lt;/li&gt;
+    &lt;li&gt;Belassen Sie alle anderen Einstellungen&lt;/li&gt;
+    &lt;li&gt;Stellen Sie sicher, dass &lt;i&gt;&lt;b&gt;Zeitplanerdienst aktiviert&lt;/b&gt;&lt;/i&gt; markiert ist&lt;/li&gt;
+    &lt;li&gt;Speichern Sie die Einstellungen&lt;/li&gt;
+    &lt;li&gt;Stellen Sie sicher das in den Host Einstellungen der Timer Modus auf &lt;i&gt;&lt;b&gt;Timer Method&lt;/b&gt;&lt;/i&gt; eingestellt ist.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Um aktuelle Abonnements zu verwalten, gehen Sie zu dem &lt;i&gt; Magic News &lt;/i&gt;Modul, dass
+Sie verwalten wollen und wählen Sie &lt;i&gt;&lt;b&gt;Abonnements verwalten&lt;/b&gt;&lt;/i&gt; aus dem Aktionsmenue aus &lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;Wählen Sie die Sprache aus, für die Sie sich aktuelle Abonnements anzeigen lassen wollen&lt;/li&gt;
+    &lt;li&gt;Sie können nun Abonnements löschen, in dem Sie auf &lt;i&gt;&lt;b&gt;Löschen&lt;/b&gt;&lt;/i&gt; neben einem jedem Abonnement klicken&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</value>
+    </data>         
+    <data name="NoSubscriptionsFound.Text">
+        <value>Keine Abonnements unter der gewählten Sprache gefunden...</value>
+    </data>
+  <data name="ControlTitle_listsubscriptions.Text">
+    <value>Abonnenten verwalten</value>
+  </data>
+</root>
+
+

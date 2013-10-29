@@ -1,0 +1,13 @@
+<style type="text/css">
+    p  {font-family:verdana;font-size:12px;color:#333;}
+    p.small  {font-family:verdana;font-size:10px;color:#333;}
+    div a, div a:link, div a:active, div a:visited {font-family:verdana;font-size:12px;color:#311c0b;text-decoration:none;}
+    p a, p a:link, p a:active, p a:visited {font-family:verdana;font-size:10px;color:#311c0b;text-decoration:none;}
+    div.head {background-color: #eee;border-bottom:1px dashed #ddd;padding:10px;font-weight:bold;font-size:14px;color:#111;font-family:verdana;}
+    div.summary {padding:20px 10px 0px 10px;font-style:italic;font-size:12px;color:#333;font-family:verdana;}
+    div.content {padding:10px 10px 0px 10px;font-style:normal;font-size:12px;color:#333;font-family:verdana;}
+</style>
+<p>Dear [RECIPIENT_NAME],</p>
+<p>A new message has been posted to the newsletter [NEWSMODULETITLE] that you are subscribed to.</p>
+
+	

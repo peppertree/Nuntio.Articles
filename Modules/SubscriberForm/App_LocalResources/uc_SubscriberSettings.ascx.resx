@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <data name="NoModuleFound.Text">
+      <value>No article module found that one could subscribe to. Please add a central article store module to your portal. For further information, refer to the Getting Started section of the help file.</value>
+    </data>
+    <data name="plSelectNewsModule.Text">
+        <value>Article Modules</value>
+    </data>
+    <data name="plSelectNewsModule.Help">
+        <value>Select the article modules that visitors can subscribe to by this form</value>
+    </data> 
+    <data name="plModuletitle.Text">
+        <value>Localized Moduletitle</value>
+    </data>
+    <data name="plModuletitle.Help">
+        <value>Enter a moduletitle for each of your portal locales</value>
+    </data> 
+    <data name="plProceedLink.Text">
+        <value>Proceed after Submit</value>
+    </data>
+    <data name="plProceedLink.Help">
+        <value>Select a tab (optionally) where subscribers are being redirected after hitting the submit button</value>
+    </data>
+    <data name="ControlTitle_settings.Text">
+      <value>Subscription Form Settings</value>
+    </data>
+    <data name="plTheme.Text">
+      <value>Module Theme</value>
+    </data>
+    <data name="plTheme.Help">
+      <value>Select the theme to be used for e-mail messages of the subscriber form</value>
+    </data>  
+</root>

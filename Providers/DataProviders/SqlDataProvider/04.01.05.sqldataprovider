@@ -1,0 +1,26 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticles
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticles
+    @ModuleId  int
+as
+    Select 
+        * 
+    from 
+        {objectQualifier}pnc_NewsItems 
+    Where 
+        ModuleId = @ModuleId
+
+GO

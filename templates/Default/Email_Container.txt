@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>[SUBJECT]</title>
+	<style type="text/css">
+		body		{margin:0; padding:0;}
+		.body		{background: #eeeeee;}
+		.sp			{height:20px; line-height:20px;}
+		.ouCt		{background: #ffffff; width:700px;border: 1px solid #ddd;}
+		.unsub		{font-family: verdana; font-size: 10px; color: #333333;}
+		.ftText		{font-family: verdana; font-size: 11px; color: #ffffff;}
+
+		p			{font-family:verdana;font-size:12px;color:#333333;}
+		h1			{font-family:verdana;font-size:20px;color:#004c93; font-weight: bold;}
+		h2			{font-family:verdana;font-size:18px;color:#f5a32f; font-weight: bold;}
+		h3			{font-family:verdana;font-size:16px;color:#077fbb; font-weight: bold;}
+		a, 
+		a:link, 
+		a:active, 
+		a:visited	{font-family:verdana;font-size:12px;color:#bf0c1d;text-decoration:none;}
+    
+		div.head	{background-color: #eee;border-bottom:1px dashed #ddd;padding:10px;font-weight:bold;font-size:14px;color:#111;font-family:verdana;}
+		div.summary {padding:20px 10px 0px 10px;font-style:italic;font-size:12px;color:#333;font-family:verdana;}
+		div.content {padding:10px 10px 0px 10px;font-style:normal;font-size:12px;color:#333;font-family:verdana;}
+
+		.container	{width: 670px;}
+	</style>    
+</head>
+<body>
+	<table width="100%" cellpadding="0" cellspacing="0" class="body" align="center" bgcolor="#eeeeee">
+		<tr height="10">
+			<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+
+				<table width="700" cellpadding="0" cellspacing="0" class="ouCt" align="center" bgcolor="#ffffff" style="border: 1px solid #ddd;">
+					<tr>
+						<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+
+							<table width="670" cellpadding="0" cellspacing="0" class="container" bgcolor="#fff" align="center">
+								<tr>
+									<td style="text-align:left; vertical-align:top;"><img src="/Portals/0/Newsletter/nl_hd.png" alt="Compumess Bar" style="border: none;" border="0" /></td>
+									<td style="text-align:right; vertical-align:top;"><a href="http://test.compumess.de" target="_blank"><img src="/Portals/0/Newsletter/nl_lg.png" alt="Compumess Logo" style="border: none;" border="0" /></a></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<h1>Der CME Newsletter</h1>
+										<p>Ersetzen Sie diesen Introtext durch Ihren eigenen Text</p>
+
+										[ARTICLE]
+
+										<p>Ersetzen Sie diesen Footertext durch Ihren eigenen Text</p>
+
+									</td>
+								</tr>
+							</table>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+					</tr>
+				</table>
+
+			</td>
+		</tr>
+		<tr height="10">
+			<td>
+				
+				<table width="700" cellpadding="0" cellspacing="0" align="center" bgcolor="#004c93">
+					<tr>
+						<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<span style="font-family: verdana; font-size: 11px; color: #ffffff;" class="ftText">
+								&nbsp;CompuMess Elektronik GmbH | Lise-Meitner Strasse 4 | Tel.: (089) 321 50 1-0 | Fax:-11 | <a href="mailto:info@compumess.de"><span style="font-family: verdana; font-size: 11px; color: #ffffff; text-decoration: underline;" class="ftText">info@compumess.de</span></a>&nbsp;
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+					</tr>
+				</table>
+				
+			</td>
+		</tr>
+
+		<tr height="10">
+			<td>
+				
+				<table width="650" cellpadding="0" cellspacing="0" align="center" bgcolor="#eeeeee">
+					<tr>
+						<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<span style="font-family: verdana; font-size: 10px; color: #333333;" class="unsub">Sie erhalten diesen Newsletter, weil Sie diesen &uuml;ber unsere Webseite bestellt haben. Sollten Sie den Newsletter nicht l&auml;nger erhalten wollen, klicken Sie bitte <a href="http://test.compumess.de/unsubscribe.aspx?SubcriberId=[SUBSCRIBERID]" target="_blank"><span style="font-family: verdana; font-size: 10px; color: #333333; text-decoration: underline;" class="unsub">hier</span></a>.</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+					</tr>
+				</table>
+				
+			</td>
+		</tr>
+
+		<tr height="10">
+			<td class="sp" style="height:20px; line-height:20px;">&nbsp;</td>
+		</tr>
+
+	</table>
+</body>
+</html>

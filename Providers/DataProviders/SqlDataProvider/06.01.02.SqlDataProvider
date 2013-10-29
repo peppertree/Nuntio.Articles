@@ -1,0 +1,579 @@
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsItems' AND COLUMN_NAME = 'AnchorLink')
+BEGIN
+	ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] ADD [AnchorLink] nvarchar(255) NULL
+END
+GO
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_Nuntio_Articles]') and OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW {databaseOwner}[{objectQualifier}vw_Nuntio_Articles]
+GO
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_Nuntio_Articles]	
+AS
+SELECT     
+	A.ItemID, 
+	A.ModuleID,
+	A.AnchorLink, 
+	A.PortalID, 
+	A.CreatedByUser, 
+	A.CreatedDate, 
+	(Select Top 1 LastName from {objectQualifier}Users where UserID = A.CreatedByUser) as 'AuthorLastName',
+	(Select Top 1 FirstName from {objectQualifier}Users where UserID = A.CreatedByUser) as 'AuthorFirstName',
+	A.PublishDate, 
+	A.ViewOrder, 
+	A.IsNotified, 
+	A.ApprovedBy, 
+	A.IsApproved, 
+	A.ApprovedDate, 
+	A.ExpiryDate, 
+	A.IsFeatured, 
+	A.LastUpdatedBy, 
+	A.LastUpdatedDate, 
+	(Select Top 1 LastName from {objectQualifier}Users where UserID = A.LastUpdatedBy) as 'LastUpdatedByLastName',
+	(Select Top 1 FirstName from {objectQualifier}Users where UserID = A.LastUpdatedBy) as 'LastUpdatedByFirstName',	
+	A.ParentId,
+	A.ReviewDate, 
+	A.IsPublication,
+	(Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = A.ItemId and IsApproved = 1) as 'Comments',
+	(Select Count(*) from {objectQualifier}pnc_NewsItems Where ParentId = A.ItemId) as 'Articles',
+	(substring((SELECT ( ',' + Convert(nvarchar(10),CR.CategoryId))
+							FROM {objectQualifier}pnc_NewsCatRelation CR Inner Join {objectQualifier}pnc_NewsCategories C on C.CategoryID = CR.CategoryID where CR.ItemID = A.ItemId
+							ORDER BY C.ViewOrder asc	
+							FOR XML PATH( '' )
+							), 2, 1000 )) as 'Categories',
+	A.IsDeleted
+FROM
+	{objectQualifier}pnc_NewsItems A
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_AddArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddArticle
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddArticle
+	@ModuleId			int,
+	@PortalID			int,
+	@CreatedByUser		int,
+	@CreatedDate		datetime,
+	@PublishDate		datetime,
+	@ExpiryDate			datetime,
+	@ViewOrder			int,
+	@IsNotified			bit,
+	@IsApproved			bit,
+	@ApprovedBy			int,
+	@ApprovedDate		datetime,
+	@IsFeatured			bit,
+	@LastUpdatedBy		int,
+	@LastUpdatedDate	datetime,
+	@ParentId			int,
+	@ReviewDate			datetime,
+	@IsPublication		bit,
+	@AnchorLink			nvarchar(255)
+as
+	INSERT INTO {objectQualifier}pnc_NewsItems 
+	(
+		ModuleId,
+		PortalID,
+		CreatedByUser,
+		CreatedDate,
+		PublishDate,
+		ExpiryDate,
+		ViewOrder,
+		IsNotified,
+		IsApproved,
+		ApprovedBy,
+		ApprovedDate,
+		IsFeatured,
+		LastUpdatedBy,
+		LastUpdatedDate,
+		ParentId,
+		ReviewDate,
+		IsPublication,
+		IsDeleted,
+		AnchorLink
+	)
+	VALUES
+	(
+		@ModuleId,
+		@PortalID,
+		@CreatedByUser,
+		@CreatedDate,
+		@PublishDate,
+		@ExpiryDate,
+		@ViewOrder,
+		@IsNotified,
+		@IsApproved,
+		@ApprovedBy,
+		@ApprovedDate,
+		@IsFeatured,
+		@LastUpdatedBy,
+		@LastUpdatedDate,
+		@ParentId,
+		@ReviewDate,
+		@IsPublication,
+		0,
+		@AnchorLink
+	)
+
+SELECT SCOPE_IDENTITY()
+
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_UpdateArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_UpdateArticle
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_UpdateArticle
+	@ItemId				int,
+	@ModuleId			int,
+	@PortalId			int,
+	@CreatedByUser		int,
+	@CreatedDate		datetime,
+	@PublishDate		datetime,
+	@ExpiryDate			datetime,
+	@ViewOrder			int,
+	@IsNotified			bit,
+	@IsApproved			bit,
+	@ApprovedBy			int,
+	@ApprovedDate		datetime,
+	@IsFeatured			bit,
+	@LastUpdatedBy		int,
+	@LastUpdatedDate	datetime,
+	@ParentId			int,
+	@ReviewDate			datetime,
+	@IsPublication		bit,
+	@AnchorLink			nvarchar(255)
+AS
+	UPDATE 
+		{objectQualifier}pnc_NewsItems
+	SET 
+		ModuleId		= @ModuleId,
+		PortalId		= @PortalId,
+		CreatedByUser	= @CreatedByUser,
+		PublishDate		= @PublishDate,
+		ExpiryDate		= @ExpiryDate,
+		ViewOrder		= @ViewOrder,
+		IsNotified		= @IsNotified,
+		IsApproved		= @IsApproved,
+		ApprovedBy		= @ApprovedBy,
+		ApprovedDate	= @ApprovedDate,
+		IsFeatured		= @IsFeatured,
+		LastUpdatedBy	= @LastUpdatedBy,
+		LastUpdatedDate	= @LastUpdatedDate,
+		ParentId		= @ParentId,
+		ReviewDate		= @ReviewDate,
+		IsPublication	= @IsPublication,
+		AnchorLink		= @AnchorLink
+	WHERE  
+		ItemId = @ItemId
+GO
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsFile]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	BEGIN
+		CREATE TABLE {databaseOwner}[{objectQualifier}pnc_NewsFile]
+		(
+			[ArticleFileId] [int] IDENTITY(1,1) NOT NULL,
+			[FileId] [int] NOT NULL,
+			[ArticleId] [int] NOT NULL,
+			[IsPrimary] [bit] NOT NULL,
+			[IsImage] [bit] NOT NULL,
+			[Extension] nvarchar(20) NOT NULL
+		)
+        
+		ALTER TABLE {databaseOwner}{objectQualifier}pnc_NewsFile ADD 
+		CONSTRAINT [PK_{objectQualifier}pnc_NewsFile] PRIMARY KEY  CLUSTERED ([ArticleFileId])  ON [PRIMARY]       
+
+		ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsFile] WITH NOCHECK ADD
+		CONSTRAINT [FK_{objectQualifier}pnc_NewsFile{objectQualifier}Article] FOREIGN KEY ([ArticleId]) REFERENCES {databaseOwner}[{objectQualifier}pnc_NewsItems] ([ItemId]) ON DELETE CASCADE NOT FOR REPLICATION        
+
+	END
+GO
+
+/* Move images to new files table */
+
+SET IDENTITY_INSERT {objectQualifier}pnc_NewsFile ON
+
+INSERT INTO {objectQualifier}pnc_NewsFile (ArticleFileId, FileId, ArticleId, IsPrimary, IsImage, Extension) SELECT ImageId, FileId, ArticleId, IsPrimary, 1, '' FROM {objectQualifier}pnc_NewsImage
+
+SET IDENTITY_INSERT {objectQualifier}pnc_NewsFile OFF
+GO
+
+/* Change keys from images only support to files also */
+
+Update {objectQualifier}pnc_Localization_LocalizedItems set [Key] = 'FILETITLE' Where [Key] = 'IMAGETITLE'
+GO
+
+Update {objectQualifier}pnc_Localization_LocalizedItems set [Key] = 'FILEDESCRIPTION' Where [Key] = 'IMAGEDESCRIPTION'
+GO
+
+/* Move File Links from URL Localization to Files table */
+
+INSERT INTO 
+	{objectQualifier}pnc_NewsFile 
+		(FileId, ArticleId, IsPrimary, IsImage, Extension) 
+SELECT
+	'FileId' = SUBSTRING([Content], 8, 30), 
+	'ArticleId' = [SourceItemId],
+	1,
+	0,
+	''
+FROM 
+	{objectQualifier}pnc_Localization_LocalizedItems 
+WHERE
+	[Key] = 'URL' 
+AND 
+	[Content] Like 'FileId=%'
+AND
+	[IsApproved] = 1
+GO
+
+/* Re-Create SPROCs */
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_AddFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddFile
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddFile
+	@FileId int,
+	@ArticleId int,
+	@IsPrimary bit,
+	@IsImage bit,
+	@Extension nvarchar(20)
+AS
+	INSERT INTO {objectQualifier}pnc_NewsFile
+		([FileId],[ArticleId],[IsPrimary],[IsImage],[Extension])
+	VALUES
+		(@FileId,@ArticleId,@IsPrimary,@IsImage,@Extension)
+          
+	SELECT SCOPE_IDENTITY()
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_UpdateFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_UpdateFile
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_UpdateFile
+	@ArticleFileId int,
+	@FileId int,
+	@ArticleId int,
+	@IsPrimary bit,
+	@IsImage bit,
+	@Extension nvarchar(20)
+AS
+	Update 
+		{objectQualifier}pnc_NewsFile
+	SET 
+		FileId = @FileId,
+		ArticleId = @ArticleId,
+		IsPrimary = @IsPrimary,
+		IsImage = @IsImage,
+		Extension = @Extension
+	WHERE
+		ArticleFileId = @ArticleFileId        
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_DeleteFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteFile
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteFile
+	@ArticleFileId int
+AS
+	DELETE FROM
+		{objectQualifier}pnc_NewsFile
+	WHERE
+		ArticleFileId = @ArticleFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetFile
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetFile
+	@ArticleFileId int
+AS
+	SELECT 
+		I.ArticleFileId,
+		I.FileId,
+		I.ArticleId,
+		I.IsPrimary,
+		I.IsImage,
+		I.Extension,
+		F.Folder,
+		F.FileName
+	FROM
+		{objectQualifier}pnc_NewsFile I
+		INNER JOIN {objectQualifier}Files F on F.FileId = I.FileId
+	WHERE
+		I.ArticleFileId = @ArticleFileId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_ListImages]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_ListImages
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_ListAttachments]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_ListAttachments
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_ListImages
+	@ArticleId int
+AS
+	SELECT 
+		I.ArticleFileId,
+		I.FileId,
+		I.ArticleId,
+		I.IsPrimary,
+		I.IsImage,
+		I.Extension,
+		F.Folder,
+		F.FileName
+	FROM
+		{objectQualifier}pnc_NewsFile I
+		INNER JOIN {objectQualifier}Files F on F.FileId = I.FileId
+	WHERE
+		I.ArticleId = @ArticleId
+	AND
+		I.IsImage = 1
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_ListAttachments
+	@ArticleId int
+AS
+	SELECT 
+		I.ArticleFileId,
+		I.FileId,
+		I.ArticleId,
+		I.IsPrimary,
+		I.IsImage,
+		I.Extension,
+		F.Folder,
+		F.FileName
+	FROM
+		{objectQualifier}pnc_NewsFile I
+		INNER JOIN {objectQualifier}Files F on F.FileId = I.FileId
+	WHERE
+		I.ArticleId = @ArticleId
+	AND
+		I.IsImage = 0
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticlesPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesPaged
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesPaged
+    @ModuleId  int,
+    @PageSize  int,
+    @PageIndex int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @Categories xml,
+    @Sortmode nvarchar(30),
+    @AuthorId int,
+    @IncludePublishDateInFuture bit,
+    @IncludePublishDateInPast bit,
+	@IncludeFeatured bit,
+	@IncludeNonFeatured bit,
+	@IncludePublications bit,
+	@IncludeNonPublications bit,
+	@Locale nvarchar(10)
+as
+
+	DECLARE @sql nvarchar(2000)
+	DECLARE @iDoc int
+	DECLARE @CategoryId nvarchar(10)
+	DECLARE @ArticleId int
+    DECLARE @Title nvarchar(255)
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+  
+-- create a temp table for holding the intermediate result
+    CREATE TABLE #tmpArticles
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int,
+        Title nvarchar(255)
+    )
+-- create the final temp table used for paging    
+    CREATE TABLE #finalArticles
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int,
+        Title nvarchar(255)
+    )  
+     				
+-- populate temp table with filtered results		
+	INSERT INTO #tmpArticles (ItemID, Title)
+		SELECT 
+			A.ItemID,
+			(Select Top 1 Content from {objectQualifier}pnc_Localization_LocalizedItems where SourceItemID = A.ItemID and [KEY] = 'TITLE' and IsApproved = 1 and Locale = @Locale)
+		FROM
+			{objectQualifier}pnc_NewsItems A
+			Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = A.ItemID
+		WHERE 									
+			(Month(A.PublishDate) = @Month or @Month is NULL)
+		AND
+			A.IsDeleted = 0
+		AND
+			(Year(A.PublishDate) = @Year or @Year is NULL)
+		AND
+			(A.ExpiryDate >= @StartDate or A.ExpiryDate is Null)
+		AND
+			(A.IsApproved = 1)
+		AND
+			(A.ModuleID = @ModuleID or @ModuleID is Null)
+		AND
+			(A.CreatedByUser = @AuthorId or @AuthorId is Null)	
+		AND
+			(
+				(@IncludePublishDateInFuture = 1 and A.PublishDate >= @StartDate) 
+			OR 
+				(@IncludePublishDateInPast = 1 and A.PublishDate <= @StartDate)
+			)
+		AND
+			(
+				(@IncludePublications = 1 and A.IsPublication = 1) 
+			OR 
+				(@IncludeNonPublications = 1 and A.IsPublication = 0)
+			)									
+		AND
+			(
+				(@IncludeFeatured = 1 and A.IsFeatured = 1)
+			OR
+				(@IncludeNonFeatured = 1 and A.IsFeatured = 0)								
+			)			
+
+--temp table filled, now filter temp table for categories
+			        
+	if (@Categories is NOT Null)
+		BEGIN
+			EXEC sp_xml_preparedocument @iDoc OUTPUT, @Categories
+			
+-- use a cursor to loop through each requested category
+
+			DECLARE CursorCat CURSOR FOR (SELECT * FROM OPENXML(@iDoc, '/Categories/Category', 1) WITH (CategoryId nvarchar(10)))
+			OPEN CursorCat	
+			FETCH NEXT FROM CursorCat INTO @CategoryId
+			WHILE (@@FETCH_STATUS = 0)
+				BEGIN
+				
+-- use another cursor to loop trough all articles in the temp table that match the requested category id
+				
+					DECLARE ArticleCursor CURSOR FOR 	
+						SELECT 
+							c.ItemID,
+							tmp.Title
+						FROM 
+							{objectQualifier}pnc_NewsCatRelation C
+							Inner Join #tmpArticles tmp on tmp.ItemID = C.ItemID
+							Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = tmp.ItemID
+						WHERE
+							C.CategoryID = @CategoryID							
+						ORDER BY 
+							CASE WHEN @Sortmode = 'publishdatedesc' THEN vw.PublishDate END DESC,
+							CASE WHEN @Sortmode = 'publishdateasc' THEN vw.PublishDate END ASC,
+							CASE WHEN @Sortmode = 'authorasc' THEN vw.AuthorLastName END ASC,
+							CASE WHEN @Sortmode = 'authordesc' THEN vw.AuthorLastName END DESC,
+							CASE WHEN @Sortmode = 'titleasc' THEN tmp.Title END ASC,
+							CASE WHEN @Sortmode = 'titledesc' THEN tmp.Title END DESC								
+							
+					Open ArticleCursor
+					FETCH NEXT FROM ArticleCursor into @ArticleID, @Title							
+					WHILE (@@FETCH_STATUS = 0)
+						Begin
+							-- make sure articles are not in the final paging table already						
+							if not exists (Select * From #finalArticles where ItemID = @ArticleId)
+							Begin	
+								--add article to final paging table		
+								INSERT INTO #finalArticles (ItemID, Title) Values (@ArticleId, @Title)
+							End		
+							FETCH NEXT FROM ArticleCursor into @ArticleId, @Title			
+						End	
+					CLOSE ArticleCursor
+					DEALLOCATE ArticleCursor	
+					
+					-- next category	
+					FETCH NEXT FROM CursorCat INTO @CategoryId
+									
+				END		
+			
+			-- close cursor
+			CLOSE CursorCat
+			DEALLOCATE CursorCat
+										
+		END
+	else
+	
+-- no category filter requested
+-- we simply move all articles from the temp table into the temp paging table
+	
+		BEGIN
+				DECLARE ArticleCursor CURSOR FOR 
+					SELECT 
+						tmp.ItemID,
+						tmp.Title
+					FROM 
+						#tmpArticles tmp
+						Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = tmp.ItemID
+					ORDER BY 
+						CASE WHEN @Sortmode = 'publishdateasc' THEN vw.PublishDate END ASC,
+						CASE WHEN @Sortmode = 'publishdatedesc' THEN vw.PublishDate END DESC,											   
+						CASE WHEN @Sortmode = 'authorasc' THEN vw.AuthorLastName END ASC,
+						CASE WHEN @Sortmode = 'authordesc' THEN vw.AuthorLastName END DESC,
+						CASE WHEN @Sortmode = 'titleasc' THEN tmp.Title END ASC,
+						CASE WHEN @Sortmode = 'titledesc' THEN tmp.Title END DESC							
+						
+				Open ArticleCursor
+				FETCH NEXT FROM ArticleCursor into @ArticleId, @Title								
+				WHILE (@@FETCH_STATUS = 0)
+					Begin
+						INSERT INTO #finalArticles (ItemID, Title) Values (@ArticleId, @Title)	
+						FETCH NEXT FROM ArticleCursor into @ArticleId, @Title				
+					End	
+				CLOSE ArticleCursor
+				DEALLOCATE ArticleCursor		
+		END
+		
+-- last but not least, select requested items from our temp paging table and join the results with
+-- the article main view to get all the columns
+		
+	SELECT
+		fn.ItemID, fn.Title, vw.*
+	FROM
+		#finalArticles fn
+		Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = fn.ItemID
+	WHERE
+		fn.IndexId >= CASE WHEN @PageSize = -1 THEN 0 WHEN @PageSize > 0 THEN @PageLowerBound END		
+	AND 
+		fn.IndexId <= CASE WHEN @PageSize = -1 THEN 999999999 WHEN @PageSize > 0 THEN @PageUpperBound END				
+    SELECT TotalRecords = COUNT(*) FROM #finalArticles
+
+GO
+
+

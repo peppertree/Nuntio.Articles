@@ -1,0 +1,14 @@
+<style type="text/css">
+    p  {font-family:verdana;font-size:12px;color:#333;}
+    h2  {font-family:verdana;font-size:12px;color:#333;font-weight:bold;}
+    div a, div a:link, div a:active, div a:visited {font-family:verdana;font-size:12px;color:#311c0b;text-decoration:none;}
+</style>
+<p>Dear [AUTHORNAME],</p>
+<p>a new comment has been submitted to your article <b>[ARTICLETITLE]</b> at <b>[PORTALNAME]</b>.</p>
+<p>It is up to you to decide if the comment is being authorized or not. If you decide to authorize the comment, it will be displayed on the website below your article.</p>
+<div style="padding: 20px;border:1px solid #ccc;background-color:#e7b791;display:block;">
+    <a href="[ARTICLELINK]">Click here to see the comment and edit it.</a>
+</div>
+<hr size="1" />
+<h2>The comment:</h2>
+<p>[COMMENT]</p>

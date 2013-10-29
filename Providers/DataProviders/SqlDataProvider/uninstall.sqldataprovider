@@ -1,0 +1,459 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsFile] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsFile{objectQualifier}Files]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsFile] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsFile{objectQualifier}Article]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsFile] DROP CONSTRAINT [PK_{objectQualifier}pnc_NewsFile]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsFile]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsImage{objectQualifier}Files]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsImage{objectQualifier}Article]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage] DROP CONSTRAINT [PK_{objectQualifier}pnc_NewsImage]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsComment_{objectQualifier}News]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems_Subscriptions] DROP CONSTRAINT [PK_{objectQualifier}pnc_NewsItems_Subscriptions]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems_Subscriptions] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsItems_Subscriptions_{objectQualifier}Modules]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems_Subscriptions] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsItems_Subscriptions_{objectQualifier}Users]
+GO
+        
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems_Subscriptions]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsCatRelation] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsCatRelation_{objectQualifier}NewsItems]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsCatRelation]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsCategories] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsCategories_{objectQualifier}Modules]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsCategories] DROP CONSTRAINT [PK_{objectQualifier}pnc_NewsCategories]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsCategories]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] DROP CONSTRAINT [FK_{objectQualifier}pnc_NewsItems_{objectQualifier}Modules]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] DROP CONSTRAINT [PK_{objectQualifier}pnc_NewsItems]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_News_EmailQueue]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}pnc_NewsRelation]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_Nuntio_Articles]
+GO
+
+/** Drop Existing Stored Procedures **/
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_AddFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddFile
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_UpdateFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_UpdateFile
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_DeleteFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteFile
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetFile]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetFile
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_ListImages]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_ListImages
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_ListAttachments]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_ListAttachments
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_News_EmailQueue_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_News_EmailQueue_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_News_EmailQueue_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_News_EmailQueue_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_News_EmailQueue_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByKeyAndEmail]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByKeyAndEmail
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Verify]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Verify
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryRelation_DeleteByCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryRelation_DeleteByCategory
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Delete
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentGet    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Get
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentList    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_List') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_List
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentAdd    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Add
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentUpdate    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Update') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Update
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentDelete    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Delete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListByCategoryPagedDesc]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListByCategoryPagedDesc
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticlesPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticlesPaged
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArchive]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArchive
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListPaged
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListForNotify]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListForNotify
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByUserID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByUserID
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByEmail]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByEmail
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListPaged
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListPagedAsc]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListPagedAsc
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListPagedDesc]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListPagedDesc
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_SetNotifiedTrue]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_SetNotifiedTrue
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[{objectQualifier}pnc_CategoryItem_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {objectQualifier}pnc_CategoryItem_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[{objectQualifier}pnc_CategoryItem_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {objectQualifier}pnc_CategoryItem_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[{objectQualifier}pnc_CategoryItem_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {objectQualifier}pnc_CategoryItem_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[{objectQualifier}pnc_CategoryItem_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {objectQualifier}pnc_CategoryItem_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[{objectQualifier}pnc_CategoryItem_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {objectQualifier}pnc_CategoryItem_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryRelation_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryRelation_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryRelation_GetByItem]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryRelation_GetByItem
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryRelation_DeleteByItem]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryRelation_DeleteByItem
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListByCategoryPagedAsc]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListByCategoryPagedAsc
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListByCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_ListByCategory
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Search]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Search
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetAuthors]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetAuthors
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetUnapproved]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetUnapproved
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_AddArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddArticle
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_AddArticleRelation]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_AddArticleRelation
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_DeleteArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteArticle
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_DeleteArticleRelation]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteArticleRelation
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArchiveTree]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArchiveTree
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticle
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticlesForSubscriptions]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesForSubscriptions
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticlesInPublication]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesInPublication
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetAuthors]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetAuthors
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticlesPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesPaged
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetDeleted]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetDeleted
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetExpiredArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetExpiredArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetFeaturedArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetFeaturedArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetNeedsReviewing]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetNeedsReviewing
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetRelatedArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetRelatedArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetSearchResult]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetSearchResult
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetUnapprovedArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetUnapprovedArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetUnpublishedArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetUnpublishedArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_RestoreArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_RestoreArticle
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_SoftDeleteArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_SoftDeleteArticle
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_UpdateArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_UpdateArticle
+GO
+
+   

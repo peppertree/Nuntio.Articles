@@ -1,0 +1,40 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryRelation_DeleteByCategory]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryRelation_DeleteByCategory
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryRelation_DeleteByCategory
+	@CategoryId int
+AS
+	Delete from {objectQualifier}pnc_NewsCatRelation Where CategoryId = @CategoryId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetNotYetPublished]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetNotYetPublished
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetNotYetPublished
+    @ModuleId  int,
+	@CurrentDate datetime
+as
+	Select 
+		*
+	from 
+		{objectQualifier}pnc_NewsItems
+	where 
+		(PublishDate > @CurrentDate)
+	and
+		(ModuleID = @ModuleID or @ModuleID is Null)
+	Order By
+		PublishDate desc
+GO

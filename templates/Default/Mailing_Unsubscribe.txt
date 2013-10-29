@@ -1,0 +1,12 @@
+<style type="text/css">
+    p  {font-family:verdana;font-size:12px;color:#333;}
+    div a, div a:link, div a:active, div a:visited {font-family:verdana;font-size:12px;color:#311c0b;text-decoration:none;}
+</style>
+<p>Dear [SUBSCRIBERNAME],</p>
+<p>you have requested to be removed from the newsletter list for [SUBSCRIPTIONMODULE] at [PORTALNAME].</p>
+<p>In order to finalize your request, it is necessary to verify your request by clicking the following link:</p>
+<div style="padding: 20px;border:1px solid #ccc;background-color:#e7b791;display:block;">
+    <a href="[UNSUBSCRIBELINK]">Click here to verify</a>
+</div>
+<p>This will cause our system to verify your e-mail address and remove you from the list. No further information about you, or your e-mail address will remain in our database.</p>
+<p>Thank you for your interest in our services!</p>

@@ -1,0 +1,222 @@
+﻿    /************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByKeyAndEmail]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByKeyAndEmail
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_Verify]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Verify
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByUserID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByUserID
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByEmail]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByEmail
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_List
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Verify
+    @Email       nvarchar(256)
+as
+    Update 
+        {objectQualifier}pnc_NewsItems_Subscriptions
+    Set
+        Verified = 1
+    Where
+        Email = @Email
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Add
+
+            @ModuleID    int,
+            @UserID      int = NULL,
+            @Email       nvarchar(256) = NULL,
+            @Name        nvarchar(256) = NULL,
+            @Locale      nvarchar(6) = NULL,
+            @Key         nvarchar(256),
+            @DateCreated datetime,
+            @Verified    bit
+
+as
+    Insert into {objectQualifier}pnc_NewsItems_Subscriptions (
+        ModuleID,
+        UserID,
+        Email,
+        Name,
+        Locale,
+        [Key],
+        DateCreated,
+        Verified
+        )
+    values (
+        @ModuleId,
+        @UserID,
+        @Email,
+        @Name,
+        @Locale,
+        @Key,
+        @DateCreated,
+        @Verified
+    )
+
+select SCOPE_IDENTITY()
+
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByKeyAndEmail
+    @Key nvarchar(50),
+    @Email nvarchar(255),
+    @ModuleId int
+as
+  select 
+	  ItemID,
+      ModuleId,
+      [Name],
+      Email,
+      Locale,
+      [Key],
+      DateCreated,
+      Verified
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+   where
+      ([Key] = @Key)
+   and
+      (Email = @Email)
+   and
+      (ModuleId = @ModuleId)
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_List
+            @ModuleID    int,
+            @Locale      nvarchar(6)
+as
+Begin
+   CREATE TABLE #Subscriptions 
+   (
+      IndexId int IDENTITY (1, 1) NOT NULL,
+      sName nvarchar(256) NOT NULL,
+      sEmail nvarchar(256) NOT NULL,
+      sLocale nvarchar(6) NOT NULL,
+      sKey nvarchar(256) NOT NULL,
+      dDateCreated datetime NULL,
+      bVerified bit NOT NULL,
+      iModuleId int NOT NULL
+   )
+   Insert into #Subscriptions(sName, sEmail, sLocale, sKey, dDateCreated, bVerified, iModuleId)
+   select 
+      {objectQualifier}Users.Displayname,
+      {objectQualifier}Users.Email,
+      {objectQualifier}Userprofile.PropertyValue,
+      {objectQualifier}pnc_NewsItems_Subscriptions.[Key],
+      {objectQualifier}pnc_NewsItems_Subscriptions.DateCreated,
+      1,
+      {objectQualifier}pnc_NewsItems_Subscriptions.ModuleId
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+      Inner join {objectQualifier}Users ON {objectQualifier}pnc_NewsItems_Subscriptions.UserID = {objectQualifier}Users.UserID
+      Inner Join ({objectQualifier}UserProfile Inner Join {objectQualifier}ProfilePropertyDefinition On {objectQualifier}Userprofile.PropertyDefinitionId = {objectQualifier}ProfilePropertyDefinition.PropertyDefinitionId) on {objectQualifier}pnc_NewsItems_Subscriptions.UserID = {objectQualifier}UserProfile.UserID 
+   where
+      ({objectQualifier}pnc_NewsItems_Subscriptions.ModuleID = @ModuleID or @ModuleID Is NULL)
+   and
+      ({objectQualifier}userprofile.PropertyValue = @Locale or @locale Is Null)
+   and
+      ({objectQualifier}ProfilePropertyDefinition.PropertyName = 'PreferredLocale')
+   Insert into #Subscriptions(sName, sEmail, sLocale, sKey, dDateCreated, bVerified, iModuleId)
+   select 
+      {objectQualifier}pnc_NewsItems_Subscriptions.[Name],
+      {objectQualifier}pnc_NewsItems_Subscriptions.Email,
+      {objectQualifier}pnc_NewsItems_Subscriptions.Locale,
+      {objectQualifier}pnc_NewsItems_Subscriptions.[Key],
+      {objectQualifier}pnc_NewsItems_Subscriptions.DateCreated,
+      {objectQualifier}pnc_NewsItems_Subscriptions.Verified,
+      {objectQualifier}pnc_NewsItems_Subscriptions.ModuleId
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+   where
+      ({objectQualifier}pnc_NewsItems_Subscriptions.ModuleID = @ModuleID or @ModuleID Is NULL)
+   and
+      ({objectQualifier}pnc_NewsItems_Subscriptions.Locale = @Locale or @Locale Is Null)
+   and
+      ({objectQualifier}pnc_NewsItems_Subscriptions.UserID is NULL)
+
+   Select 'Name' = sName, 'Email' = sEmail, 'Locale' = sLocale, 'Key' = sKey, 'DateCreated' = dDateCreated, 'Verified' = bVerified, 'ModuleId' = iModuleId From #Subscriptions
+End
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByEmail
+   @ModuleID    int,
+   @Email       nvarchar(256)
+as
+   select 
+      {objectQualifier}pnc_NewsItems_Subscriptions.Email,
+      {objectQualifier}pnc_NewsItems_Subscriptions.[Key],
+      {objectQualifier}pnc_NewsItems_Subscriptions.Verified,
+      {objectQualifier}pnc_NewsItems_Subscriptions.ModuleId
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+   where
+      {objectQualifier}pnc_NewsItems_Subscriptions.ModuleID = @ModuleID
+   and
+      {objectQualifier}pnc_NewsItems_Subscriptions.Email = @Email
+      
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByUserID
+   @ModuleID    int,
+   @UserID      int
+as
+   select 
+      {objectQualifier}pnc_NewsItems_Subscriptions.UserID,
+      {objectQualifier}pnc_NewsItems_Subscriptions.[Key],
+      {objectQualifier}pnc_NewsItems_Subscriptions.Verified,
+      {objectQualifier}pnc_NewsItems_Subscriptions.ModuleId      
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+   where
+      {objectQualifier}pnc_NewsItems_Subscriptions.ModuleID = @ModuleID
+   and
+      {objectQualifier}pnc_NewsItems_Subscriptions.UserID = @UserID
+      
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_Delete
+    @ModuleID    int,
+    @Email       nvarchar(256) = NULL,          
+    @UserID      int = NULL,
+    @Key         nvarchar(256)
+as
+    
+Delete 
+   from 
+      {objectQualifier}pnc_NewsItems_Subscriptions 
+   where
+      ({objectQualifier}pnc_NewsItems_Subscriptions.UserID = @UserID or @UserID is Null)
+   and
+      ({objectQualifier}pnc_NewsItems_Subscriptions.Email = @Email or @Email Is Null)
+   and
+      ({objectQualifier}pnc_NewsItems_Subscriptions.[Key] = @Key or @Key Is Null)
+   and
+      ({objectQualifier}pnc_NewsItems_Subscriptions.ModuleId = @ModuleId or @ModuleId Is Null)      
+GO

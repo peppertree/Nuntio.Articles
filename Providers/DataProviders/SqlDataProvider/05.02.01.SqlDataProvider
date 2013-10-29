@@ -1,0 +1,204 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Search]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}{objectQualifier}pnc_NewsItem_Search
+GO
+
+Create procedure {databaseOwner}{objectQualifier}pnc_NewsItem_Search
+	@ModuleID int,
+	@Condition nvarchar(500),
+    @PageSize  int,
+    @PageIndex int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @IsApproved bit,
+    @Author	   int,
+    @Locale	  nvarchar(10),
+	@CategoryID int
+as
+
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    DECLARE @sql nvarchar(2000)
+    
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+	-- Create dynamic SQL to populate temporary table    
+	-- create temp table to hold all search results
+    CREATE TABLE #SearchItemsForNewsSearch
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int
+    )
+    -- create temp table to hold paged actual news results
+    CREATE TABLE #PageIndexForNews
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int,
+        PublishDate datetime
+    )
+            
+    BEGIN
+	    --populate search results
+
+	    SELECT  @sql =	'INSERT INTO #SearchItemsForNewsSearch (ItemID)' +
+					    ' select Distinct SourceItemID as ''ItemID''' +
+					    ' from {objectQualifier}pnc_Localization_LocalizedItems where' +
+					    ' ModuleID=' + CONVERT(varchar, @ModuleID) + ' And ' +				
+					    'Locale=''' + Convert(varchar, @Locale) + ''''
+	    if (@Condition is NOT Null)
+		    Begin
+			    Select @Sql = @Sql + ' And ' + @Condition
+		    End	
+    		
+	    EXEC(@sql)
+
+    END
+if (@CategoryID is Null)
+    BEGIN
+	    INSERT INTO #PageIndexForNews (ItemID, PublishDate)
+		    SELECT
+			    s.ItemID, n.PublishDate
+		    From
+			    #SearchItemsForNewsSearch s
+			    inner join {objectQualifier}pnc_NewsItems n on n.itemid = s.itemid
+		    where 
+                (n.PublishDate <= @StartDate or @StartDate is NULL)
+			and
+				(n.ExpiryDate >= GetDate() or n.ExpiryDate is NULL)
+            and 
+                (Month(n.PublishDate) = @Month or @Month is NULL)
+            and
+                (Year(n.PublishDate) = @Year or @Year is NULL)
+            and
+                (n.IsApproved = @IsApproved or @IsApproved is Null)
+		    and
+			    (n.CreatedByUser = @Author or @Author is Null)
+            order by 
+                n.PublishDate Desc
+    END
+else
+    BEGIN
+	    INSERT INTO #PageIndexForNews (ItemID, PublishDate)
+		    SELECT
+			    Distinct c.ItemID, n.PublishDate
+		    From
+			    {objectQualifier}pnc_NewsCatRelation c
+				    inner join #SearchItemsForNewsSearch s on s.itemid = c.itemid
+			        inner join {objectQualifier}pnc_NewsItems n on n.itemid = c.itemid
+		    where 
+                (n.PublishDate <= @StartDate or @StartDate is NULL)
+			and
+				(n.ExpiryDate >= GetDate() or n.ExpiryDate is NULL)
+            and 
+                (Month(n.PublishDate) = @Month or @Month is NULL)
+            and
+                (Year(n.PublishDate) = @Year or @Year is NULL)
+            and
+                (n.IsApproved = @IsApproved or @IsApproved is Null)
+		    and
+			    (n.CreatedByUser = @Author or @Author is Null)
+            order by 
+                n.PublishDate Desc			
+    END
+
+    SELECT
+		nI.ItemID,
+		nI.ModuleID,
+		nI.PortalID,
+		nI.CreatedByUser,
+		nI.CreatedDate,
+		nI.PublishDate,
+		nI.ViewOrder,
+		nI.IsNotified,
+		nI.IsApproved,
+		nI.ApprovedBy,
+		nI.ApprovedDate,
+		nI.IsFeatured,
+		nI.LastUpdatedBy,
+		nI.LastUpdatedDate,
+		nI.ExpiryDate
+	From
+      {objectQualifier}pnc_NewsItems nI, #PageIndexForNews p
+    where
+      nI.ItemID = p.ItemID
+    and
+      p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    order by 
+            nI.PublishDate Desc      
+    SELECT  TotalRecords = COUNT(*)
+    FROM    #PageIndexForNews
+    
+Go
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetUnapproved]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}{objectQualifier}pnc_NewsItem_GetUnapproved
+GO
+
+Create procedure {databaseOwner}{objectQualifier}pnc_NewsItem_GetUnapproved
+    @ModuleId  int
+as
+	Select 
+		*, 0 as 'Comments'
+	from 
+		{objectQualifier}pnc_NewsItems
+	where 
+		(IsApproved = 0)
+	and
+		(ModuleID = @ModuleID or @ModuleID is Null)
+	Order By
+		PublishDate desc
+GO
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetExpired]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}{objectQualifier}pnc_NewsItem_GetExpired
+GO
+
+Create procedure {databaseOwner}{objectQualifier}pnc_NewsItem_GetExpired
+    @ModuleId  int,
+	@CurrentDate datetime
+as
+	Select 
+		*, 0 as 'Comments'
+	from 
+		{objectQualifier}pnc_NewsItems
+	where 
+		(ExpiryDate <= @CurrentDate)
+	and
+		(ModuleID = @ModuleID or @ModuleID is Null)
+	Order By
+		PublishDate desc
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetNotYetPublished]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}{objectQualifier}pnc_NewsItem_GetNotYetPublished
+GO
+
+Create procedure {databaseOwner}{objectQualifier}pnc_NewsItem_GetNotYetPublished
+    @ModuleId  int,
+	@CurrentDate datetime
+as
+	Select 
+		*, 0 as 'Comments'
+	from 
+		{objectQualifier}pnc_NewsItems
+	where 
+		(PublishDate > @CurrentDate)
+	and
+		(ModuleID = @ModuleID or @ModuleID is Null)
+	Order By
+		PublishDate desc
+GO

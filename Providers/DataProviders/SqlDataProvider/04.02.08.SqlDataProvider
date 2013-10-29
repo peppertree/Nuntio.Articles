@@ -1,0 +1,233 @@
+﻿
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsComment' AND COLUMN_NAME = 'Displayname')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] ADD [Displayname] nvarchar(255) NULL
+END
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsComment' AND COLUMN_NAME = 'Email')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] ADD [Email] nvarchar(255) NULL
+END
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsComment' AND COLUMN_NAME = 'LoadGravatar')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] ADD [LoadGravatar] Bit NULL 
+END
+
+/* =====================================================================================
+/   TABLE: NewsComment
+/  ===================================================================================== */
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentGet    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Get
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentList    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_List') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_List
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentAdd    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Add
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentUpdate    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Update') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Update
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentDelete    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Delete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Delete
+GO
+
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Get
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Get
+	@ItemId int
+	
+AS
+
+SELECT
+	[ItemId],
+	[NewsId],
+	[CreatedBy],
+	[CreatedDate],
+	[Comment],
+	[IsApproved],
+	[ApprovedBy],
+	[RemoteAddress],
+    [Displayname],
+    [Email],
+    [LoadGravatar]
+FROM {objectQualifier}pnc_NewsComment
+WHERE
+	[ItemId] = @ItemId
+	
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_List 
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_List
+    @NewsId int
+AS
+
+SELECT
+	[ItemId],
+	[NewsId],
+	[CreatedBy],
+	[CreatedDate],
+	[Comment],
+	[IsApproved],
+	[ApprovedBy],
+	[RemoteAddress],
+    [Displayname],
+    [Email],
+    [LoadGravatar]
+FROM {objectQualifier}pnc_NewsComment
+WHERE
+    [NewsId] = @NewsId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Add
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Add
+	@NewsId int,
+	@CreatedBy int,
+	@CreatedDate datetime,
+	@Comment ntext,
+	@IsApproved bit,
+	@ApprovedBy int,
+	@RemoteAddress nvarchar(50),
+    @Displayname nvarchar(255),
+    @Email nvarchar(255),
+    @LoadGravatar bit
+AS
+
+INSERT INTO {objectQualifier}pnc_NewsComment (
+	[NewsId],
+	[CreatedBy],
+	[CreatedDate],
+	[Comment],
+	[IsApproved],
+	[ApprovedBy],
+	[RemoteAddress],
+    [Displayname],
+    [Email],
+    [LoadGravatar]
+) VALUES (
+	@NewsId,
+	@CreatedBy,
+	@CreatedDate,
+	@Comment,
+	@IsApproved,
+	@ApprovedBy,
+	@RemoteAddress,
+    @Displayname,
+    @Email,
+    @LoadGravatar
+)
+
+select SCOPE_IDENTITY()
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Update
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Update
+	@ItemId int, 
+	@NewsId int, 
+	@CreatedBy int, 
+	@CreatedDate datetime, 
+	@Comment ntext, 
+	@IsApproved bit, 
+	@ApprovedBy int, 
+	@RemoteAddress nvarchar(50),
+    @Displayname nvarchar(255),
+    @Email nvarchar(255),
+    @LoadGravatar bit
+AS
+
+UPDATE {objectQualifier}pnc_NewsComment SET
+	[NewsId] = @NewsId,
+	[CreatedBy] = @CreatedBy,
+	[CreatedDate] = @CreatedDate,
+	[Comment] = @Comment,
+	[IsApproved] = @IsApproved,
+	[ApprovedBy] = @ApprovedBy,
+	[RemoteAddress] = @RemoteAddress,
+    [Displayname] = @Displayname,
+    [Email] = @Email,
+    [LoadGravatar] = @LoadGravatar
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Delete
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Delete
+	@ItemId int
+AS
+
+DELETE FROM {objectQualifier}pnc_NewsComment
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO

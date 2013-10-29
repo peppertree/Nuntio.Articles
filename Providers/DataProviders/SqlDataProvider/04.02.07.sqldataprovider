@@ -1,0 +1,23 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetSearchResult]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetSearchResult
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetSearchResult
+    @ModuleId  int,
+    @StartDate datetime
+AS
+
+	SELECT 
+	    * 
+	FROM 
+	    {objectQualifier}pnc_NewsItems
+	WHERE 
+		[PublishDate] <= @StartDate
+	AND
+		[IsApproved] = 1
+	AND
+		[ModuleID] = @ModuleID
+    ORDER BY 
+        [PublishDate] desc	
+			        
+GO

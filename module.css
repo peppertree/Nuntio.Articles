@@ -1,0 +1,68 @@
+﻿.nuntio-clearfix:after          {content: ".";display: block;height: 0;clear: both;visibility: hidden;} 
+* + html .nuntio-clearfix       { /* für IE7 */display: inline-block;} 
+* html .nuntio-clearfix         { /* für IE6 */height: 1%;}
+.nuntio-paging                  {border: 1px solid #ddd;background: #eee; height: 36px;padding:0;margin:0;}
+.nuntio-paging-left             {float:left;width: 15%; height: 36px;}
+.nuntio-paging-left span        {padding: 8px 0 0 10px; display: inline-block;}
+.nuntio-paging-right            {float:right;padding: 4px 10px 0 0;}
+.nuntio-paging-right a, 
+.nuntio-paging-right a:link, 
+.nuntio-paging-right a:active, 
+.nuntio-paging-right a:visited  {display: block;width: 20px;height:20px;float:left;padding:4px 0px 2px 10px;border: 1px solid #ccc;background: #eee;margin-right: 10px;text-decoration: none;}
+a.nuntio-pager-active           {background: #ddd !important; color: #000 !important;}
+.nuntio-paging-right a:hover    {border: 1px solid #333;background-color: #999;text-decoration: none !important;color:#fefefe !important;}
+.rwTitlebarControls ul, 
+.rwTitlebarControls ul li       {list-style-type: none !important;margin: 0 !important;padding:0 !important;}
+.RadWindow table tr             {}
+.TelerikModalOverlay            {opacity:0.8 !important;filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=80) !important; BACKGROUND-COLOR: #333 !important;}
+.nuntio-simplesearch div        {float:left;}
+.nuntio-advancedsearch div      {float:left;padding-top:10px;}
+.nuntio-searchresult            {padding-top:10px;}
+.nuntio-searchspacer            {height: 25px;clear:both;}
+.nuntio-comment-form            {background: #eee;padding:20px;font-family: Verdana;font-size: 12px;color:#333;}
+.nuntio-comment-button          {padding-top: 15px;padding-bottom: 15px;}
+.nuntio-sub                     {font-family: Verdana;font-size: 12px;color: Red;}
+.nuntio-sub ul li,
+.nuntio-sub ul                  {padding:0;margin: 0;list-style-type: none;}
+.nuntio-sub ul                  {padding-bottom: 10px;}
+.nuntio-sub ul li               {padding: 5px 0 5px 30px;background: url(img/nuntio_alert.gif) left center no-repeat;}
+.nuntio-sub-container           {width: 300px;}
+.nuntio-sub-normal              {white-space: nowrap;vertical-align: top;font-family: Verdana;font-size: 12px;padding: 5px 10px 0 0;}
+.nuntio-sub-control             {width: 100%;vertical-align: top;}
+.nuntio-sub-help                {padding: 20px 0 0px 0;font-family: Verdana;font-size: 12px;}
+.nuntio-sub-checkbox            {padding: 10px 0 0px 0;}
+.nuntio-sub-checkbox label      {font-family: Verdana;font-size: 12px;}
+.nuntio-sub-button              {padding: 20px 0 10px 0;}
+.nuntio-sub-result              {padding: 10px 0 10px 0;font-family: Verdana;font-size: 12px;}
+iframe.toc-iframe               {display:block; width:100%; border:none; height:100%; min-height:500px; margin:0; padding:0; }
+a.expand                        {background: url(img/ic_plus.png) 0 2px no-repeat;padding-left: 20px;}
+a.add                           {background: url(img/ic_plus.png) 0 2px no-repeat;padding-left: 20px;}
+a.collapse                      {background: url(img/ic_plus.png) 0 2px no-repeat;padding-left: 20px;}
+a.delete                        {background: url(img/ic_delete.gif) left center no-repeat;padding-left: 20px;}
+.toc-search                     {padding: 5px 0 5px 10px;background: #eee;border-bottom: 1px solid #ccc;}
+table.nuntio_panel_manage td.frm         {border-width:0px !important; border-style: none !important;padding:4px 0 4px 0 !important;}
+.nuntio-highlight               {color: red !important;}
+a.nuntio_frm_lnk, a.nuntio_frm_lnk:link, a.nuntio_frm_lnk:active, a.nuntio_frm_lnk:visited
+{
+    color: #333; font-size: 11px; text-decoration:none;padding: 5px 0 5px 22px;
+}
+a.nuntio_frm_lnk:hover
+{
+    color: #000; text-decoration: underline;
+}
+a.view
+{
+    background: url(images/nuntio_zoom.png) left center no-repeat;
+}
+a.edit
+{
+    background: url(images/nuntio_edit.png) left center no-repeat;
+}
+a.delete
+{
+    background: url(images/nuntio_remove.png) left center no-repeat;
+}
+a.restore
+{
+    background: url(images/nuntio_refresh.png) left center no-repeat;
+}

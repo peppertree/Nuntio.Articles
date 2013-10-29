@@ -1,0 +1,331 @@
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_GetArticlesPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesPaged
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_GetByItemId]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByItemId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Subscription_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_List
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+    @ModuleID int,
+    @StartDate datetime,
+    @ShowFutureItems bit,
+    @ShowPastItems bit    
+as
+    Select 
+	CategoryID, 
+	ModuleID, 
+	PortalID, 
+	ParentID, 
+	ViewOrder,
+	(
+		Select 
+			Count(*) 
+		from 
+			{objectQualifier}pnc_NewsCatRelation r inner join {objectQualifier}pnc_NewsItems n on n.ItemID = r.ItemID
+		where 
+			r.CategoryID = {objectQualifier}pnc_NewsCategories.CategoryID
+		and
+			(
+				(n.PublishDate >= @StartDate and @ShowFutureItems = 1)
+			or 
+				(n.PublishDate <= @StartDate and @ShowPastItems = 1)
+			)	
+		and
+			(n.ExpiryDate >= @StartDate or n.ExpiryDate Is Null)	
+		and
+			(n.IsDeleted = 0)	
+	) as 'Count'
+			
+    From
+	    {objectQualifier}pnc_NewsCategories
+    WHERE
+        ModuleID = @ModuleID
+    ORDER BY 
+        ParentID Asc, ViewOrder Asc            
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_GetArticlesPaged
+    @ModuleId  int,
+    @PageSize  int,
+    @PageIndex int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @Categories xml,
+    @Sortmode nvarchar(30),
+    @AuthorId int,
+    @IncludePublishDateInFuture bit,
+    @IncludePublishDateInPast bit,
+	@IncludeFeatured bit,
+	@IncludeNonFeatured bit,
+	@IncludePublications bit,
+	@IncludeNonPublications bit,
+	@Locale nvarchar(10)
+as
+
+	DECLARE @sql nvarchar(2000)
+	DECLARE @iDoc int
+	DECLARE @CategoryId nvarchar(10)
+	DECLARE @ArticleId int
+    DECLARE @Title nvarchar(255)
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+  
+-- create a temp table for holding the intermediate result
+    CREATE TABLE #tmpArticles
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int,
+        Title nvarchar(255)
+    )
+-- create the final temp table used for paging    
+    CREATE TABLE #finalArticles
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int,
+        Title nvarchar(255)
+    )  
+     				
+-- populate temp table with filtered results		
+	INSERT INTO #tmpArticles (ItemID, Title)
+		SELECT 
+			A.ItemID,
+			(Select Top 1 Content from {objectQualifier}pnc_Localization_LocalizedItems where SourceItemID = A.ItemID and [KEY] = 'TITLE' and IsApproved = 1 and Locale = @Locale)
+		FROM
+			{objectQualifier}pnc_NewsItems A
+			Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = A.ItemID
+		WHERE 									
+			(Month(A.PublishDate) = @Month or @Month is NULL)
+		AND
+			A.IsDeleted = 0
+		AND
+			(Year(A.PublishDate) = @Year or @Year is NULL)
+		AND
+			(A.ExpiryDate >= @StartDate or A.ExpiryDate is Null)
+		AND
+			(A.IsApproved = 1)
+		AND
+			(A.ModuleID = @ModuleID or @ModuleID is Null)
+		AND
+			(A.CreatedByUser = @AuthorId or @AuthorId is Null)	
+		AND
+			(
+				(@IncludePublishDateInFuture = 1 and A.PublishDate >= @StartDate) 
+			OR 
+				(@IncludePublishDateInPast = 1 and A.PublishDate <= @StartDate)
+			)
+		AND
+			(
+				(@IncludePublications = 1 and A.IsPublication = 1) 
+			OR 
+				(@IncludeNonPublications = 1 and A.IsPublication = 0)
+			)									
+		AND
+			(
+				(@IncludeFeatured = 1 and A.IsFeatured = 1)
+			OR
+				(@IncludeNonFeatured = 1 and A.IsFeatured = 0)								
+			)			
+
+--temp table filled, now filter temp table for categories
+			        
+	if (@Categories is NOT Null)
+		BEGIN
+			EXEC sp_xml_preparedocument @iDoc OUTPUT, @Categories
+			
+-- use a cursor to loop through each requested category
+
+			DECLARE CursorCat CURSOR FOR (SELECT * FROM OPENXML(@iDoc, '/Categories/Category', 1) WITH (CategoryId nvarchar(10)))
+			OPEN CursorCat	
+			FETCH NEXT FROM CursorCat INTO @CategoryId
+			WHILE (@@FETCH_STATUS = 0)
+				BEGIN
+				
+-- use another cursor to loop trough all articles in the temp table that match the requested category id
+				
+					DECLARE ArticleCursor CURSOR FOR 	
+						SELECT 
+							c.ItemID,
+							tmp.Title
+						FROM 
+							{objectQualifier}pnc_NewsCatRelation C
+							Inner Join #tmpArticles tmp on tmp.ItemID = C.ItemID
+							Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = tmp.ItemID
+						WHERE
+							C.CategoryID = @CategoryID							
+						ORDER BY 
+							CASE WHEN @Sortmode = 'publishdatedesc' THEN vw.PublishDate END DESC,
+							CASE WHEN @Sortmode = 'publishdateasc' THEN vw.PublishDate END DESC,
+							CASE WHEN @Sortmode = 'authorasc' THEN vw.AuthorLastName END ASC,
+							CASE WHEN @Sortmode = 'authordesc' THEN vw.AuthorLastName END DESC,
+							CASE WHEN @Sortmode = 'titleasc' THEN tmp.Title END ASC,
+							CASE WHEN @Sortmode = 'titledesc' THEN tmp.Title END DESC								
+							
+					Open ArticleCursor
+					FETCH NEXT FROM ArticleCursor into @ArticleID, @Title							
+					WHILE (@@FETCH_STATUS = 0)
+						Begin
+							-- make sure articles are not in the final paging table already						
+							if not exists (Select * From #finalArticles where ItemID = @ArticleId)
+							Begin	
+								--add article to final paging table		
+								INSERT INTO #finalArticles (ItemID, Title) Values (@ArticleId, @Title)
+							End		
+							FETCH NEXT FROM ArticleCursor into @ArticleId, @Title			
+						End	
+					CLOSE ArticleCursor
+					DEALLOCATE ArticleCursor	
+											
+				END					
+		END
+	else
+	
+-- no category filter requested
+-- we simply move all articles from the temp table into the temp paging table
+	
+		BEGIN
+				DECLARE ArticleCursor CURSOR FOR 
+					SELECT 
+						tmp.ItemID,
+						tmp.Title
+					FROM 
+						#tmpArticles tmp
+						Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = tmp.ItemID
+					ORDER BY 
+						CASE WHEN @Sortmode = 'publishdateasc' THEN vw.PublishDate END ASC,
+						CASE WHEN @Sortmode = 'publishdatedesc' THEN vw.PublishDate END DESC,
+						CASE WHEN @Sortmode = 'authorasc' THEN vw.AuthorLastName END ASC,
+						CASE WHEN @Sortmode = 'authordesc' THEN vw.AuthorLastName END DESC,
+						CASE WHEN @Sortmode = 'titleasc' THEN tmp.Title END ASC,
+						CASE WHEN @Sortmode = 'titledesc' THEN tmp.Title END DESC							
+						
+				Open ArticleCursor
+				FETCH NEXT FROM ArticleCursor into @ArticleId, @Title								
+				WHILE (@@FETCH_STATUS = 0)
+					Begin
+						INSERT INTO #finalArticles (ItemID, Title) Values (@ArticleId, @Title)	
+						FETCH NEXT FROM ArticleCursor into @ArticleId, @Title				
+					End	
+				CLOSE ArticleCursor
+				DEALLOCATE ArticleCursor		
+		END
+		
+-- last but not least, select requested items from our temp paging table and join the results with
+-- the article main view to get all the columns
+		
+	SELECT
+		fn.ItemID, fn.Title, vw.*
+	FROM
+		#finalArticles fn
+		Inner join {objectQualifier}vw_Nuntio_Articles vw on vw.ItemId = fn.ItemID
+	WHERE
+		fn.IndexId >= CASE WHEN @PageSize = -1 THEN 0 WHEN @PageSize > 0 THEN @PageLowerBound END		
+	AND 
+		fn.IndexId <= CASE WHEN @PageSize = -1 THEN 999999999 WHEN @PageSize > 0 THEN @PageUpperBound END				
+    SELECT TotalRecords = COUNT(*) FROM #finalArticles
+
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_GetByItemId
+    @ItemId int
+as
+  select 
+	  [ItemID],
+      [ModuleId],
+      [Name],
+      [Email],
+      [Locale],
+      [Key],
+      [DateCreated],
+      [Verified]
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+   where
+      ([ItemID] = @ItemID)
+GO
+
+Create procedure {databaseOwner}{objectQualifier}pnc_NewsItem_Subscription_List
+    @ModuleID    int,
+    @Locale      nvarchar(6)
+as
+Begin
+   CREATE TABLE #Subscriptions 
+   (
+      itemId int NOT NULL,
+      sName nvarchar(256) NOT NULL,
+      sEmail nvarchar(256) NOT NULL,
+      sLocale nvarchar(6) NOT NULL,
+      sKey nvarchar(256) NOT NULL,
+      dDateCreated datetime NULL,
+      bVerified bit NOT NULL,
+      iModuleId int NOT NULL,
+      iUser int NULL
+   )
+   Insert into #Subscriptions(itemId, sName, sEmail, sLocale, sKey, dDateCreated, bVerified, iModuleId, iUser)
+   select 
+      S.ItemID,
+      U.Displayname,
+      U.Email,
+      UP.PropertyValue,
+      S.[Key],
+      S.DateCreated,
+      1,
+      S.ModuleId,
+      U.UserID
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions S
+      Inner join {objectQualifier}Users U ON S.UserID = U.UserID
+      Inner Join ({objectQualifier}UserProfile UP Inner Join {objectQualifier}ProfilePropertyDefinition P On UP.PropertyDefinitionId = P.PropertyDefinitionId) on S.UserID = UP.UserID 
+   where
+      (S.ModuleID = @ModuleID or @ModuleID Is NULL)
+   and
+      (UP.PropertyValue = @Locale or @locale Is Null)
+   and
+      (P.PropertyName = 'PreferredLocale')
+   Insert into #Subscriptions(itemId, sName, sEmail, sLocale, sKey, dDateCreated, bVerified, iModuleId, iUser)
+   select 
+      [ItemID],
+      [Name],
+      [Email],
+      [Locale],
+      [Key],
+      [DateCreated],
+      [Verified],
+      [ModuleId],
+      NULL
+   from
+      {objectQualifier}pnc_NewsItems_Subscriptions
+   where
+      ([ModuleID] = @ModuleID or @ModuleID Is NULL)
+   and
+      ([Locale] = @Locale or @Locale Is Null)
+   and
+      ([UserID] is NULL)
+
+	Select 
+		'ItemId' = itemId, 
+		'Name' = sName, 
+		'Email' = sEmail, 
+		'Locale' = sLocale, 
+		'Key' = sKey, 
+		'DateCreated' = dDateCreated, 
+		'Verified' = bVerified, 
+		'ModuleId' = iModuleId,
+		'UserId' = iUser
+	From 
+		#Subscriptions
+End
+GO

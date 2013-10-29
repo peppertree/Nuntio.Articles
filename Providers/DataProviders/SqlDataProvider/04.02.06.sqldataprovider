@@ -1,0 +1,479 @@
+﻿if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetAuthors]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetAuthors
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetAuthors
+    @ModuleID int,
+    @StartDate datetime,
+    @ShowFutureItems bit,
+    @ShowPastItems bit
+as
+    Select Distinct 
+        n.CreatedByUser as 'UserID',
+        u.Displayname,
+		(
+			Select 
+				Count(*) 
+			from 
+				{objectQualifier}pnc_NewsItems 
+			where 
+				CreatedByUser = n.CreatedByUser
+			and
+				(
+					(PublishDate >= @StartDate and @ShowFutureItems = 1)
+				or 
+					(PublishDate <= @StartDate and @ShowPastItems = 1)
+				)				
+		) as 'NewsItems'
+    from
+        {objectQualifier}pnc_NewsItems n
+        Inner join {objectQualifier}Users u on u.userid = n.CreatedByUser
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+    @ModuleID int,
+    @StartDate datetime,
+    @ShowFutureItems bit,
+    @ShowPastItems bit    
+as
+    Select 
+	CategoryID, 
+	ModuleID, 
+	PortalID, 
+	ParentID, 
+	ViewOrder,
+	(
+		Select 
+			Count(*) 
+		from 
+			{objectQualifier}pnc_NewsCatRelation r inner join {objectQualifier}pnc_NewsItems n on n.ItemID = r.ItemID
+		where 
+			r.CategoryID = {objectQualifier}pnc_NewsCategories.CategoryID
+		and
+			(
+				(n.PublishDate >= @StartDate and @ShowFutureItems = 1)
+			or 
+				(n.PublishDate <= @StartDate and @ShowPastItems = 1)
+			)			
+	) as 'Count'
+			
+    From
+	    {objectQualifier}pnc_NewsCategories
+    WHERE
+        ModuleID = @ModuleID
+    ORDER BY 
+        ParentID Asc, ViewOrder Asc            
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticlesPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticlesPaged
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticlesPaged
+    @ModuleId  int,
+    @PageSize  int,
+    @PageIndex int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @Categories xml,
+    @Sortmode varchar(4),
+    @AuthorId int,
+    @ShowFutureItems bit,
+    @ShowPastItems bit
+as
+
+	DECLARE @iDoc int
+	DECLARE @CategoryId nvarchar(10)
+	DECLARE @ArticleId int
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    CREATE TABLE #PageIndexForNews
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int
+    )
+	
+	if (@Categories is Null)
+		Begin
+		
+          if (@Sortmode = 'desc' or @Sortmode Is Null)
+		    Begin
+			    INSERT INTO #PageIndexForNews (ItemID)
+				Select ItemID from {objectQualifier}pnc_NewsItems A
+				where 
+					(
+						(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+					or 
+						(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+					)
+				and 				
+					(Month(A.PublishDate) = @Month or @Month is NULL)
+				and
+					(Year(A.PublishDate) = @Year or @Year is NULL)
+				and
+					(A.IsApproved = 1)
+				and
+					(A.ModuleID = @ModuleID or @ModuleID is Null)
+				and
+					(A.CreatedByUser = @AuthorId or @AuthorId is Null)					
+			    Order by 
+			        A.PublishDate desc			
+		    End
+	      else
+		    Begin
+			    INSERT INTO #PageIndexForNews (ItemID)
+				Select ItemID from {objectQualifier}pnc_NewsItems A
+				where 
+					(
+						(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+					or 
+						(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+					)
+				and 
+					(Month(A.PublishDate) = @Month or @Month is NULL)
+				and
+					(Year(A.PublishDate) = @Year or @Year is NULL)
+				and
+					(A.IsApproved = 1)
+				and
+					(A.ModuleID = @ModuleID or @ModuleID is Null)
+				and
+					(A.CreatedByUser = @AuthorId or @AuthorId is Null)					
+			    Order by 
+			        A.PublishDate asc
+		    End  		
+		END
+	Else
+		Begin
+			EXEC sp_xml_preparedocument @iDoc OUTPUT, @Categories
+			
+			DECLARE CursorCat CURSOR FOR (SELECT * FROM OPENXML(@iDoc, '/Categories/Category', 1) WITH (CategoryId nvarchar(10)))
+			OPEN CursorCat
+			FETCH NEXT FROM CursorCat INTO @CategoryId
+			WHILE (@@FETCH_STATUS = 0)
+			   BEGIN          
+					
+					if (@Sortmode = 'desc' or @Sortmode Is Null)
+						Begin
+
+							DECLARE ArticleCursor CURSOR FOR 
+								Select c.ItemID from {objectQualifier}pnc_NewsCatRelation C
+									Inner Join 
+										{objectQualifier}pnc_NewsItems A on A.ItemID = C.ItemID
+								where
+									(
+										(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+									or 
+										(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+									)
+								and
+									(Month(A.PublishDate) = @Month or @Month is NULL)
+								and
+									(Year(A.PublishDate) = @Year or @Year is NULL)
+								and
+									(A.IsApproved = 1)
+								and
+									(A.ModuleID = @ModuleID or @ModuleID is Null)
+				                and
+					                (A.CreatedByUser = @AuthorId or @AuthorId is Null)									
+								and
+									(C.CategoryID = @CategoryID)
+								ORDER BY 
+									A.PublishDate desc
+									
+							Open ArticleCursor
+							FETCH NEXT FROM ArticleCursor into @ArticleId								
+							WHILE (@@FETCH_STATUS = 0)
+								Begin
+									if not exists (Select * From #PageIndexForNews where ItemID = @ArticleId)
+									Begin			
+										INSERT INTO #PageIndexForNews (ItemID) Values (@ArticleId)
+									End		
+									FETCH NEXT FROM ArticleCursor into @ArticleId				
+								End	
+							CLOSE ArticleCursor
+							DEALLOCATE ArticleCursor													
+						End
+					else
+						Begin
+						
+							DECLARE ArticleCursor CURSOR FOR 
+								Select c.ItemID from {objectQualifier}pnc_NewsCatRelation C
+									Inner Join 
+										{objectQualifier}pnc_NewsItems A on A.ItemID = C.ItemID
+								where
+									(
+										(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+									or 
+										(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+									)
+								and
+									(Month(A.PublishDate) = @Month or @Month is NULL)
+								and
+									(Year(A.PublishDate) = @Year or @Year is NULL)
+								and
+									(A.IsApproved = 1)
+								and
+									(A.ModuleID = @ModuleID or @ModuleID is Null)
+				                and
+					                (A.CreatedByUser = @AuthorId or @AuthorId is Null)									
+								and
+									(C.CategoryID = @CategoryID)
+								ORDER BY 
+									A.PublishDate asc
+									
+							Open ArticleCursor
+							FETCH NEXT FROM ArticleCursor into @ArticleId								
+							WHILE (@@FETCH_STATUS = 0)
+								Begin
+									if not exists (Select * From #PageIndexForNews where ItemID = @ArticleId)
+									Begin			
+										INSERT INTO #PageIndexForNews (ItemID) Values (@ArticleId)
+									End		
+									FETCH NEXT FROM ArticleCursor into @ArticleId				
+								End	
+							CLOSE ArticleCursor
+							DEALLOCATE ArticleCursor							
+						End		
+		          
+				  FETCH NEXT FROM CursorCat INTO @CategoryId
+		          
+			   END
+			CLOSE CursorCat
+			DEALLOCATE CursorCat
+		End	
+		            
+
+      if (@Sortmode = 'desc' or @Sortmode Is Null)
+		Begin
+			SELECT
+			  *, (Select Count(*) from {objectQualifier}pnc_NewsComment Where ArticleId = A.ItemId and IsApproved = 1) as 'Comments'
+			From
+			  {objectQualifier}pnc_NewsItems A, #PageIndexForNews P
+			where
+			  A.ItemID = P.ItemID
+			and
+			  P.IndexId >= @PageLowerBound AND P.IndexId <= @PageUpperBound
+			Order by 
+			  A.PublishDate desc			
+		End
+	  else
+		Begin
+			SELECT
+			  *, (Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = A.ItemId and IsApproved = 1) as 'Comments'			 
+			From
+			  {objectQualifier}pnc_NewsItems A, #PageIndexForNews P
+			where
+			  A.ItemID = P.ItemID
+			and
+			  P.IndexId >= @PageLowerBound AND P.IndexId <= @PageUpperBound
+			Order by 
+			  A.PublishDate asc
+		End      
+    SELECT  TotalRecords = COUNT(*)
+    FROM    #PageIndexForNews
+    
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticles
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticles
+    @ModuleId  int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @Categories xml,
+    @Sortmode varchar(4),
+    @AuthorId int
+as
+
+	DECLARE @iDoc int
+	DECLARE @CategoryId nvarchar(10)
+	DECLARE @ArticleId int
+
+    CREATE TABLE #PageIndexForNews
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int
+    )
+	
+	if (@Categories is Null)
+		Begin
+			    INSERT INTO #PageIndexForNews (ItemID)
+				Select ItemID from {objectQualifier}pnc_NewsItems A
+				where 
+					(A.PublishDate <= @StartDate or @StartDate is NULL)
+				and 
+					(Month(A.PublishDate) = @Month or @Month is NULL)
+				and
+					(Year(A.PublishDate) = @Year or @Year is NULL)
+				and
+					(A.IsApproved = 1)
+				and
+					(A.ModuleID = @ModuleID or @ModuleID is Null)
+				and
+					(A.CreatedByUser = @AuthorId or @AuthorId is Null)					
+			    Order by 
+			        A.PublishDate desc	
+		END
+	Else
+		Begin
+			EXEC sp_xml_preparedocument @iDoc OUTPUT, @Categories
+			
+			DECLARE CursorCat CURSOR FOR (SELECT * FROM OPENXML(@iDoc, '/Categories/Category', 1) WITH (CategoryId nvarchar(10)))
+			OPEN CursorCat
+			FETCH NEXT FROM CursorCat INTO @CategoryId
+			WHILE (@@FETCH_STATUS = 0)
+			   BEGIN          
+					
+					if (@Sortmode = 'desc' or @Sortmode Is Null)
+						Begin
+
+							DECLARE ArticleCursor CURSOR FOR 
+								Select c.ItemID from {objectQualifier}pnc_NewsCatRelation C
+									Inner Join 
+										{objectQualifier}pnc_NewsItems A on A.ItemID = C.ItemID
+								where
+									(A.PublishDate <= @StartDate or @StartDate is NULL)
+								and
+									(Month(A.PublishDate) = @Month or @Month is NULL)
+								and
+									(Year(A.PublishDate) = @Year or @Year is NULL)
+								and
+									(A.IsApproved = 1)
+								and
+									(A.ModuleID = @ModuleID or @ModuleID is Null)
+				                and
+					                (A.CreatedByUser = @AuthorId or @AuthorId is Null)									
+								and
+									(C.CategoryID = @CategoryID)
+								ORDER BY 
+									A.PublishDate desc
+									
+							Open ArticleCursor
+							FETCH NEXT FROM ArticleCursor into @ArticleId								
+							WHILE (@@FETCH_STATUS = 0)
+								Begin
+									if not exists (Select * From #PageIndexForNews where ItemID = @ArticleId)
+									Begin			
+										INSERT INTO #PageIndexForNews (ItemID) Values (@ArticleId)
+									End		
+									FETCH NEXT FROM ArticleCursor into @ArticleId				
+								End	
+							CLOSE ArticleCursor
+							DEALLOCATE ArticleCursor													
+						End
+					else
+						Begin
+						
+							DECLARE ArticleCursor CURSOR FOR 
+								Select c.ItemID from {objectQualifier}pnc_NewsCatRelation C
+									Inner Join 
+										{objectQualifier}pnc_NewsItems A on A.ItemID = C.ItemID
+								where
+									(A.PublishDate <= @StartDate or @StartDate is NULL)
+								and
+									(Month(A.PublishDate) = @Month or @Month is NULL)
+								and
+									(Year(A.PublishDate) = @Year or @Year is NULL)
+								and
+									(A.IsApproved = 1)
+								and
+									(A.ModuleID = @ModuleID or @ModuleID is Null)
+				                and
+					                (A.CreatedByUser = @AuthorId or @AuthorId is Null)									
+								and
+									(C.CategoryID = @CategoryID)
+								ORDER BY 
+									A.PublishDate asc
+									
+							Open ArticleCursor
+							FETCH NEXT FROM ArticleCursor into @ArticleId								
+							WHILE (@@FETCH_STATUS = 0)
+								Begin
+									if not exists (Select * From #PageIndexForNews where ItemID = @ArticleId)
+									Begin			
+										INSERT INTO #PageIndexForNews (ItemID) Values (@ArticleId)
+									End		
+									FETCH NEXT FROM ArticleCursor into @ArticleId				
+								End	
+							CLOSE ArticleCursor
+							DEALLOCATE ArticleCursor							
+						End		
+		          
+				  FETCH NEXT FROM CursorCat INTO @CategoryId
+		          
+			   END
+			CLOSE CursorCat
+			DEALLOCATE CursorCat
+		End	
+		            
+
+      if (@Sortmode = 'desc' or @Sortmode Is Null)
+		Begin
+			SELECT
+			  *
+			From
+			  {objectQualifier}pnc_NewsItems A, #PageIndexForNews P
+			where
+			  A.ItemID = P.ItemID
+			Order by 
+			  A.PublishDate desc			
+		End
+	  else
+		Begin
+			SELECT
+			  *, (Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = A.ItemId and IsApproved = 1) as 'Comments'
+			From
+			  {objectQualifier}pnc_NewsItems A, #PageIndexForNews P
+			where
+			  A.ItemID = P.ItemID
+			Order by 
+			  A.PublishDate asc
+		End      
+
+    SELECT  TotalRecords = COUNT(*)
+    FROM    #PageIndexForNews
+
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArchive]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArchive
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArchive
+    @ModuleID int, 
+    @StartDate datetime,
+    @ShowFutureItems bit,
+    @ShowPastItems bit 
+AS
+select 
+  Month(PublishDate) as [Month], Year(PublishDate) as [Year], 1 as Day, Count(*) as [Count]
+from 
+  {objectQualifier}pnc_NewsItems
+where 
+  (ModuleID = @ModuleId or @ModuleID is NULL)
+and
+	(
+		(PublishDate >= @StartDate and @ShowFutureItems = 1)
+	or 
+		(PublishDate <= @StartDate and @ShowPastItems = 1)
+	)  
+and
+  (IsApproved = 1)  
+group by 
+  Year(PublishDate), Month(PublishDate)
+order by
+  [Year] desc, 
+  [Month] desc
+GO

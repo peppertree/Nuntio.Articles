@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ViewOriginal.Token" xml:space="preserve">
+    <value>Lesen Sie die Originalübersetzung dieses Artikels</value>
+  </data>
+  <data name="ArchiveMessage.Token" xml:space="preserve">
+    <value>Stöbern Sie doch durch unser Archiv; hier finden Sie Artikel aus vergangen Tagen</value>
+  </data>
+  <data name="CurrentNews.Token" xml:space="preserve">
+    <value>Aktuelle Artikel</value>
+  </data>
+  <data name="AllNews.Token" xml:space="preserve">
+    <value>Alle aktuellen Artikel</value>
+  </data>
+  <data name="SubscribeLink.Token" xml:space="preserve">
+    <value>Artikel abonnieren...</value>
+  </data>
+  <data name="ManageSubscriptionLink.Token" xml:space="preserve">
+    <value>Abonnement stornieren</value>
+  </data>
+  <data name="DownloadFile.Token" xml:space="preserve">
+    <value>{0} herunterladen</value>
+  </data>
+  <data name="VisitUser.Token" xml:space="preserve">
+    <value>{0}'s Profil besuchen</value>
+  </data>
+  <data name="SubscribeMessage.Token" xml:space="preserve">
+    <value>Wenn Sie immer auf dem Laufenden bleiben wollen, können Sie unsere Artikel gerne abonnieren</value>
+  </data>
+  <data name="AlreadySubscribedMessage.Token" xml:space="preserve">
+    <value>Sie haben diesen Bereich bereits abonniert.</value>
+  </data>
+  <data name="RoleSubscribed.Token" xml:space="preserve">
+    <value>Sie erhalten automatisch E-Mail Benachrichtigungen über neue Artikel, weil Sie Mitglied in einer der folgenden Sicherheitsrollen sind: &lt;br /&gt;{0}</value>
+  </data>
+  <data name="ReadMore.Token" xml:space="preserve">
+    <value>Link folgen...</value>
+  </data>
+  <data name="ReadItem.Token" xml:space="preserve">
+    <value>Artikel lesen...</value>
+  </data>
+  <data name="CreatedBy.Token" xml:space="preserve">
+    <value>Veröffentlich von {0}</value>
+  </data>
+  <data name="ReadMore.Mail" xml:space="preserve">
+    <value>Mehr über diesen Artikel lesen...</value>
+  </data>
+  <data name="UnsubscribeLink.Mail" xml:space="preserve">
+    <value>klicken Sie bitte hier</value>
+  </data>
+  <data name="PostedBy.Mail" xml:space="preserve">
+    <value>Veröffentlich von </value>
+  </data>
+  <data name="Dear.Mail" xml:space="preserve">
+    <value>Sehr geehrte(r) </value>
+  </data>
+  <data name="Custom1.Mail" xml:space="preserve">
+    <value>Dies ist ein benutzerdefinierter Text</value>
+  </data>
+  <data name="Custom2.Mail" xml:space="preserve">
+    <value>Dies ist ein benutzerdefinierter Text</value>
+  </data>
+  <data name="Custom3.Mail" xml:space="preserve">
+    <value>Dies ist ein benutzerdefinierter Text</value>
+  </data>
+  <data name="Custom4.Mail" xml:space="preserve">
+    <value>Dies ist ein benutzerdefinierter Text</value>
+  </data>
+  <data name="SubscribedMessage.Mail" xml:space="preserve">
+    <value>Sie erhalten diese Nachricht, weil Sie Artikel auf unserer Webseite abonniert haben.</value>
+  </data>
+  <data name="RoleSubscribedMessage.Mail" xml:space="preserve">
+    <value>Sie erhalten diese Nachricht, weil Sie Mitglied einer Sicherheitsgruppe sind, die automatisch über neue Artikel benachrichtigt wird.</value>
+  </data>
+  <data name="UnSubscribeMessage.Mail" xml:space="preserve">
+    <value>Wenn Sie diese Benachrichtigungen nicht länger erhalten wollen </value>
+  </data>
+  <data name="NewMessagePosted.Mail" xml:space="preserve">
+    <value>Eine neue Artikel wurde auf &lt;i&gt;&lt;b&gt;{0}&lt;/b&gt;&lt;/i&gt; veröffentlicht</value>
+  </data>
+  <data name="UnsubscribeConfirmMessage.Mail" xml:space="preserve">
+    <value>Uns liegt ein Auftrag vor, Ihr Abonnement auf &lt;i&gt;&lt;b&gt;{0}&lt;/b&gt;&lt;/i&gt; zu stornieren. Bitte bestätigen Sie Ihren Auftrag, indem Sie dem folgenden Link folgen. Sollten Sie Schwierigkeiten haben, dem Link zu folgen, kopieren Sie bitte den URL in Ihre Zwischenablage und fügen ihn dann in die Adressleiste Ihres Browsers ein.</value>
+  </data>
+  <data name="ConfirmUnsubscribeLink.Mail" xml:space="preserve">
+    <value>Klicken Sie hier, um Ihr Abonnement zu stornieren</value>
+  </data>
+  <data name="ConfirmUnsubscribeSubject.Mail" xml:space="preserve">
+    <value>Ihr Stornierungsauftrag</value>
+  </data>
+  <data name="NewSubscriptionSubject.Mail" xml:space="preserve">
+    <value>Neues Abonnement eingegangen</value>
+  </data>
+  <data name="NewSubscriptionBody.Mail" xml:space="preserve">
+    <value>&lt;br /&gt;Ein Besucher hat soeben ein Abonnement zu einer Artikelliste beauftragt&lt;br /&gt;&lt;br /&gt;
+----------------------------------------------------------&lt;br /&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td width=200&gt;Portal:&lt;/td&gt;&lt;td&gt;{0}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td width=200&gt;Modul:&lt;/td&gt;&lt;td&gt;{1}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td width=200&gt;Sprache:&lt;/td&gt;&lt;td&gt;{2}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td width=200&gt;Portalkonto?&lt;/td&gt;&lt;td&gt;{3}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td width=200&gt;Portalkonto:&lt;/td&gt;&lt;td&gt;{4}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td width=200&gt;Abonnierte E-Mail:&lt;/td&gt;&lt;td&gt;{5}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td width=200&gt;Abonnierter Name:&lt;/td&gt;&lt;td&gt;{6}&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br /&gt;----------------------------------------------------------&lt;br /&gt;</value>
+  </data>
+  <data name="false.Text" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="true.Text" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="ARCHIVEOPTIONS.Action" xml:space="preserve">
+    <value>Archiv Optionen</value>
+  </data>
+  <data name="BANNEROPTIONS.Action" xml:space="preserve">
+    <value>Banner Optionen</value>
+  </data>
+  <data name="ADDARTICLE.Action" xml:space="preserve">
+    <value>Artikel erstellen</value>
+  </data>
+  <data name="SETTINGS.Action" xml:space="preserve">
+    <value>Artikel Modul verwalten</value>
+  </data>
+  <data name="LISTSUBSCRIPTIONS.Action" xml:space="preserve">
+    <value>Abonnements verwalten</value>
+  </data>
+  <data name="SEARCHOPTIONS.Action" xml:space="preserve">
+    <value>Such Optionen</value>
+  </data>
+  <data name="CATEGORIES.Action" xml:space="preserve">
+    <value>Kategorien verwalten</value>
+  </data>
+  <data name="TEMPLATES.Action" xml:space="preserve">
+    <value>Vorlagen verwalten</value>
+  </data>
+  <data name="LICENSE.Action" xml:space="preserve">
+    <value>Lizenz verwalten</value>
+  </data>
+  <data name="Back.Text" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="lblPagingSites.Text" xml:space="preserve">
+    <value>Seite {0} von {1}</value>
+  </data>
+  <data name="APPROVED.Action" xml:space="preserve">
+    <value>Veröffentlichte Artikel zeigen</value>
+  </data>
+  <data name="UNAPPROVED.Action" xml:space="preserve">
+    <value>Nicht veröffentlichte Artikel</value>
+  </data>
+  <data name="NotificationSubject.Mail" xml:space="preserve">
+    <value>{0}: Neue Artikel</value>
+  </data>
+  <data name="RootNode.Text" xml:space="preserve">
+    <value>Alle Kategorien</value>
+  </data>
+  <data name="RootArchive.Text" xml:space="preserve">
+    <value>Alle Beiträge</value>
+  </data>
+  <data name="RootRss.Text" xml:space="preserve">
+    <value>Alle Feeds</value>
+  </data>
+  <data name="ControlTitle_CATEGORIES.Text" xml:space="preserve">
+    <value>Kategorien verwalten</value>
+  </data>
+  <data name="ControlTitle_RSS.Text" xml:space="preserve">
+    <value>Unsere RSS Feeds</value>
+  </data>
+  <data name="ControlTitle_SUBMIT.Text" xml:space="preserve">
+    <value>Artikel einreichen</value>
+  </data>
+  <data name="ControlTitle_THANKYOU.Text" xml:space="preserve">
+    <value>Vielen Dank...!</value>
+  </data>
+  <data name="ControlTitle_MANAGESUBSCRIPTIONS.Text" xml:space="preserve">
+    <value>Abonnements verwalten</value>
+  </data>
+  <data name="ControlTitle_CONTROLPANEL.Text" xml:space="preserve">
+    <value>Artikelmodul verwalten</value>
+  </data>
+  <data name="FiledUnder.Text" xml:space="preserve">
+    <value>Abgelegt unter </value>
+  </data>
+  <data name="ModuleTitle_Bannerview.Text" xml:space="preserve">
+    <value>Banner</value>
+  </data>
+  <data name="NowShowing.Text" xml:space="preserve">
+    <value>&lt;br /&gt;Sie sehen jetzt </value>
+  </data>
+  <data name="ControlTitle_MANAGETEMPLATES.Text" xml:space="preserve">
+    <value>Vorlagenverwaltung</value>
+  </data>
+  <data name="NotTranslated.Text" xml:space="preserve">
+    <value>Nicht übersetzt</value>
+  </data>
+  <data name="PartiallyTranslated.Text" xml:space="preserve">
+    <value>Teilweise übersetzt</value>
+  </data>
+  <data name="FullyTranslated.Text" xml:space="preserve">
+    <value>Vollständig übersetzt</value>
+  </data>
+  <data name="SelectUser.Text" xml:space="preserve">
+    <value>Benutzer auswählen...</value>
+  </data>
+  <data name="ApplyUser.Text" xml:space="preserve">
+    <value>Benutzer übernehmen</value>
+  </data>
+  <data name="SelectFile.Text" xml:space="preserve">
+    <value>Datei auswählen...</value>
+  </data>
+  <data name="SelectTab.Text" xml:space="preserve">
+    <value>Seite auswählen...</value>
+  </data>
+  <data name="CheckUser.Text" xml:space="preserve">
+    <value>Konto prüfen</value>
+  </data>
+  <data name="UserNotFound.Text" xml:space="preserve">
+    <value>
+            &lt;color="red"&gt;Benutzer nicht gefunden!&lt;/color&gt;
+        </value>
+  </data>
+  <data name="LocaleVersion.Text" xml:space="preserve">
+    <value>Sprachversion</value>
+  </data>
+  <data name="PortalDefault.Text" xml:space="preserve">
+    <value> (Portal Standard)</value>
+  </data>
+  <data name="CouldNotLoadTemplate.Text" xml:space="preserve">
+    <value>Konnte Vorlage nicht laden!</value>
+  </data>
+  <data name="YouSelected.Text" xml:space="preserve">
+    <value>
+            Sie haben &lt;span class="pnc_editform_highlight="&gt;{0}&lt;/span&gt; als Grundlage für Ihre neue Vorlage gewählt.&lt;br /&gt;
+        </value>
+  </data>
+  <data name="PleaseEnterName.Text" xml:space="preserve">
+    <value>
+            &lt;br /&gt; Bitte geben Sie einen Namen für Ihre neue Vorlage an.
+        </value>
+  </data>
+  <data name="SelectWetherToStore.Text" xml:space="preserve">
+    <value>Geben Sie weiterhin an, ob Sie die Vorlage als Systemvorlage anlegen wollen (verfügbar in allen Portalen) oder nur für das aktuelle Portal.</value>
+  </data>
+  <data name="OnlyFiles.Text" xml:space="preserve">
+    <value>Sie können nur Vorlagen anwählen, keine Dateien!</value>
+  </data>
+  <data name="SelectBaseSkin.Text" xml:space="preserve">
+    <value>Sie müsen zunächst eine Basisvorlage auswählen!</value>
+  </data>
+  <data name="MustProvideName.Text" xml:space="preserve">
+    <value>Sie müssen einen Namen angeben!</value>
+  </data>
+  <data name="SaveFile.Text" xml:space="preserve">
+    <value>Datei speichern</value>
+  </data>
+  <data name="CopySelected.Text" xml:space="preserve">
+    <value>Ausgewählte kopieren</value>
+  </data>
+  <data name="DeleteSelected.Text" xml:space="preserve">
+    <value>Ausgewählte löschen</value>
+  </data>
+  <data name="SelectLanguage.Text" xml:space="preserve">
+    <value>Sprachversion wählen</value>
+  </data>
+  <data name="TemplateName.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="TemplateMode.Text" xml:space="preserve">
+    <value>Modus:</value>
+  </data>
+  <data name="TemplateCreate.Text" xml:space="preserve">
+    <value>Vorlage erstellen</value>
+  </data>
+  <data name="TemplateCancel.Text" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="File.Text" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Benutzer</value>
+  </data>
+  <data name="EditComment.Text" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="ApproveComment.Text" xml:space="preserve">
+    <value>Zulassen / Ablehnen</value>
+  </data>
+  <data name="CannotSaveDefault.Text" xml:space="preserve">
+    <value>Die Standardvorlage kann nicht bearbeitet werden. Bitte kopieren Sie die Vorlage in ein neues Theme.</value>
+  </data>
+  <data name="btnClose.Text" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="DELETEARTICLE.Action" xml:space="preserve">
+    <value>Artikel löschen</value>
+  </data>
+  <data name="EDITARTICLE.Action" xml:space="preserve">
+    <value>Artikel bearbeiten</value>
+  </data>
+  <data name="PUBLICATIONS.Action" xml:space="preserve">
+    <value>Veröffentlichungen verwalten</value>
+  </data>
+  <data name="DELETED.Action" xml:space="preserve">
+    <value>Gelöschte Artikel ({0})</value>
+  </data>
+  <data name="UNDELETED.Action" xml:space="preserve">
+    <value>Alle Artikel</value>
+  </data>
+  <data name="DefaultTemplateWarning.Text" xml:space="preserve">
+    <value>Achtung! Sie verwenden derzeit noch die Standard-Vorlage, die zusammen mit dem Modul ausgeliefert wird. Da diese Vorlage mit jedem Modulupdate überschrieben wird, empfehlen wir das Anlegen einer personalisierten Kopie der Vorlage. Sie können dies unter dem Punkt "Vorlagen verwalten" im Aktionsmenü des Moduls erledigen.</value>
+  </data>
+</root>

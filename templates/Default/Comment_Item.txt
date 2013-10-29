@@ -1,0 +1,20 @@
+
+<div class="nuntio-comment-block clearfix">
+
+	<img src="[GRAVATARURL]" alt="[CREATEDBY]" class="nuntio-comment-gravatar" />
+
+	<div class="nuntio-comment-item">
+		<h4>
+			[CREATEDBY][ISARTICLEOWNER] ([IPADDRESS])[/ISARTICLEOWNER] says
+			<img src="/images/spacer.gif" align=absbottom class="nuntio-commentarrow" />
+		</h4>
+		<div class="nuntio-comment-text">
+			[COMMENT]
+			[ISARTICLEOWNER]
+				<p>[APPROVE]</p>
+			[/ISARTICLEOWNER]
+		</div>
+		<div class="nuntio-comment-footer">#&nbsp;[CREATEDATE]&nbsp;[CREATETIME]</div>
+	</div>
+
+</div>

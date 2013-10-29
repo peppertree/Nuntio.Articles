@@ -1,0 +1,261 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_News_EmailQueue]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+    BEGIN
+
+        CREATE TABLE {databaseOwner}[{objectQualifier}pnc_News_EmailQueue](
+	        [ItemId] [int] IDENTITY (0, 1) NOT NULL,
+	        [PortalId] [int] NOT NULL,
+	        [ModuleId] [int] NOT NULL,
+	        [Recipient] [nvarchar](255) NOT NULL,
+	        [Sender] [nvarchar](255) NOT NULL,
+	        [Subject] [nvarchar](255) NOT NULL,
+	        [Message] [nvarchar](max) NOT NULL,
+	        [AddedToQueue] [datetime] NOT NULL,
+	        [DeliveryAttempts] [int] NOT NULL,
+	        [LastDeliveryAttempt] [datetime] NULL,
+	        [LastError] [nvarchar](max) NULL
+        )
+                
+        ALTER TABLE {databaseOwner}{objectQualifier}pnc_News_EmailQueue ADD 
+            CONSTRAINT [PK_{objectQualifier}pnc_News_EmailQueue] PRIMARY KEY NONCLUSTERED 
+            (
+                [ItemID]
+            )
+                    
+        ALTER TABLE {databaseOwner}[{objectQualifier}pnc_News_EmailQueue] WITH NOCHECK ADD
+        CONSTRAINT [FK_{objectQualifier}pnc_News_EmailQueue{objectQualifier}Modules] FOREIGN KEY ([ModuleID]) REFERENCES {databaseOwner}[{objectQualifier}Modules] ([ModuleID]) ON DELETE CASCADE NOT FOR REPLICATION        
+    END
+GO
+
+/* =====================================================================================
+/   TABLE: News_EmailQueue
+/  ===================================================================================== */
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_News_EmailQueueGet    Script Date: Freitag, 12. März 2010 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_News_EmailQueue_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Get
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_News_EmailQueueList    Script Date: Freitag, 12. März 2010 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_News_EmailQueue_List') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_List
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_News_EmailQueueAdd    Script Date: Freitag, 12. März 2010 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_News_EmailQueue_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Add
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_News_EmailQueueUpdate    Script Date: Freitag, 12. März 2010 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_News_EmailQueue_Update') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Update
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_News_EmailQueueDelete    Script Date: Freitag, 12. März 2010 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_News_EmailQueue_Delete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Delete
+GO
+
+
+/* -------------------------------------------------------------------------------------
+/   News_EmailQueue_Get
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Get
+	@ItemId int
+AS
+
+SELECT
+	[ItemId],
+	[PortalId],
+	[ModuleId],
+	[Recipient],
+	[Sender],
+	[Subject],
+	[Message],
+	[AddedToQueue],
+	[DeliveryAttempts],
+	[LastDeliveryAttempt],
+	[LastError]
+FROM {objectQualifier}pnc_News_EmailQueue
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   News_EmailQueue_List 
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_List
+    @PortalId int,
+    @ModuleId int
+AS
+
+SELECT
+	[ItemId],
+	[PortalId],
+	[ModuleId],
+	[Recipient],
+	[Sender],
+	[Subject],
+	[Message],
+	[AddedToQueue],
+	[DeliveryAttempts],
+	[LastDeliveryAttempt],
+	[LastError]
+FROM {objectQualifier}pnc_News_EmailQueue
+WHERE
+    ([Portalid] = @PortalId or @PortalId is Null)
+AND
+    ([ModuleId] = @ModuleId or @ModuleId is Null)    
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+/* -------------------------------------------------------------------------------------
+/   News_EmailQueue_Add
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Add
+	@PortalId int,
+	@ModuleId int,
+	@Recipient nvarchar(255),
+	@Sender nvarchar(255),
+	@Subject nvarchar(255),
+	@Message nvarchar(max),
+	@AddedToQueue datetime,
+	@DeliveryAttempts int,
+	@LastDeliveryAttempt datetime,
+	@LastError nvarchar(255)
+AS
+
+INSERT INTO {objectQualifier}pnc_News_EmailQueue (
+	[PortalId],
+	[ModuleId],
+	[Recipient],
+	[Sender],
+	[Subject],
+	[Message],
+	[AddedToQueue],
+	[DeliveryAttempts],
+	[LastDeliveryAttempt],
+	[LastError]
+) VALUES (
+	@PortalId,
+	@ModuleId,
+	@Recipient,
+	@Sender,
+	@Subject,
+	@Message,
+	@AddedToQueue,
+	@DeliveryAttempts,
+	@LastDeliveryAttempt,
+	@LastError
+)
+
+select SCOPE_IDENTITY()
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   News_EmailQueue_Update
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Update
+	@ItemId int, 
+	@PortalId int, 
+	@ModuleId int, 
+	@Recipient nvarchar(255), 
+	@Sender nvarchar(255), 
+	@Subject nvarchar(255), 
+	@Message nvarchar(max), 
+	@AddedToQueue datetime, 
+	@DeliveryAttempts int, 
+	@LastDeliveryAttempt datetime,
+	@LastError nvarchar(255)
+AS
+
+UPDATE {objectQualifier}pnc_News_EmailQueue SET
+	[PortalId] = @PortalId,
+	[ModuleId] = @ModuleId,
+	[Recipient] = @Recipient,
+	[Sender] = @Sender,
+	[Subject] = @Subject,
+	[Message] = @Message,
+	[AddedToQueue] = @AddedToQueue,
+	[DeliveryAttempts] = @DeliveryAttempts,
+	[LastDeliveryAttempt] = @LastDeliveryAttempt,
+	[LastError] = @LastError
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   News_EmailQueue_Delete
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_News_EmailQueue_Delete
+	@ItemId int
+AS
+
+DELETE FROM {objectQualifier}pnc_News_EmailQueue
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+
+
+

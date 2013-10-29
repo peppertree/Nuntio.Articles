@@ -1,0 +1,9 @@
+<div class="head">
+   [PUBLISHDATE]: [TITLE] (Posted by [CREATEDBY])
+</div>
+<div class="summary">
+   [SUMMARY]
+</div>
+<div class="content">
+   [CONTENT]
+</div>	

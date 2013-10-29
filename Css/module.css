@@ -1,0 +1,282 @@
+﻿#cat
+{
+	font-family: Verdana;
+	font-size: 0.8em;
+	color: #222;
+	background: #eee;
+	height: 260px;
+}
+.Paging 
+{
+    border: 1px solid #ddd;
+    background: #eee;
+}
+.PagingLeft 
+{
+	float:left;
+	padding: 9px 0 5px 10px;
+	font-family: Verdana;
+	font-size:0.8em;
+}
+.PagingRight 
+{
+	float:right;
+}
+.PagingRight a, .PagingRight a:link, .PagingRight a:active, .PagingRight a:visited 
+{
+    border: 1px solid #999;
+    background-color: #ddd;
+    text-decoration: none !important;
+    font-size: 12px;
+    margin:5px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:3px;
+    padding-bottom:3px;
+    width: 20px;
+	font-family: Verdana;
+	font-size:0.8em;
+	color: #333;
+}
+.PagingRight a:hover 
+{
+    border: 1px solid #333;
+    background-color: #999;
+    text-decoration: none !important;
+    color:#fefefe !important;
+}
+.rwTitlebarControls ul, .rwTitlebarControls ul li 
+{
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding:0 !important;
+}
+.RadWindow table tr 
+{
+    height: 8px !important;
+}
+.TelerikModalOverlay 
+{
+    opacity:0.8 !important;
+    filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=80) !important; 
+    BACKGROUND-COLOR: #333 !important;
+}
+#simplesearch div {
+	float:left;
+}
+#advsearch div {
+	float:left;
+}
+#searchspacer {
+	height: 25px;
+	clear:both;
+}
+.comment_form
+{
+    background: #eee;
+    padding:20px;
+    font-family: Verdana;
+    font-size: 12px;
+    color:#333;
+}
+.comment_button 
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.comment_needsapproval, comment_by
+{
+    
+}
+.pnlMessage 
+{
+    padding-top: 15px;    
+    padding-bottom: 15px;
+}
+/*******************/
+/* Subscriber Form */
+/*******************/
+
+/* ValidATION errors */
+div.nuntioSub 
+{
+    font-family: Verdana;
+    font-size: 12px;
+    color: Red;
+}
+div.nuntioSub ul li, div.nuntioSub ul
+{
+    padding:0;
+    margin: 0;
+    list-style-type: none;
+}
+div.nuntioSub ul
+{
+    padding-bottom: 10px;
+}
+div.nuntioSub ul li
+{
+    padding: 5px 0 5px 30px;
+    background: url(img/alert.gif) left center no-repeat;
+}
+/* Subscriber form table */
+table.nuntioSubContainer 
+{
+    width: 300px;
+}
+/*cell that holds the lables */
+td.subNormal
+{
+    white-space: nowrap;
+    vertical-align: top;
+    font-family: Verdana;
+    font-size: 12px;
+    padding: 5px 10px 0 0;    
+}
+/*cell that hols the textboxes */
+td.subControl
+{
+    width: 100%;
+    vertical-align: top;
+}
+/*cell that holds the help text */
+td.subHelp
+{
+    padding: 20px 0 0px 0;
+    font-family: Verdana;
+    font-size: 12px;
+}
+/*cell that holds the checkboxes (if more then one module is referenced */
+td.subCheck 
+{
+    padding: 10px 0 0px 0;    
+}
+td.subCheck label
+{
+    font-family: Verdana;
+    font-size: 12px;    
+}
+/* cell that holds the buttons */
+td.subButton
+{
+    padding: 20px 0 10px 0;
+}
+/* container that holds the result */
+div.subResult
+{
+    padding: 10px 0 10px 0;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+.nuntio-thread
+{
+    width:300px;
+}
+.nuntio-thread ul, .nuntio-thread li
+{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+li.nuntio-category
+{
+    color: #000;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 3px 0 3px 0;
+}
+li.haschildren a, li.haschildren a:link,  li.haschildren a:active, li.haschildren a:visited
+{
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    background: url(img/haschildren.png) left center no-repeat;
+    padding: 0 0 0 20px;
+}
+li.nochildren a, li.nochildren a:link,  li.nochildren a:active, li.nochildren a:visited
+{
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    background: url(img/nochildren.png) left center no-repeat;
+    padding: 0 0 0 20px;
+}
+.nuntio-thread ul ul
+{
+    padding-left: 20px;
+}
+
+li.nuntio-article
+{    
+}
+li.nuntio-article a, li.nuntio-article a:link, li.nuntio-article a:active, li.nuntio-article a:visited
+{
+    display: inline-block;
+    color: #000;
+    text-decoration: none;  
+    font-size: 14px;
+    background: url(img/file.gif) left center no-repeat;
+    padding: 3px 3px 3px 20px;
+}
+li.nuntio-article a:hover
+{
+    color: #555;
+    text-decoration: none;  
+    font-size: 14px;
+    background: #eee url(img/file.gif) left center no-repeat;
+    padding: 3px 3px 3px 20px;
+}
+.thread-container
+{
+    border: 1px solid #ccc;
+}
+.thread-toc
+{
+    width: 300px;    
+    background: #eee;
+    padding:20px;
+    float:left;
+    min-height: 300px;
+    height: 600px;
+    overflow: auto;
+}
+.thread-content
+{
+    width: 800px;
+    border-left: none;
+    padding:0;
+    float:left;
+    min-height: 300px;
+}
+
+
+iframe.toc-iframe { display:block; width:100%; border:none; height:100%; min-height:500px; margin:0; padding:0; }
+
+a.expand
+{
+    background: url(img/ic_plus.png) 0 2px no-repeat;
+    padding-left: 20px;
+}
+a.add
+{
+    background: url(img/ic_plus.png) 0 2px no-repeat;
+    padding-left: 20px;
+}
+a.collapse
+{
+    background: url(img/ic_plus.png) 0 2px no-repeat;
+    padding-left: 20px;
+}
+a.delete
+{
+    background: url(img/ic_delete.gif) left center no-repeat;
+    padding-left: 20px;
+}
+
+.toc-search
+{
+    padding: 5px 0 5px 10px;
+    background: #eee;
+    border-bottom: 1px solid #ccc;
+}

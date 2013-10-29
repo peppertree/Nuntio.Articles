@@ -1,0 +1,1 @@
+<li><a href="[IMAGEURL]" rel="Fancybox" class="fancyimage" title="[IMAGETITLE]: [IMAGEDESCRIPTION]"><img src="/Portals/[PORTALID]/[FOLDERNAME][FILENAME].[FILEEXTENSION]" alt="[IMAGETITLE]" width="100" /></a></li>

@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Advanced.Tab" xml:space="preserve">
+    <value>Categorization</value>
+  </data>
+  <data name="AllCategories.Treenode" xml:space="preserve">
+    <value>All categories</value>
+  </data>
+  <data name="Body.Tab" xml:space="preserve">
+    <value>Article Content</value>
+  </data>
+  <data name="btnSelectFile.Text" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="btnSelectTab.Text" xml:space="preserve">
+    <value>Select Page</value>
+  </data>
+  <data name="btnSelectUser.Text" xml:space="preserve">
+    <value>Select User</value>
+  </data>
+  <data name="chkAddToQueue.Text" xml:space="preserve">
+    <value>Add to Newsletter Queue &lt;br/&gt; [Next run: {0}]</value>
+  </data>
+  <data name="chkNewWindow.Text" xml:space="preserve">
+    <value>open link in new window</value>
+  </data>
+  <data name="chkOriginal.Text" xml:space="preserve">
+    <value>original version</value>
+  </data>
+  <data name="chkPublished.Text" xml:space="preserve">
+    <value>Is published</value>
+  </data>
+  <data name="chkTrackClicks.Text" xml:space="preserve">
+    <value>Track the number of clicks on this link</value>
+  </data>
+  <data name="chkTrackUsers.Text" xml:space="preserve">
+    <value>Track user account information for each click</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="cmdDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="cmdSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="cmdSaveExit.Text" xml:space="preserve">
+    <value>Save &amp; Exit</value>
+  </data>
+  <data name="lblCategoriesHelp.Text" xml:space="preserve">
+    <value>You may associate the article with unlimited categories by checking each node. Manage categories by right clicking on the treenodes.</value>
+  </data>
+  <data name="lblHeadCategories.Text" xml:space="preserve">
+    <value>Article Categories</value>
+  </data>
+  <data name="lblHeadLink.Text" xml:space="preserve">
+    <value>Article Link</value>
+  </data>
+  <data name="lblLinkHelp.Text" xml:space="preserve">
+    <value>You can link your article to several resources. Please select the type of resource that you want to link your article to.</value>
+  </data>
+  <data name="lblMeilQueueHelp.Text" xml:space="preserve">
+    <value>Select whether the article should be added to the newsletter e-mail queue for the next run.</value>
+  </data>
+  <data name="lblOriginalHelp.Text" xml:space="preserve">
+    <value>Select wheter the currently selected locale is the original version of the article. This can help site visitors to distinguish between the original version and their translations.</value>
+  </data>
+  <data name="lblPublishDate.Text" xml:space="preserve">
+    <value>Publishdate:</value>
+  </data>
+  <data name="lblTitle.Text" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="rblFile.Text" xml:space="preserve">
+    <value>Internal File</value>
+  </data>
+  <data name="rblTab.Text" xml:space="preserve">
+    <value>Internal Page</value>
+  </data>
+  <data name="rblUrl.Text" xml:space="preserve">
+    <value>External Url</value>
+  </data>
+  <data name="rblUser.Text" xml:space="preserve">
+    <value>User Profile</value>
+  </data>
+  <data name="Summary.Tab" xml:space="preserve">
+    <value>Article Summary</value>
+  </data>
+  <data name="AddCategory.Menu" xml:space="preserve">
+    <value>Add category</value>
+  </data>
+  <data name="CancelButton.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DeleteCategory.Menu" xml:space="preserve">
+    <value>Delete category</value>
+  </data>
+  <data name="EditCategory.Menu" xml:space="preserve">
+    <value>Edit category</value>
+  </data>
+  <data name="MsgArticleAdded.Text" xml:space="preserve">
+    <value>Article created!</value>
+  </data>
+  <data name="MsgArticleUpdated.Text" xml:space="preserve">
+    <value>Article updated!</value>
+  </data>
+  <data name="MsgError.Text" xml:space="preserve">
+    <value>An error occured on updating the article. Please try again later.</value>
+  </data>
+  <data name="MsgRequired.Text" xml:space="preserve">
+    <value>Title and Body are required fields!</value>
+  </data>
+  <data name="NowUpdating.Text" xml:space="preserve">
+    <value>Please wait...</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="TimePicker.Text" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="TodayButton.Text" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="NotFullyTranslated.Text" xml:space="preserve">
+    <value>There is no complete translation available yet in the selected locale!</value>
+  </data>
+  <data name="lblEmailHeader.Text" xml:space="preserve">
+    <value>E-Mail Queue</value>
+  </data>
+  <data name="Newsletter.Tab" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="NewItem_Body.Text" xml:space="preserve">
+    <value>Hi,&lt;br /&gt;a new article at {0} requires approval. Follow this link to review and edit the article:&lt;br /&gt;&lt;br /&gt;{1}&lt;br /&gt;&lt;br /&gt;Cheers,  Nuntio</value>
+  </data>
+  <data name="NewItem_Subject.Text" xml:space="preserve">
+    <value>New article requires approval!</value>
+  </data>
+  <data name="TwitterAccount.Text" xml:space="preserve">
+    <value>You must enter your account address at &lt;a href="http://www.twittercounter.com" target="_blank"&gt;twittercounter.com&lt;/a&gt; The article has been posted though.</value>
+  </data>
+  <data name="TwitterAccountError.Text" xml:space="preserve">
+    <value>You must enter your twitter account details if you want your article be posted to twitter! The article has been posted though.</value>
+  </data>
+  <data name="TwitterCheckbox.Text" xml:space="preserve">
+    <value>Post to Twitter</value>
+  </data>
+  <data name="TwitterError.Text" xml:space="preserve">
+    <value>Your article could not be posted to twitter, the article has been published though.</value>
+  </data>
+  <data name="TwitterHeader.Text" xml:space="preserve">
+    <value>Twitter Options</value>
+  </data>
+  <data name="TwitterHelp.Text" xml:space="preserve">
+    <value>Check this if you want the first 140 chars to be posted to your account at twittercounter.com</value>
+  </data>
+  <data name="lblExpiryDate.Text" xml:space="preserve">
+    <value>Expirydate:</value>
+  </data>
+  <data name="cmdAddImage.Text" xml:space="preserve">
+    <value>Add Image</value>
+  </data>
+  <data name="Images.Tab" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="lblImagesIntro.Text" xml:space="preserve">
+    <value>You can attach unlimited images to your article</value>
+  </data>
+  <data name="cmdDeleteImage.Text" xml:space="preserve">
+    <value>Remove image</value>
+  </data>
+  <data name="cmdMakeImagePrimary.Text" xml:space="preserve">
+    <value>Make Image Primary</value>
+  </data>
+  <data name="cmdUpdateImages.Text" xml:space="preserve">
+    <value>Update Images</value>
+  </data>
+  <data name="txtEmptyDescription.Text" xml:space="preserve">
+    <value>Enter description...</value>
+  </data>
+  <data name="txtEmptyTitle.Text" xml:space="preserve">
+    <value>Enter title...</value>
+  </data>
+  <data name="cmdSaveTranslate.Text" xml:space="preserve">
+    <value>Save &amp; Translate</value>
+  </data>
+  <data name="lblImagesWarning.Text" xml:space="preserve">
+    <value>You have to save the article first before you can start attaching images!</value>
+  </data>
+  <data name="NoImagesYet.Text" xml:space="preserve">
+    <value>&lt;p style='padding:20px;'&gt;No images attached yet&lt;/p&gt;</value>
+  </data>
+  <data name="cmdHardDelete.Text" xml:space="preserve">
+    <value>Harddelete</value>
+  </data>
+  <data name="cmdRestore.Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="lblAnchorNote.Text" xml:space="preserve">
+    <value>You may overwrite the default anchor of the article by entering a value in the textbox below:</value>
+  </data>
+  <data name="lblArticleInformationHead.Text" xml:space="preserve">
+    <value>Article Information</value>
+  </data>
+  <data name="lblCreatedByNote.Text" xml:space="preserve">
+    <value>The article was created on {0} by {1}</value>
+  </data>
+  <data name="lblLastUpdateNote.Text" xml:space="preserve">
+    <value>, the last update was on  {0} by {1}</value>
+  </data>
+  <data name="Attachments.Tab" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="cmdAddAttachment.Text" xml:space="preserve">
+    <value>Attach File</value>
+  </data>
+  <data name="cmdDeleteAttachment.Text" xml:space="preserve">
+    <value>Remove attachment</value>
+  </data>
+  <data name="cmdMakeAttachmentPrimary.Text" xml:space="preserve">
+    <value>Make Attachment Primary</value>
+  </data>
+  <data name="lblAttachmentsIntro.Text" xml:space="preserve">
+    <value>You can attach unlimited files to your article</value>
+  </data>
+  <data name="lblAttachmentsWarning.Text" xml:space="preserve">
+    <value>You have to save the article first before you can start adding attachments</value>
+  </data>
+  <data name="NoAttachmentsYet.Text" xml:space="preserve">
+    <value>&lt;p style='padding:20px;'&gt;No attachments added yet&lt;/p&gt;</value>
+  </data>
+  <data name="Related.Tab" xml:space="preserve">
+    <value>Related Content</value>
+  </data>
+  <data name="Versioning.Tab" xml:space="preserve">
+    <value>Versioning</value>
+  </data>
+  <data name="cmdRestoreVersion.Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="lblBelongsTo1.Text" xml:space="preserve">
+    <value>Select articles for the publication:</value>
+  </data>
+  <data name="lblBelongsTo2.Text" xml:space="preserve">
+    <value>The article belongs to:</value>
+  </data>
+  <data name="lblPublicationsHead.Text" xml:space="preserve">
+    <value>Publications</value>
+  </data>
+  <data name="lblPublicationsIntro.Text" xml:space="preserve">
+    <value>You may configure this article to be part of a publication or be a publication itself. A Publication is a set of articles that belong together.</value>
+  </data>
+  <data name="lblRelatedHead.Text" xml:space="preserve">
+    <value>Related Articles</value>
+  </data>
+  <data name="lblRelatedIntro.Text" xml:space="preserve">
+    <value>You may related the article to other articles in this portal.</value>
+  </data>
+  <data name="ModeBelongsToPublication.Text" xml:space="preserve">
+    <value>Article is part of a publication</value>
+  </data>
+  <data name="ModeIsPublication.Text" xml:space="preserve">
+    <value>Article is a publication</value>
+  </data>
+  <data name="ModeNoPublication.Text" xml:space="preserve">
+    <value>Default mode (no publication)</value>
+  </data>
+</root>

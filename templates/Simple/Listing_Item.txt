@@ -1,0 +1,11 @@
+<div class="nuntio-listitem">
+	<h3>
+		[PUBLISHDATE]
+	</h3>
+	<h2>
+		<a href="[DETAILLINKURL]">[TITLE]</a>[EDIT]
+	</h2>
+	<div>
+		[HASSUMMARY][SUMMARY][/HASSUMMARY][HASNOSUMMARY][CONTENT:200][/HASNOSUMMARY]	
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<div class="dw_Scroll">
+	<p class="dw_scroll_title">
+		<a href="[DETAILLINKURL]">[TITLE]</a>
+	</p>
+	<p class="dw_scroll_summary">
+		[SUMMARY]
+	</P>
+    <p class="dw_scroll_readmore">
+	    <strong>&raquo;</strong>&nbsp;<a href="[DETAILLINKURL]">Read more</a> ...
+    </p>
+</div>

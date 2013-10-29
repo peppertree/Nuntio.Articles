@@ -1,0 +1,1275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24BA617B-102E-47F4-B15D-7037993AEC1F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>dnnWerk.Nuntio.Articles</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\dotnetnuke.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DotNetNuke.HttpModules, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.HttpModules.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.0.185, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.UI, Version=2010.3.1317.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="DotNetNuke" />
+    <Import Include="DotNetNuke.Common" />
+    <Import Include="DotNetNuke.Common.Utilities" />
+    <Import Include="DotNetNuke.Data" />
+    <Import Include="DotNetNuke.Entities" />
+    <Import Include="DotNetNuke.Entities.Tabs" />
+    <Import Include="DotNetNuke.Framework" />
+    <Import Include="DotNetNuke.Modules" />
+    <Import Include="DotNetNuke.Security" />
+    <Import Include="DotNetNuke.Services" />
+    <Import Include="DotNetNuke.Services.Exceptions" />
+    <Import Include="DotNetNuke.Services.Localization" />
+    <Import Include="DotNetNuke.UI" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Entities\ArchiveInfo.vb" />
+    <Compile Include="Components\Entities\AuthorInfo.vb" />
+    <Compile Include="Components\Entities\CategoryController.vb" />
+    <Compile Include="Components\Entities\CategoryInfo.vb" />
+    <Compile Include="Components\Entities\ArticleController.vb" />
+    <Compile Include="Components\Entities\CommentController.vb" />
+    <Compile Include="Components\Entities\CommentInfo.vb" />
+    <Compile Include="Components\Entities\ArchiveController.vb" />
+    <Compile Include="Components\Entities\AuthorController.vb" />
+    <Compile Include="Components\Entities\EmailQueueController.vb" />
+    <Compile Include="Components\Entities\SubscriptionController.vb" />
+    <Compile Include="Components\Entities\ArticleFileController.vb" />
+    <Compile Include="Components\Entities\ArticleFileInfo.vb" />
+    <Compile Include="Components\Entities\EmailQueueInfo.vb" />
+    <Compile Include="Components\Integration\Journal.vb" />
+    <Compile Include="Components\Scheduler\EmailQueueProcessor.vb" />
+    <Compile Include="Components\Entities\ArticleInfo.vb" />
+    <Compile Include="Components\Scheduler\ArticleProcessor.vb" />
+    <Compile Include="Components\Entities\SubscriptionInfo.vb" />
+    <Compile Include="Components\Entities\TemplateController.vb" />
+    <Compile Include="Components\Entities\TemplateHelp.vb" />
+    <Compile Include="Components\MetaWeblog\ApiInterface.vb" />
+    <Compile Include="Components\MetaWeblog\ApiStructs.vb" />
+    <Compile Include="Components\Shared\3_ArticleSettingsBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\Shared\5_ArticleModuleBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\Shared\4_ArticleTemplateBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\Shared\Mail.vb" />
+    <Compile Include="Components\Shared\Helpers.vb" />
+    <Compile Include="Controls\uc_SendEmail.ascx.designer.vb">
+      <DependentUpon>uc_SendEmail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_SendEmail.ascx.vb">
+      <DependentUpon>uc_SendEmail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Configure.ascx.designer.vb">
+      <DependentUpon>uc_Configure.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Configure.ascx.vb">
+      <DependentUpon>uc_Configure.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Publications.ascx.designer.vb">
+      <DependentUpon>uc_Publications.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Publications.ascx.vb">
+      <DependentUpon>uc_Publications.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Detail.ascx.designer.vb">
+      <DependentUpon>uc_Detail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Detail.ascx.vb">
+      <DependentUpon>uc_Detail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feed.aspx.designer.vb">
+      <DependentUpon>Feed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feed.aspx.vb">
+      <DependentUpon>Feed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MetaWebLog\ArticlePost.ashx.vb">
+      <DependentUpon>ArticlePost.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MetaWeblog\MetaWebLog.vb" />
+    <Compile Include="Components\Shared\SettingsBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\Shared\1_ArticleBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Comment.ascx.designer.vb">
+      <DependentUpon>uc_Comment.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Comment.ascx.vb">
+      <DependentUpon>uc_Comment.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArticlePanel\uc_PanelSettings.ascx.designer.vb">
+      <DependentUpon>uc_PanelSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArticlePanel\uc_PanelSettings.ascx.vb">
+      <DependentUpon>uc_PanelSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArticleRotator\uc_RotateSettings.ascx.designer.vb">
+      <DependentUpon>uc_RotateSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArticleRotator\uc_RotateSettings.ascx.vb">
+      <DependentUpon>uc_RotateSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Templates.ascx.designer.vb">
+      <DependentUpon>uc_Templates.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Templates.ascx.vb">
+      <DependentUpon>uc_Templates.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_ListSubscriptions.ascx.designer.vb">
+      <DependentUpon>uc_ListSubscriptions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_ListSubscriptions.ascx.vb">
+      <DependentUpon>uc_ListSubscriptions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArticleRotator\uc_Rotate.ascx.designer.vb">
+      <DependentUpon>uc_Rotate.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArticleRotator\uc_Rotate.ascx.vb">
+      <DependentUpon>uc_Rotate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArticleList\uc_List.ascx.designer.vb">
+      <DependentUpon>uc_List.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArticleList\uc_List.ascx.vb">
+      <DependentUpon>uc_List.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Message.ascx.designer.vb">
+      <DependentUpon>uc_Message.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Message.ascx.vb">
+      <DependentUpon>uc_Message.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Search.ascx.designer.vb">
+      <DependentUpon>uc_Search.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Search.ascx.vb">
+      <DependentUpon>uc_Search.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_TabSelect.ascx.designer.vb">
+      <DependentUpon>uc_TabSelect.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_TabSelect.ascx.vb">
+      <DependentUpon>uc_TabSelect.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Thankyou.ascx.designer.vb">
+      <DependentUpon>uc_Thankyou.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Thankyou.ascx.vb">
+      <DependentUpon>uc_Thankyou.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_UserSelect.ascx.designer.vb">
+      <DependentUpon>uc_UserSelect.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_UserSelect.ascx.vb">
+      <DependentUpon>uc_UserSelect.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Vorlage.ascx.designer.vb">
+      <DependentUpon>Vorlage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Vorlage.ascx.vb">
+      <DependentUpon>Vorlage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Category.ascx.designer.vb">
+      <DependentUpon>uc_Category.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Category.ascx.vb">
+      <DependentUpon>uc_Category.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_Edit.ascx.designer.vb">
+      <DependentUpon>uc_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_Edit.ascx.vb">
+      <DependentUpon>uc_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\uc_FileSelect.ascx.designer.vb">
+      <DependentUpon>uc_FileSelect.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uc_FileSelect.ascx.vb">
+      <DependentUpon>uc_FileSelect.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Articles.ascx.designer.vb">
+      <DependentUpon>Articles.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Articles.ascx.vb">
+      <DependentUpon>Articles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\AuthorBrowser\uc_AuthorBrowser.ascx.designer.vb">
+      <DependentUpon>uc_AuthorBrowser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\AuthorBrowser\uc_AuthorBrowser.ascx.vb">
+      <DependentUpon>uc_AuthorBrowser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\AuthorBrowser\uc_AuthorBrowserSettings.ascx.designer.vb">
+      <DependentUpon>uc_AuthorBrowserSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\AuthorBrowser\uc_AuthorBrowserSettings.ascx.vb">
+      <DependentUpon>uc_AuthorBrowserSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArticlePanel\uc_Panel.ascx.designer.vb">
+      <DependentUpon>uc_Panel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArticlePanel\uc_Panel.ascx.vb">
+      <DependentUpon>uc_Panel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ThreadedList\uc_List.ascx.designer.vb">
+      <DependentUpon>uc_List.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ThreadedList\uc_List.ascx.vb">
+      <DependentUpon>uc_List.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ThreadedList\uc_ListSettings.ascx.designer.vb">
+      <DependentUpon>uc_ListSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ThreadedList\uc_ListSettings.ascx.vb">
+      <DependentUpon>uc_ListSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PostArticle.aspx.designer.vb">
+      <DependentUpon>PostArticle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PostArticle.aspx.vb">
+      <DependentUpon>PostArticle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.ascx.designer.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.ascx.vb">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArchiveBrowser\uc_Archive.ascx.designer.vb">
+      <DependentUpon>uc_Archive.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArchiveBrowser\uc_Archive.ascx.vb">
+      <DependentUpon>uc_Archive.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArchiveBrowser\uc_ArchiveSettings.ascx.designer.vb">
+      <DependentUpon>uc_ArchiveSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArchiveBrowser\uc_ArchiveSettings.ascx.vb">
+      <DependentUpon>uc_ArchiveSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\BannerViewer\uc_Banner.ascx.designer.vb">
+      <DependentUpon>uc_Banner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BannerViewer\uc_Banner.ascx.vb">
+      <DependentUpon>uc_Banner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\BannerViewer\uc_BannerSettings.ascx.designer.vb">
+      <DependentUpon>uc_BannerSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BannerViewer\uc_BannerSettings.ascx.vb">
+      <DependentUpon>uc_BannerSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\CategoryBrowser\uc_CategoryBrowser.ascx.designer.vb">
+      <DependentUpon>uc_CategoryBrowser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CategoryBrowser\uc_CategoryBrowser.ascx.vb">
+      <DependentUpon>uc_CategoryBrowser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\CategoryBrowser\uc_CategoryBrowserSettings.ascx.designer.vb">
+      <DependentUpon>uc_CategoryBrowserSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CategoryBrowser\uc_CategoryBrowserSettings.ascx.vb">
+      <DependentUpon>uc_CategoryBrowserSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\RssBrowser\uc_RssBrowserSettings.ascx.designer.vb">
+      <DependentUpon>uc_RssBrowserSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\RssBrowser\uc_RssBrowserSettings.ascx.vb">
+      <DependentUpon>uc_RssBrowserSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\RssBrowser\uc_RssBrowser.ascx.designer.vb">
+      <DependentUpon>uc_RssBrowser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\RssBrowser\uc_RssBrowser.ascx.vb">
+      <DependentUpon>uc_RssBrowser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\SubscriberForm\uc_Subscribe.ascx.designer.vb">
+      <DependentUpon>uc_Subscribe.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\SubscriberForm\uc_Subscribe.ascx.vb">
+      <DependentUpon>uc_Subscribe.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\SubscriberForm\uc_SubscriberSettings.ascx.designer.vb">
+      <DependentUpon>uc_SubscriberSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\SubscriberForm\uc_SubscriberSettings.ascx.vb">
+      <DependentUpon>uc_SubscriberSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Rss.aspx.designer.vb">
+      <DependentUpon>Rss.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Rss.aspx.vb">
+      <DependentUpon>Rss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\ArticleList\uc_ListSettings.ascx.designer.vb">
+      <DependentUpon>uc_ListSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ArticleList\uc_ListSettings.ascx.vb">
+      <DependentUpon>uc_ListSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Windows\Window.aspx.designer.vb">
+      <DependentUpon>Window.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Window.aspx.vb">
+      <DependentUpon>Window.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="04.00.02.txt" />
+    <Content Include="Controls\uc_SendEmail.ascx" />
+    <Content Include="Controls\uc_Configure.ascx" />
+    <Content Include="Controls\uc_Publications.ascx" />
+    <Content Include="Controls\uc_Edit.ascx" />
+    <Content Include="05.00.00.txt" />
+    <Content Include="Feed.aspx" />
+    <Content Include="DialogHandler.aspx" />
+    <Content Include="images\accept.png" />
+    <Content Include="images\ext\aif.gif" />
+    <Content Include="images\ext\aifc.gif" />
+    <Content Include="images\ext\aiff.gif" />
+    <Content Include="images\ext\article.png" />
+    <Content Include="images\ext\asf.gif" />
+    <Content Include="images\ext\asx.gif" />
+    <Content Include="images\ext\au.gif" />
+    <Content Include="images\ext\avi.gif" />
+    <Content Include="images\ext\bmp.gif" />
+    <Content Include="images\ext\css.gif" />
+    <Content Include="images\ext\doc.gif" />
+    <Content Include="images\ext\docx.gif" />
+    <Content Include="images\ext\exe.gif" />
+    <Content Include="images\ext\file.gif" />
+    <Content Include="images\ext\fla.gif" />
+    <Content Include="images\ext\folder.gif" />
+    <Content Include="images\ext\gif.GIF" />
+    <Content Include="images\ext\html.gif" />
+    <Content Include="images\ext\jpg.gif" />
+    <Content Include="images\ext\m1v.gif" />
+    <Content Include="images\ext\m3u.gif" />
+    <Content Include="images\ext\mdb.gif" />
+    <Content Include="images\ext\mid.gif" />
+    <Content Include="images\ext\midi.gif" />
+    <Content Include="images\ext\mp2.gif" />
+    <Content Include="images\ext\mp2v.gif" />
+    <Content Include="images\ext\mp3.gif" />
+    <Content Include="images\ext\mpa.gif" />
+    <Content Include="images\ext\mpe.gif" />
+    <Content Include="images\ext\mpeg.gif" />
+    <Content Include="images\ext\mpg.gif" />
+    <Content Include="images\ext\mpv2.gif" />
+    <Content Include="images\ext\pdf.gif" />
+    <Content Include="images\ext\png.GIF" />
+    <Content Include="images\ext\ppt.gif" />
+    <Content Include="images\ext\pptx.gif" />
+    <Content Include="images\ext\rmi.gif" />
+    <Content Include="images\ext\snd.gif" />
+    <Content Include="images\ext\swf.gif" />
+    <Content Include="images\ext\tab.gif" />
+    <Content Include="images\ext\tif.gif" />
+    <Content Include="images\ext\tiff.gif" />
+    <Content Include="images\ext\user.png" />
+    <Content Include="images\ext\vm.gif" />
+    <Content Include="images\ext\wav.gif" />
+    <Content Include="images\ext\wax.gif" />
+    <Content Include="images\ext\wma.gif" />
+    <Content Include="images\ext\wmp.gif" />
+    <Content Include="images\ext\wmv.gif" />
+    <Content Include="images\ext\wmx.gif" />
+    <Content Include="images\ext\wvx.gif" />
+    <Content Include="images\ext\xls.gif" />
+    <Content Include="images\ext\xlsx.gif" />
+    <Content Include="images\ext\xml.gif" />
+    <Content Include="images\ext\zip.gif" />
+    <Content Include="images\flags\ad.gif" />
+    <Content Include="images\flags\ae.gif" />
+    <Content Include="images\flags\af.gif" />
+    <Content Include="images\flags\ag.gif" />
+    <Content Include="images\flags\ai.gif" />
+    <Content Include="images\flags\al.gif" />
+    <Content Include="images\flags\am.gif" />
+    <Content Include="images\flags\an.gif" />
+    <Content Include="images\flags\ao.gif" />
+    <Content Include="images\flags\ar.gif" />
+    <Content Include="images\flags\as.gif" />
+    <Content Include="images\flags\at.gif" />
+    <Content Include="images\flags\au.gif" />
+    <Content Include="images\flags\aw.gif" />
+    <Content Include="images\flags\ax.gif" />
+    <Content Include="images\flags\az.gif" />
+    <Content Include="images\flags\ba.gif" />
+    <Content Include="images\flags\bb.gif" />
+    <Content Include="images\flags\bd.gif" />
+    <Content Include="images\flags\be.gif" />
+    <Content Include="images\flags\bf.gif" />
+    <Content Include="images\flags\bg.gif" />
+    <Content Include="images\flags\bh.gif" />
+    <Content Include="images\flags\bi.gif" />
+    <Content Include="images\flags\bj.gif" />
+    <Content Include="images\flags\bm.gif" />
+    <Content Include="images\flags\bn.gif" />
+    <Content Include="images\flags\bo.gif" />
+    <Content Include="images\flags\br.gif" />
+    <Content Include="images\flags\bs.gif" />
+    <Content Include="images\flags\bt.gif" />
+    <Content Include="images\flags\bv.gif" />
+    <Content Include="images\flags\bw.gif" />
+    <Content Include="images\flags\by.gif" />
+    <Content Include="images\flags\bz.gif" />
+    <Content Include="images\flags\ca.gif" />
+    <Content Include="images\flags\cc.gif" />
+    <Content Include="images\flags\cd.gif" />
+    <Content Include="images\flags\cf.gif" />
+    <Content Include="images\flags\cg.gif" />
+    <Content Include="images\flags\ch.gif" />
+    <Content Include="images\flags\ci.gif" />
+    <Content Include="images\flags\ck.gif" />
+    <Content Include="images\flags\cl.gif" />
+    <Content Include="images\flags\cm.gif" />
+    <Content Include="images\flags\cn.gif" />
+    <Content Include="images\flags\co.gif" />
+    <Content Include="images\flags\cr.gif" />
+    <Content Include="images\flags\cs.gif" />
+    <Content Include="images\flags\cu.gif" />
+    <Content Include="images\flags\cv.gif" />
+    <Content Include="images\flags\cx.gif" />
+    <Content Include="images\flags\cy.gif" />
+    <Content Include="images\flags\cz.gif" />
+    <Content Include="images\flags\de.gif" />
+    <Content Include="images\flags\dj.gif" />
+    <Content Include="images\flags\dk.gif" />
+    <Content Include="images\flags\dm.gif" />
+    <Content Include="images\flags\do.gif" />
+    <Content Include="images\flags\dz.gif" />
+    <Content Include="images\flags\ec.gif" />
+    <Content Include="images\flags\ee.gif" />
+    <Content Include="images\flags\eg.gif" />
+    <Content Include="images\flags\eh.gif" />
+    <Content Include="images\flags\england.gif" />
+    <Content Include="images\flags\er.gif" />
+    <Content Include="images\flags\es.gif" />
+    <Content Include="images\flags\et.gif" />
+    <Content Include="images\flags\fam.gif" />
+    <Content Include="images\flags\fi.gif" />
+    <Content Include="images\flags\fj.gif" />
+    <Content Include="images\flags\fk.gif" />
+    <Content Include="images\flags\fm.gif" />
+    <Content Include="images\flags\fo.gif" />
+    <Content Include="images\flags\fr.gif" />
+    <Content Include="images\flags\ga.gif" />
+    <Content Include="images\flags\gb.gif" />
+    <Content Include="images\flags\gd.gif" />
+    <Content Include="images\flags\ge.gif" />
+    <Content Include="images\flags\gh.gif" />
+    <Content Include="images\flags\gi.gif" />
+    <Content Include="images\flags\gl.gif" />
+    <Content Include="images\flags\gm.gif" />
+    <Content Include="images\flags\gn.gif" />
+    <Content Include="images\flags\gp.gif" />
+    <Content Include="images\flags\gq.gif" />
+    <Content Include="images\flags\gr.gif" />
+    <Content Include="images\flags\gs.gif" />
+    <Content Include="images\flags\gt.gif" />
+    <Content Include="images\flags\gu.gif" />
+    <Content Include="images\flags\gw.gif" />
+    <Content Include="images\flags\gy.gif" />
+    <Content Include="images\flags\hk.gif" />
+    <Content Include="images\flags\hn.gif" />
+    <Content Include="images\flags\hr.gif" />
+    <Content Include="images\flags\ht.gif" />
+    <Content Include="images\flags\hu.gif" />
+    <Content Include="images\flags\id.gif" />
+    <Content Include="images\flags\ie.gif" />
+    <Content Include="images\flags\il.gif" />
+    <Content Include="images\flags\in.gif" />
+    <Content Include="images\flags\io.gif" />
+    <Content Include="images\flags\iq.gif" />
+    <Content Include="images\flags\ir.gif" />
+    <Content Include="images\flags\is.gif" />
+    <Content Include="images\flags\it.gif" />
+    <Content Include="images\flags\jm.gif" />
+    <Content Include="images\flags\jo.gif" />
+    <Content Include="images\flags\jp.gif" />
+    <Content Include="images\flags\ke.gif" />
+    <Content Include="images\flags\kg.gif" />
+    <Content Include="images\flags\kh.gif" />
+    <Content Include="images\flags\ki.gif" />
+    <Content Include="images\flags\km.gif" />
+    <Content Include="images\flags\kn.gif" />
+    <Content Include="images\flags\kp.gif" />
+    <Content Include="images\flags\kr.gif" />
+    <Content Include="images\flags\kw.gif" />
+    <Content Include="images\flags\ky.gif" />
+    <Content Include="images\flags\kz.gif" />
+    <Content Include="images\flags\la.gif" />
+    <Content Include="images\flags\lb.gif" />
+    <Content Include="images\flags\lc.gif" />
+    <Content Include="images\flags\li.gif" />
+    <Content Include="images\flags\lk.gif" />
+    <Content Include="images\flags\lr.gif" />
+    <Content Include="images\flags\ls.gif" />
+    <Content Include="images\flags\lt.gif" />
+    <Content Include="images\flags\lu.gif" />
+    <Content Include="images\flags\lv.gif" />
+    <Content Include="images\flags\ly.gif" />
+    <Content Include="images\flags\ma.gif" />
+    <Content Include="images\flags\mc.gif" />
+    <Content Include="images\flags\md.gif" />
+    <Content Include="images\flags\mg.gif" />
+    <Content Include="images\flags\mh.gif" />
+    <Content Include="images\flags\mk.gif" />
+    <Content Include="images\flags\ml.gif" />
+    <Content Include="images\flags\mm.gif" />
+    <Content Include="images\flags\mn.gif" />
+    <Content Include="images\flags\mo.gif" />
+    <Content Include="images\flags\mp.gif" />
+    <Content Include="images\flags\mq.gif" />
+    <Content Include="images\flags\mr.gif" />
+    <Content Include="images\flags\ms.gif" />
+    <Content Include="images\flags\mt.gif" />
+    <Content Include="images\flags\mu.gif" />
+    <Content Include="images\flags\mv.gif" />
+    <Content Include="images\flags\mw.gif" />
+    <Content Include="images\flags\mx.gif" />
+    <Content Include="images\flags\my.gif" />
+    <Content Include="images\flags\mz.gif" />
+    <Content Include="images\flags\na.gif" />
+    <Content Include="images\flags\nc.gif" />
+    <Content Include="images\flags\ne.gif" />
+    <Content Include="images\flags\nf.gif" />
+    <Content Include="images\flags\ng.gif" />
+    <Content Include="images\flags\ni.gif" />
+    <Content Include="images\flags\nl.gif" />
+    <Content Include="images\flags\no.gif" />
+    <Content Include="images\flags\np.gif" />
+    <Content Include="images\flags\nr.gif" />
+    <Content Include="images\flags\nu.gif" />
+    <Content Include="images\flags\nz.gif" />
+    <Content Include="images\flags\om.gif" />
+    <Content Include="images\flags\pa.gif" />
+    <Content Include="images\flags\pe.gif" />
+    <Content Include="images\flags\pf.gif" />
+    <Content Include="images\flags\pg.gif" />
+    <Content Include="images\flags\ph.gif" />
+    <Content Include="images\flags\pk.gif" />
+    <Content Include="images\flags\pl.gif" />
+    <Content Include="images\flags\pm.gif" />
+    <Content Include="images\flags\pn.gif" />
+    <Content Include="images\flags\pr.gif" />
+    <Content Include="images\flags\ps.gif" />
+    <Content Include="images\flags\pt.gif" />
+    <Content Include="images\flags\pw.gif" />
+    <Content Include="images\flags\py.gif" />
+    <Content Include="images\flags\qa.gif" />
+    <Content Include="images\flags\ro.gif" />
+    <Content Include="images\flags\ru.gif" />
+    <Content Include="images\flags\rw.gif" />
+    <Content Include="images\flags\sa.gif" />
+    <Content Include="images\flags\sb.gif" />
+    <Content Include="images\flags\sc.gif" />
+    <Content Include="images\flags\scotland.gif" />
+    <Content Include="images\flags\sd.gif" />
+    <Content Include="images\flags\se.gif" />
+    <Content Include="images\flags\sg.gif" />
+    <Content Include="images\flags\sh.gif" />
+    <Content Include="images\flags\si.gif" />
+    <Content Include="images\flags\sk.gif" />
+    <Content Include="images\flags\sl.gif" />
+    <Content Include="images\flags\sm.gif" />
+    <Content Include="images\flags\sn.gif" />
+    <Content Include="images\flags\so.gif" />
+    <Content Include="images\flags\sr.gif" />
+    <Content Include="images\flags\st.gif" />
+    <Content Include="images\flags\sv.gif" />
+    <Content Include="images\flags\sy.gif" />
+    <Content Include="images\flags\sz.gif" />
+    <Content Include="images\flags\tc.gif" />
+    <Content Include="images\flags\td.gif" />
+    <Content Include="images\flags\tf.gif" />
+    <Content Include="images\flags\tg.gif" />
+    <Content Include="images\flags\th.gif" />
+    <Content Include="images\flags\tj.gif" />
+    <Content Include="images\flags\tk.gif" />
+    <Content Include="images\flags\tl.gif" />
+    <Content Include="images\flags\tm.gif" />
+    <Content Include="images\flags\tn.gif" />
+    <Content Include="images\flags\to.gif" />
+    <Content Include="images\flags\tr.gif" />
+    <Content Include="images\flags\tt.gif" />
+    <Content Include="images\flags\tv.gif" />
+    <Content Include="images\flags\tw.gif" />
+    <Content Include="images\flags\tz.gif" />
+    <Content Include="images\flags\ua.gif" />
+    <Content Include="images\flags\ug.gif" />
+    <Content Include="images\flags\um.gif" />
+    <Content Include="images\flags\us.gif" />
+    <Content Include="images\flags\uy.gif" />
+    <Content Include="images\flags\uz.gif" />
+    <Content Include="images\flags\va.gif" />
+    <Content Include="images\flags\vc.gif" />
+    <Content Include="images\flags\ve.gif" />
+    <Content Include="images\flags\vg.gif" />
+    <Content Include="images\flags\vi.gif" />
+    <Content Include="images\flags\vn.gif" />
+    <Content Include="images\flags\vu.gif" />
+    <Content Include="images\flags\wales.gif" />
+    <Content Include="images\flags\wf.gif" />
+    <Content Include="images\flags\ws.gif" />
+    <Content Include="images\flags\ye.gif" />
+    <Content Include="images\flags\yt.gif" />
+    <Content Include="images\flags\za.gif" />
+    <Content Include="images\flags\zm.gif" />
+    <Content Include="images\flags\zw.gif" />
+    <Content Include="images\nuntio_add.png" />
+    <Content Include="images\nuntio_alert.gif" />
+    <Content Include="images\nuntio_back.png" />
+    <Content Include="images\nuntio_calendar.png" />
+    <Content Include="images\nuntio_clock.png" />
+    <Content Include="images\nuntio_delete.png" />
+    <Content Include="images\nuntio_edit.png" />
+    <Content Include="images\nuntio_file.gif" />
+    <Content Include="images\nuntio_folder.gif" />
+    <Content Include="images\nuntio_folderopen.gif" />
+    <Content Include="images\nuntio_help.gif" />
+    <Content Include="images\nuntio_iconFully.png" />
+    <Content Include="images\nuntio_iconNot.png" />
+    <Content Include="images\nuntio_iconPartially.png" />
+    <Content Include="images\nuntio_license.png" />
+    <Content Include="images\nuntio_refresh.png" />
+    <Content Include="images\nuntio_remove.png" />
+    <Content Include="images\nuntio_rss.gif" />
+    <Content Include="images\nuntio_templates.png" />
+    <Content Include="images\nuntio_unapproved.png" />
+    <Content Include="images\nuntio_zoom.png" />
+    <Content Include="images\previous.png" />
+    <Content Include="images\save.png" />
+    <Content Include="images\tools_cancel.gif" />
+    <Content Include="images\tools_copy.gif" />
+    <Content Include="images\tools_delete.gif" />
+    <Content Include="images\tools_locale.gif" />
+    <Content Include="images\tools_save.gif" />
+    <Content Include="images\tools_saveAll.gif" />
+    <Content Include="images\tools_saveexit.gif" />
+    <Content Include="images\tools_update.gif" />
+    <Content Include="images\zoom_in.png" />
+    <Content Include="images\zoom_out.png" />
+    <Content Include="Modules\ArticlePanel\uc_Panel.ascx" />
+    <Content Include="Modules\ArticlePanel\uc_PanelSettings.ascx" />
+    <Content Include="Modules\ThreadedList\uc_List.ascx" />
+    <Content Include="Modules\ThreadedList\uc_ListSettings.ascx" />
+    <Content Include="nuntio.articles.extension.jpg" />
+    <Content Include="templates\Copy of Default\Attachment_Item.txt" />
+    <Content Include="templates\Copy of Default\Comment_Item.txt" />
+    <Content Include="templates\Copy of Default\Comment_Notify.txt" />
+    <Content Include="templates\Copy of Default\Detail_View.txt" />
+    <Content Include="templates\Copy of Default\Email_Container.txt" />
+    <Content Include="templates\Copy of Default\Email_Item.txt" />
+    <Content Include="templates\Copy of Default\fancybox\blank.gif" />
+    <Content Include="templates\Copy of Default\fancybox\custom.js" />
+    <Content Include="templates\Copy of Default\fancybox\fancybox-x.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancybox-y.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancybox.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_close.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_loading.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_nav_left.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_nav_right.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_e.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_n.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_ne.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_nw.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_s.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_se.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_sw.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_w.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_title_left.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_title_main.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_title_over.png" />
+    <Content Include="templates\Copy of Default\fancybox\fancy_title_right.png" />
+    <Content Include="templates\Copy of Default\fancybox\jquery.easing-1.3.pack.js" />
+    <Content Include="templates\Copy of Default\fancybox\jquery.fancybox-1.3.4.css" />
+    <Content Include="templates\Copy of Default\fancybox\jquery.fancybox-1.3.4.js" />
+    <Content Include="templates\Copy of Default\fancybox\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="templates\Copy of Default\fancybox\jquery.mousewheel-3.0.4.pack.js" />
+    <Content Include="templates\Copy of Default\fancybox\jQuery.query.js" />
+    <Content Include="templates\Copy of Default\images\bullet.png" />
+    <Content Include="templates\Copy of Default\images\calendar.png" />
+    <Content Include="templates\Copy of Default\images\comment-shadow.gif" />
+    <Content Include="templates\Copy of Default\images\docx.gif" />
+    <Content Include="templates\Copy of Default\images\icon_comment.gif" />
+    <Content Include="templates\Copy of Default\images\next.gif" />
+    <Content Include="templates\Copy of Default\images\pdf.gif" />
+    <Content Include="templates\Copy of Default\images\summer-comment-arrow.gif" />
+    <Content Include="templates\Copy of Default\images\zip.gif" />
+    <Content Include="templates\Copy of Default\Image_Item.txt" />
+    <Content Include="templates\Copy of Default\Journal_Item.txt" />
+    <Content Include="templates\Copy of Default\Listing_Footer.txt" />
+    <Content Include="templates\Copy of Default\Listing_Header.txt" />
+    <Content Include="templates\Copy of Default\Listing_Item.txt" />
+    <Content Include="templates\Copy of Default\Listing_ItemAlternate.txt" />
+    <Content Include="templates\Copy of Default\Listing_ItemFeatured.txt" />
+    <Content Include="templates\Copy of Default\Listing_ItemFirst.txt" />
+    <Content Include="templates\Copy of Default\Mailing_Subscribe.txt" />
+    <Content Include="templates\Copy of Default\Mailing_Unsubscribe.txt" />
+    <Content Include="templates\Copy of Default\Scroller_Item.txt" />
+    <Content Include="templates\Copy of Default\Template.css" />
+    <Content Include="templates\Default\Attachment_Item.txt" />
+    <Content Include="templates\Default\Email_Container.txt" />
+    <Content Include="templates\Default\Email_Item.txt" />
+    <Content Include="templates\Default\Journal_Item.txt" />
+    <Content Include="templates\Default\images\docx.gif" />
+    <Content Include="templates\Default\images\pdf.gif" />
+    <Content Include="templates\Default\images\zip.gif" />
+    <Content Include="templates\Simple\Comment_Item.txt" />
+    <Content Include="templates\Simple\Comment_Notify.txt" />
+    <Content Include="templates\Simple\Detail_View.txt" />
+    <Content Include="templates\Simple\Image_Item.txt" />
+    <Content Include="templates\Simple\Listing_Footer.txt" />
+    <Content Include="templates\Simple\Listing_Header.txt" />
+    <Content Include="templates\Simple\Listing_Item.txt" />
+    <Content Include="templates\Simple\Listing_ItemAlternate.txt" />
+    <Content Include="templates\Simple\Listing_ItemFeatured.txt" />
+    <Content Include="templates\Simple\Listing_ItemFirst.txt" />
+    <Content Include="templates\Simple\Mailing_Subscribe.txt" />
+    <Content Include="templates\Simple\Mailing_Unsubscribe.txt" />
+    <Content Include="templates\Simple\Scroller_Item.txt" />
+    <Content Include="templates\Simple\Template.css" />
+    <Content Include="templates\Default\fancybox\custom.js" />
+    <Content Include="templates\Default\fancybox\jQuery.query.js" />
+    <Content Include="templates\Default\Listing_ItemFeatured.txt" />
+    <Content Include="templates\Default\Image_Item.txt" />
+    <Content Include="templates\Default\fancybox\blank.gif" />
+    <Content Include="templates\Default\fancybox\fancybox-x.png" />
+    <Content Include="templates\Default\fancybox\fancybox-y.png" />
+    <Content Include="templates\Default\fancybox\fancybox.png" />
+    <Content Include="templates\Default\fancybox\fancy_close.png" />
+    <Content Include="templates\Default\fancybox\fancy_loading.png" />
+    <Content Include="templates\Default\fancybox\fancy_nav_left.png" />
+    <Content Include="templates\Default\fancybox\fancy_nav_right.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_e.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_n.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_ne.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_nw.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_s.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_se.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_sw.png" />
+    <Content Include="templates\Default\fancybox\fancy_shadow_w.png" />
+    <Content Include="templates\Default\fancybox\fancy_title_left.png" />
+    <Content Include="templates\Default\fancybox\fancy_title_main.png" />
+    <Content Include="templates\Default\fancybox\fancy_title_over.png" />
+    <Content Include="templates\Default\fancybox\fancy_title_right.png" />
+    <Content Include="templates\Default\fancybox\jquery.easing-1.3.pack.js" />
+    <Content Include="templates\Default\fancybox\jquery.fancybox-1.3.4.css" />
+    <Content Include="templates\Default\fancybox\jquery.fancybox-1.3.4.js" />
+    <Content Include="templates\Default\fancybox\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="templates\Default\fancybox\jquery.mousewheel-3.0.4.pack.js" />
+    <Content Include="Windows\Window.aspx" />
+    <None Include="Build.Nuntio.Articles.bat" />
+    <Content Include="MetaWebLog\ArticlePost.ashx" />
+    <None Include="images\ext\Thumbs.db" />
+    <None Include="Nuntio.Articles.dnn">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Css\edit.css" />
+    <Content Include="04.01.00.txt" />
+    <None Include="Nuntio.Articles.Build" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.0.0.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.0.1.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.0.2.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.0.3.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.1.0.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.1.2.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.1.3.Install.zip" />
+    <Content Include="package\dnnWerk.Nuntio.Articles.6.2.0.Install.zip" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\04.00.02.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.01.00.sqldataprovider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.01.01.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.01.02.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.01.05.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.02.00.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.02.01.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.02.06.sqldataprovider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.02.07.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\04.02.08.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\05.01.00.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\05.02.00.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\05.02.01.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\05.02.02.sqldataprovider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\06.00.00.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\06.00.01.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\06.00.02.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\06.01.01.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\06.01.02.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\06.01.03.SqlDataProvider" />
+    <None Include="Providers\DataProviders\SqlDataProvider\Uninstall.SqlDataProvider" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SharedResources.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SharedResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Controls\uc_TabSelect.ascx" />
+    <Content Include="Controls\uc_UserSelect.ascx" />
+    <Content Include="Controls\Vorlage.ascx" />
+    <Content Include="Controls\uc_Category.ascx" />
+    <Content Include="Controls\uc_FileSelect.ascx" />
+    <Content Include="Css\img\aboutus.png" />
+    <Content Include="Css\img\hdEdit.jpg" />
+    <Content Include="Css\img\hdMail.png" />
+    <Content Include="module.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Edit.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\RadEditor.Dialogs.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\RadEditor.Dialogs.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\RadUpload.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\RadUpload.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Edit.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ArticleRotator\uc_Rotate.ascx" />
+    <Content Include="Modules\ArticleList\uc_List.ascx" />
+    <Content Include="Controls\uc_Message.ascx" />
+    <Content Include="Articles.ascx" />
+    <Content Include="Modules\ArticleList\uc_ListSettings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Settings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Settings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ArchiveBrowser\uc_Archive.ascx" />
+    <Content Include="Modules\ArchiveBrowser\uc_ArchiveSettings.ascx" />
+    <Content Include="Modules\CategoryBrowser\uc_CategoryBrowser.ascx" />
+    <Content Include="Modules\CategoryBrowser\uc_CategoryBrowserSettings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArchiveBrowser\App_LocalResources\uc_Archive.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ArchiveBrowser\App_LocalResources\uc_Archive.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ArchiveBrowser\App_LocalResources\uc_ArchiveSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ArchiveBrowser\App_LocalResources\uc_ArchiveSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\BannerViewer\uc_Banner.ascx" />
+    <Content Include="Modules\BannerViewer\uc_BannerSettings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\BannerViewer\App_LocalResources\uc_BannerSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\BannerViewer\App_LocalResources\uc_BannerSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\SubscriberForm\uc_Subscribe.ascx" />
+    <Content Include="Modules\SubscriberForm\uc_SubscriberSettings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\uc_ListSubscriptions.ascx" />
+    <Content Include="Controls\uc_Search.ascx" />
+    <Content Include="Controls\uc_Thankyou.ascx" />
+    <Content Include="Modules\CategoryBrowser\App_LocalResources\uc_CategoryBrowser.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\CategoryBrowser\App_LocalResources\uc_CategoryBrowser.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\CategoryBrowser\App_LocalResources\uc_CategoryBrowserSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\CategoryBrowser\App_LocalResources\uc_CategoryBrowserSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\RssBrowser\uc_RssBrowserSettings.ascx" />
+    <Content Include="Modules\RssBrowser\uc_RssBrowser.ascx" />
+    <Content Include="Rss.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\RssBrowser\App_LocalResources\uc_RssBrowser.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\RssBrowser\App_LocalResources\uc_RssBrowser.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\RssBrowser\App_LocalResources\uc_RssBrowserSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\RssBrowser\App_LocalResources\uc_RssBrowserSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\uc_Templates.ascx" />
+    <Content Include="Modules\SubscriberForm\App_LocalResources\uc_Subscribe.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\SubscriberForm\App_LocalResources\uc_SubscriberSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\SubscriberForm\App_LocalResources\uc_SubscriberSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_ListSubscriptions.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_ListSubscriptions.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ArticleRotator\uc_RotateSettings.ascx" />
+    <Content Include="Settings.ascx" />
+    <Content Include="templates\Default\Detail_View.txt" />
+    <Content Include="templates\Default\Listing_Footer.txt" />
+    <Content Include="templates\Default\Listing_Header.txt" />
+    <Content Include="templates\Default\Listing_Item.txt" />
+    <Content Include="templates\Default\Listing_ItemAlternate.txt" />
+    <Content Include="templates\Default\Listing_ItemFirst.txt" />
+    <Content Include="templates\Default\Mailing_Subscribe.txt" />
+    <Content Include="templates\Default\Scroller_Item.txt" />
+    <Content Include="templates\Default\Template.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArticleList\App_LocalResources\uc_ListSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArticleList\App_LocalResources\uc_ListSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArticleRotator\App_LocalResources\uc_RotateSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArticleRotator\App_LocalResources\uc_RotateSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Search.ascx.de-DE.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Search.ascx.resx" />
+    <Content Include="Controls\uc_Comment.ascx" />
+    <Content Include="templates\Default\Mailing_Unsubscribe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Comment.ascx.resx" />
+    <Content Include="templates\Default\Comment_Item.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Comment.ascx.de-DE.resx" />
+    <Content Include="templates\Default\images\bullet.png" />
+    <Content Include="templates\Default\images\calendar.png" />
+    <Content Include="templates\Default\images\comment-shadow.gif" />
+    <Content Include="templates\Default\images\icon_comment.gif" />
+    <Content Include="templates\Default\images\next.gif" />
+    <Content Include="templates\Default\images\summer-comment-arrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\AuthorBrowser\App_LocalResources\uc_AuthorBrowser.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\AuthorBrowser\App_LocalResources\uc_AuthorBrowser.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\AuthorBrowser\App_LocalResources\uc_AuthorBrowserSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\AuthorBrowser\App_LocalResources\uc_AuthorBrowserSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\AuthorBrowser\uc_AuthorBrowser.ascx" />
+    <Content Include="Modules\AuthorBrowser\uc_AuthorBrowserSettings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Templates.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\SubscriberForm\App_LocalResources\uc_Subscribe.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Articles.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Articles.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Controls\uc_Detail.ascx" />
+    <Content Include="MetaWebLog\rsd.xml" />
+    <Content Include="MetaWebLog\wlwmanifest.xml" />
+    <Content Include="PostArticle.aspx" />
+    <Content Include="templates\Default\Comment_Notify.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\" />
+    <Folder Include="templates\Copy of Default\fancybox\fancybox\" />
+    <Folder Include="templates\Default\fancybox\fancybox\" />
+    <Folder Include="templates\Newsletter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ThreadedList\App_LocalResources\uc_ListSettings.ascx.de-DE.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ThreadedList\App_LocalResources\uc_ListSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArticlePanel\App_LocalResources\uc_Panel.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Configure.ascx.de-DE.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\App_LocalResources\uc_Configure.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modules\ArticlePanel\App_LocalResources\uc_PanelSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nuntio.Localization\Nuntio.Localization.vbproj">
+      <Project>{5A569E45-DE93-4BB4-9CB6-D7EE3F573776}</Project>
+      <Name>Nuntio.Localization</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57088</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://dnn6/DesktopModules/Nuntio.Articles</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://dnn6</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

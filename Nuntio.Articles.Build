@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!-- targets to be executed, when omitted from command line default is run -->
+<project name="MagicNews" default="BuildAndZip">
+  
+  <target name="init">
+  
+    <property name="nant.settings.currentframework" value="net-3.5" />
+    <property name="package.dir" value="package" overwrite="false" />
+    <property name="resourcezip.dir" value="Resources_Module" />    
+    <property name="bin.dir" value="../../bin" />
+    <property name="binZip" value=".Install" />
+    <property name="verbose" value="true" overwrite="false" />
+    <property name="ModuleName" value="Nuntio.Articles"  overwrite="false"  />
+    <property name="ProjectName" value="Nuntio.Articles"  overwrite="false"  />
+    <property name="SolutionName" value="Nuntio.Articles"/>
+    <property name="module.dll" value="${bin.dir}/dnnWerk.Nuntio.Articles.dll" />
+    <property name="debug" value="false" overwrite="false" />
+    <property name="config" value="debug" if="${debug}" />
+    <property name="config" value="release" unless="${debug}" />
+
+    <if test="${verbose}">
+      <echo message="solutionName: ${SolutionName}" />
+      <echo message="debug:        ${debug}" />
+      <echo message="config:       ${config}" />
+    </if>
+
+  </target>
+
+  <target name="Compile" depends="init">
+    <exec program="${sys.env.windir}\Microsoft.NET\Framework\v3.5\msbuild.exe" failonerror="true">
+      <arg value="${SolutionName}.sln" />
+      <arg value="/p:Configuration=Release" />
+      <arg value="/p:Platform=&quot;Any CPU&quot;" />
+    </exec>
+  </target>
+
+  <!-- It is important that this target does not run before the Compile target since it will lock the assembly -->
+  <target name="VersionInfo" >
+    <property name="version" value="${assemblyname::get-version(assembly::get-name(assembly::load-from-file(module.dll)))}" />
+    <property name="shortVersion" value="${string::substring(version,0,string::last-index-of(version,'.'))}" />
+
+    <if test="${verbose}">
+      <echo message="shortVersion: ${shortVersion}" />
+      <echo message="version: ${version}" />
+    </if>
+
+  </target>
+
+  <target name="CleanPackageBin" depends="init VersionInfo">
+    <delete file="${package.dir}/dnnWerk.${ModuleName}.${shortVersion}.Install.zip" if="${file::exists('${package.dir}/dnnWerk.${ModuleName}.${shortVersion}.Install.zip')}" />
+  </target>
+
+  <!-- check for resourcezip folder, delete it and its contents if it exists -->
+  <target name="CleanResourceZip" depends="init">
+    <delete dir="${resourcezip.dir}" if="${directory::exists(resourcezip.dir)}" />
+  </target>
+
+  <!-- Begin area for creating resourcezip for installable PA zips (should depend on target that clears where this will build zip file to)-->
+  
+  <target name="CreateResourceZip" depends="CleanResourceZip">
+    <mkdir dir="temp" unless="${directory::exists('temp')}" />
+    <copy todir="temp" flatten="false">
+      <fileset defaultexcludes="false" >
+        <include name="**/App_LocalResources/**" />
+        <include name="**/Controls/**" />
+        <include name="**/Modules/**" />
+        <include name="**/Templates/**" />
+        <include name="**/Windows/**" />
+        <include name="**/Css/**" />
+        <include name="**/Images/**" />
+        <exclude name="**/Install/*" />
+      </fileset>
+    </copy>
+    <mkdir dir="${resourcezip.dir}" unless="${directory::exists(resourcezip.dir)}" />
+    <zip zipfile="${resourcezip.dir}/Resources.zip">
+      <fileset basedir="temp">
+        <include name="**/*" />
+        <exclude name="**/*.dll" />
+        <exclude name="**/*.vb" />
+      </fileset>
+    </zip>
+    <delete dir="temp" failonerror="false" />
+  </target>
+  
+  <target name="CreateV5Package" depends="CleanPackageBin CreateResourceZip">
+	<copy todir="temp" flatten="true">
+		<fileset>
+			<include name="**${resourcezip.dir}/Resources.zip" />
+			<include name="**/Nuntio.Articles.dnn" />
+			<include name="**/nuntio.articles.extension.jpg" />
+			<include name="*.ascx" />
+			<include name="*.aspx" />
+			<include name="web.config" />
+			<include name="*.txt" />
+			<include name="*.css" />
+		</fileset>
+	</copy>
+	<copy todir="temp\bin" flatten="true" file="../../bin/dnnWerk.${ProjectName}.dll" />
+	<copy todir="temp\bin" flatten="true" file="../../bin/dnnWerk.Nuntio.Localization.dll" />
+	<copy todir="temp\Providers\DataProviders\SqlDataProvider" flatten="true">
+		<fileset>
+			<include name="**/*.sqldataprovider" />
+		</fileset>
+	</copy>
+	
+	<mkdir dir="${package.dir}" unless="${directory::exists(package.dir)}" />
+		<zip zipfile="${package.dir}/dnnWerk.${ModuleName}.${shortVersion}.Install.zip">
+			<fileset basedir="temp">
+				<include name="**/*" />
+			</fileset>
+		</zip>
+	<delete dir="temp" failonerror="false" />
+  </target>
+  
+  <!-- End area for installable PA -->
+
+  <target name="CleanUp" depends="CreateV5Package" description="Cleans up">
+    <delete dir="${resourcezip.dir}" if="${directory::exists(resourcezip.dir)}" />/>    
+  </target>
+  
+  <!--  SYNTHETIC TASKS  -->
+  <target name="build" depends="Compile" description="This target compiles the application." />
+
+  <target name="BuildAndZip" depends="CreateV5Package CleanUp" description="This target compiles the application and then creates two-three zip files: 
+	              - one that only contains the compiled code and runtime files 
+		      - one is the resourceszip for installable pa's
+	              - the other with compiled code and source code." />
+  
+</project>

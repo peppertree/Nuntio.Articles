@@ -1,0 +1,1021 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+if not exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+    BEGIN
+        CREATE TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage]
+        (
+			[ImageId] [int] IDENTITY(1,1) NOT NULL,
+			[FileId] [int] NOT NULL,
+			[ArticleId] [int] NOT NULL,
+			[IsPrimary] [bit] NOT NULL   
+        )
+        
+		ALTER TABLE {databaseOwner}{objectQualifier}pnc_NewsImage ADD 
+		CONSTRAINT [PK_{objectQualifier}pnc_NewsImage] PRIMARY KEY  CLUSTERED ([ImageId])  ON [PRIMARY] 
+
+        ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage] WITH NOCHECK ADD
+        CONSTRAINT [FK_{objectQualifier}pnc_NewsImage{objectQualifier}Files] FOREIGN KEY ([FileId]) REFERENCES {databaseOwner}[{objectQualifier}Files] ([FileId]) ON DELETE CASCADE NOT FOR REPLICATION        
+
+        ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsImage] WITH NOCHECK ADD
+        CONSTRAINT [FK_{objectQualifier}pnc_NewsImage{objectQualifier}Article] FOREIGN KEY ([ArticleId]) REFERENCES {databaseOwner}[{objectQualifier}pnc_NewsItems] ([ItemId]) ON DELETE CASCADE NOT FOR REPLICATION        
+
+    END
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Add
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Add
+	@FileId int,
+	@ArticleId int,
+	@IsPrimary bit
+AS
+	INSERT INTO {objectQualifier}pnc_NewsImage
+		([FileId],[ArticleId],[IsPrimary])
+    VALUES
+		(@FileId,@ArticleId,@IsPrimary)
+          
+	SELECT SCOPE_IDENTITY()
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Update
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Update
+	@ImageId int,
+	@FileId int,
+	@ArticleId int,
+	@IsPrimary bit
+AS
+	Update 
+		{objectQualifier}pnc_NewsImage
+	SET 
+		FileId = @FileId,
+		ArticleId = @ArticleId,
+		IsPrimary = @IsPrimary
+	WHERE
+		ImageId = @ImageId        
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_List
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_List
+	@ArticleId int
+AS
+	SELECT 
+		I.ImageId,
+		I.FileId,
+		I.ArticleId,
+		I.IsPrimary,
+		F.Folder,
+		F.FileName
+	FROM
+		{objectQualifier}pnc_NewsImage I
+		INNER JOIN {objectQualifier}Files F on F.FileId = I.FileId
+	WHERE
+		I.ArticleId = @ArticleId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Get
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Get
+	@ImageId int
+AS
+	SELECT 
+		I.ImageId,
+		I.FileId,
+		I.ArticleId,
+		I.IsPrimary,
+		F.Folder,
+		F.FileName
+	FROM
+		{objectQualifier}pnc_NewsImage I
+		INNER JOIN {objectQualifier}Files F on F.FileId = I.FileId
+	WHERE
+		I.ImageId = @ImageId
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsImage_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Delete
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsImage_Delete
+	@ImageId int
+AS
+	DELETE FROM
+		{objectQualifier}pnc_NewsImage
+	WHERE
+		ImageId = @ImageId
+GO
+
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsItems' AND COLUMN_NAME = 'ExpiryDate')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] ADD [ExpiryDate] datetime NULL
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsItems' AND COLUMN_NAME = 'IsFeatured')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] ADD [IsFeatured] bit NULL
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsItems' AND COLUMN_NAME = 'LastUpdatedBy')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] ADD [LastUpdatedBy] int NULL
+END
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsItems' AND COLUMN_NAME = 'LastUpdatedDate')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsItems] ADD [LastUpdatedDate] datetime NULL
+END
+GO
+
+UPDATE {databaseOwner}[{objectQualifier}pnc_NewsItems] set [IsFeatured] = 0
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticles]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticles
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Add]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsItem_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetAuthors]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetAuthors
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_Search]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Search
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetArticlesPaged]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticlesPaged
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetExpired]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetExpired
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_GetSearchResult]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetSearchResult
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Update
+    @ItemId				int,
+    @ModuleId			int,
+    @PortalId			int,
+    @CreatedByUser		int,
+    @CreatedDate		datetime,
+    @PublishDate		datetime,
+	@ExpiryDate			datetime,
+    @ViewOrder			int,
+    @IsNotified			bit,
+    @IsApproved			bit,
+    @ApprovedBy			int,
+    @ApprovedDate		datetime,
+	@IsFeatured			bit,
+	@LastUpdatedBy		int,
+	@LastUpdatedDate	datetime
+as
+Begin
+
+   update {objectQualifier}pnc_NewsItems
+   set ModuleId			= @ModuleId,
+       PortalId			= @PortalId,
+       CreatedByUser	= @CreatedByUser,
+       PublishDate		= @PublishDate,
+	   [ExpiryDate]		= @ExpiryDate,
+       ViewOrder		= @ViewOrder,
+       IsNotified		= @IsNotified,
+       IsApproved		= @IsApproved,
+       ApprovedBy		= @ApprovedBy,
+       ApprovedDate		= @ApprovedDate,
+	   [IsFeatured]		= @IsFeatured,
+	   LastUpdatedBy	= @LastUpdatedBy,
+	   LastUpdatedDate	= @LastUpdatedDate
+   where  
+       ItemId = @ItemId
+      
+End      
+  
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Add
+
+    @ModuleId			int,
+    @PortalID			int,
+    @CreatedByUser		int,
+    @CreatedDate		datetime,
+    @PublishDate		datetime,
+	@ExpiryDate			datetime,
+    @ViewOrder			int,
+    @IsNotified			bit,
+    @IsApproved			bit,
+    @ApprovedBy			int,
+    @ApprovedDate		datetime,
+	@IsFeatured			bit,
+	@LastUpdatedBy		int,
+	@LastUpdatedDate	datetime
+as
+    Insert into {objectQualifier}pnc_NewsItems (
+        ModuleId,
+        PortalID,
+        CreatedByUser,
+        CreatedDate,
+        PublishDate,
+		ExpiryDate,
+        ViewOrder,
+        IsNotified,
+        IsApproved,
+        ApprovedBy,
+        ApprovedDate,
+		IsFeatured,
+		LastUpdatedBy,
+		LastUpdatedDate
+        )
+    values (
+        @ModuleId,
+        @PortalID,
+        @CreatedByUser,
+        @CreatedDate,
+        @PublishDate,
+		@ExpiryDate,
+        @ViewOrder,
+        @IsNotified,
+        @IsApproved,
+        @ApprovedBy,
+        @ApprovedDate,
+		@IsFeatured,
+		@LastUpdatedBy,
+		@LastUpdatedDate
+    )
+
+select SCOPE_IDENTITY()
+
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Get
+    @ItemId   int,
+    @ModuleId int
+as
+    Select                      
+        ItemID,
+        ModuleID,
+		PortalID,
+        CreatedByUser,
+        CreatedDate,    
+        PublishDate,
+		ExpiryDate,
+        ViewOrder,
+        IsNotified,
+        IsApproved,
+        ApprovedBy,
+        ApprovedDate,
+		IsFeatured,
+		LastUpdatedBy,
+		LastUpdatedDate,
+        (Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = @ItemId and IsApproved = 1) as 'Comments'
+    from
+         {objectQualifier}pnc_NewsItems
+    where 
+         ItemId = @ItemId
+    and     
+         ModuleId = @ModuleId
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetAuthors
+    @ModuleID int,
+    @StartDate datetime,
+    @ShowFutureItems bit,
+    @ShowPastItems bit,
+	@IncludeExpired bit
+as
+    Select Distinct 
+        n.CreatedByUser as 'UserID',
+        u.Displayname,
+		(
+			Select 
+				Count(*) 
+			from 
+				{objectQualifier}pnc_NewsItems 
+			where 
+				CreatedByUser = n.CreatedByUser
+			and
+				(
+					(PublishDate >= @StartDate and @ShowFutureItems = 1)
+				or 
+					((PublishDate <= @StartDate and (ExpiryDate >= @StartDate or ExpiryDate is Null or @IncludeExpired = 1)) and @ShowPastItems = 1)
+				)		
+			and
+				ModuleId = @ModuleId		
+		) as 'NewsItems'
+    from
+        {objectQualifier}pnc_NewsItems n
+        Inner join {objectQualifier}Users u on u.userid = n.CreatedByUser
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Search
+	@ModuleID int,
+	@Condition nvarchar(500),
+    @PageSize  int,
+    @PageIndex int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @IsApproved bit,
+    @Author	   int,
+    @Locale	  nvarchar(10),
+	@CategoryID int
+as
+
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    DECLARE @sql nvarchar(2000)
+    
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+	-- Create dynamic SQL to populate temporary table    
+	-- create temp table to hold all search results
+    CREATE TABLE #SearchItemsForNewsSearch
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int
+    )
+    -- create temp table to hold paged actual news results
+    CREATE TABLE #PageIndexForNews
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int,
+        PublishDate datetime
+    )
+            
+    BEGIN
+	    --populate search results
+
+	    SELECT  @sql =	'INSERT INTO #SearchItemsForNewsSearch (ItemID)' +
+					    ' select Distinct SourceItemID as ''ItemID''' +
+					    ' from {objectQualifier}pnc_Localization_LocalizedItems where' +
+					    ' ModuleID=' + CONVERT(varchar, @ModuleID) + ' And ' +				
+					    'Locale=''' + Convert(varchar, @Locale) + ''''
+	    if (@Condition is NOT Null)
+		    Begin
+			    Select @Sql = @Sql + ' And ' + @Condition
+		    End	
+    		
+	    EXEC(@sql)
+
+    END
+if (@CategoryID is Null)
+    BEGIN
+	    INSERT INTO #PageIndexForNews (ItemID, PublishDate)
+		    SELECT
+			    s.ItemID, n.PublishDate
+		    From
+			    #SearchItemsForNewsSearch s
+			    inner join {objectQualifier}pnc_NewsItems n on n.itemid = s.itemid
+		    where 
+                (n.PublishDate <= @StartDate or @StartDate is NULL)
+			and
+				(n.ExpiryDate >= GetDate() or n.ExpiryDate is NULL)
+            and 
+                (Month(n.PublishDate) = @Month or @Month is NULL)
+            and
+                (Year(n.PublishDate) = @Year or @Year is NULL)
+            and
+                (n.IsApproved = @IsApproved or @IsApproved is Null)
+		    and
+			    (n.CreatedByUser = @Author or @Author is Null)
+            order by 
+                n.PublishDate Desc
+    END
+else
+    BEGIN
+	    INSERT INTO #PageIndexForNews (ItemID, PublishDate)
+		    SELECT
+			    Distinct c.ItemID, n.PublishDate
+		    From
+			    {objectQualifier}pnc_NewsCatRelation c
+				    inner join #SearchItemsForNewsSearch s on s.itemid = c.itemid
+			        inner join {objectQualifier}pnc_NewsItems n on n.itemid = c.itemid
+		    where 
+                (n.PublishDate <= @StartDate or @StartDate is NULL)
+			and
+				(n.ExpiryDate >= GetDate() or n.ExpiryDate is NULL)
+            and 
+                (Month(n.PublishDate) = @Month or @Month is NULL)
+            and
+                (Year(n.PublishDate) = @Year or @Year is NULL)
+            and
+                (n.IsApproved = @IsApproved or @IsApproved is Null)
+		    and
+			    (n.CreatedByUser = @Author or @Author is Null)
+            order by 
+                n.PublishDate Desc			
+    END
+
+    SELECT
+		nI.ItemID,
+		nI.ModuleID,
+		nI.PortalID,
+		nI.CreatedByUser,
+		nI.CreatedDate,
+		nI.PublishDate,
+		nI.ViewOrder,
+		nI.IsNotified,
+		nI.IsApproved,
+		nI.ApprovedBy,
+		nI.ApprovedDate,
+		nI.IsFeatured,
+		nI.LastUpdatedBy,
+		nI.LastUpdatedDate
+    From
+      {objectQualifier}pnc_NewsItems nI, #PageIndexForNews p
+    where
+      nI.ItemID = p.ItemID
+    and
+      p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    order by 
+            nI.PublishDate Desc      
+    SELECT  TotalRecords = COUNT(*)
+    FROM    #PageIndexForNews
+    
+Go
+
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetSearchResult
+    @ModuleId  int,
+    @StartDate datetime
+AS
+
+	SELECT 
+	    * 
+	FROM 
+	    {objectQualifier}pnc_NewsItems
+	WHERE 
+		[PublishDate] <= @StartDate
+	AND
+		[IsApproved] = 1
+	AND
+		[ModuleID] = @ModuleID
+    ORDER BY 
+        [PublishDate] desc	
+			        
+GO
+
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetArticlesPaged
+    @ModuleId  int,
+    @PageSize  int,
+    @PageIndex int,
+    @StartDate datetime,
+    @Month     int,
+    @Year      int,
+    @Categories xml,
+    @Sortmode varchar(4),
+    @AuthorId int,
+    @ShowFutureItems bit,
+    @ShowPastItems bit
+as
+
+	DECLARE @iDoc int
+	DECLARE @CategoryId nvarchar(10)
+	DECLARE @ArticleId int
+    DECLARE @PageLowerBound INT
+    DECLARE @PageUpperBound INT
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    CREATE TABLE #PageIndexForNews
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        ItemID int
+    )
+	
+	if (@Categories is Null)
+		Begin
+		
+          if (@Sortmode = 'desc' or @Sortmode Is Null)
+		    Begin
+			    INSERT INTO #PageIndexForNews (ItemID)
+				Select ItemID from {objectQualifier}pnc_NewsItems A
+				where 
+					(
+						(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+					or 
+						(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+					)
+				and 				
+					(Month(A.PublishDate) = @Month or @Month is NULL)
+				and
+					(Year(A.PublishDate) = @Year or @Year is NULL)
+				and
+					(A.ExpiryDate >= @StartDate or A.ExpiryDate is Null)
+				and
+					(A.IsApproved = 1)
+				and
+					(A.ModuleID = @ModuleID or @ModuleID is Null)
+				and
+					(A.CreatedByUser = @AuthorId or @AuthorId is Null)					
+			    Order by 
+			        A.PublishDate desc			
+		    End
+	      else
+		    Begin
+			    INSERT INTO #PageIndexForNews (ItemID)
+				Select ItemID from {objectQualifier}pnc_NewsItems A
+				where 
+					(
+						(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+					or 
+						(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+					)
+				and 
+					(Month(A.PublishDate) = @Month or @Month is NULL)
+				and
+					(Year(A.PublishDate) = @Year or @Year is NULL)
+				and
+					(A.ExpiryDate >= @StartDate or A.ExpiryDate is Null)
+				and
+					(A.IsApproved = 1)
+				and
+					(A.ModuleID = @ModuleID or @ModuleID is Null)
+				and
+					(A.CreatedByUser = @AuthorId or @AuthorId is Null)					
+			    Order by 
+			        A.PublishDate asc
+		    End  		
+		END
+	Else
+		Begin
+			EXEC sp_xml_preparedocument @iDoc OUTPUT, @Categories
+			
+			DECLARE CursorCat CURSOR FOR (SELECT * FROM OPENXML(@iDoc, '/Categories/Category', 1) WITH (CategoryId nvarchar(10)))
+			OPEN CursorCat
+			FETCH NEXT FROM CursorCat INTO @CategoryId
+			WHILE (@@FETCH_STATUS = 0)
+			   BEGIN          
+					
+					if (@Sortmode = 'desc' or @Sortmode Is Null)
+						Begin
+
+							DECLARE ArticleCursor CURSOR FOR 
+								Select c.ItemID from {objectQualifier}pnc_NewsCatRelation C
+									Inner Join 
+										{objectQualifier}pnc_NewsItems A on A.ItemID = C.ItemID
+								where
+									(
+										(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+									or 
+										(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+									)
+								and
+									(Month(A.PublishDate) = @Month or @Month is NULL)
+								and
+									(Year(A.PublishDate) = @Year or @Year is NULL)
+								and
+									(A.ExpiryDate >= @StartDate or A.ExpiryDate is Null)
+								and
+									(A.IsApproved = 1)
+								and
+									(A.ModuleID = @ModuleID or @ModuleID is Null)
+				                and
+					                (A.CreatedByUser = @AuthorId or @AuthorId is Null)									
+								and
+									(C.CategoryID = @CategoryID)
+								ORDER BY 
+									A.PublishDate desc
+									
+							Open ArticleCursor
+							FETCH NEXT FROM ArticleCursor into @ArticleId								
+							WHILE (@@FETCH_STATUS = 0)
+								Begin
+									if not exists (Select * From #PageIndexForNews where ItemID = @ArticleId)
+									Begin			
+										INSERT INTO #PageIndexForNews (ItemID) Values (@ArticleId)
+									End		
+									FETCH NEXT FROM ArticleCursor into @ArticleId				
+								End	
+							CLOSE ArticleCursor
+							DEALLOCATE ArticleCursor													
+						End
+					else
+						Begin
+						
+							DECLARE ArticleCursor CURSOR FOR 
+								Select c.ItemID from {objectQualifier}pnc_NewsCatRelation C
+									Inner Join 
+										{objectQualifier}pnc_NewsItems A on A.ItemID = C.ItemID
+								where
+									(
+										(A.PublishDate >= @StartDate and @ShowFutureItems = 1)
+									or 
+										(A.PublishDate <= @StartDate and @ShowPastItems = 1)
+									)
+								and
+									(Month(A.PublishDate) = @Month or @Month is NULL)
+								and
+									(Year(A.PublishDate) = @Year or @Year is NULL)
+								and
+									(A.ExpiryDate >= @StartDate or A.ExpiryDate is Null)
+								and
+									(A.IsApproved = 1)
+								and
+									(A.ModuleID = @ModuleID or @ModuleID is Null)
+				                and
+					                (A.CreatedByUser = @AuthorId or @AuthorId is Null)									
+								and
+									(C.CategoryID = @CategoryID)
+								ORDER BY 
+									A.PublishDate asc
+									
+							Open ArticleCursor
+							FETCH NEXT FROM ArticleCursor into @ArticleId								
+							WHILE (@@FETCH_STATUS = 0)
+								Begin
+									if not exists (Select * From #PageIndexForNews where ItemID = @ArticleId)
+									Begin			
+										INSERT INTO #PageIndexForNews (ItemID) Values (@ArticleId)
+									End		
+									FETCH NEXT FROM ArticleCursor into @ArticleId				
+								End	
+							CLOSE ArticleCursor
+							DEALLOCATE ArticleCursor							
+						End		
+		          
+				  FETCH NEXT FROM CursorCat INTO @CategoryId
+		          
+			   END
+			CLOSE CursorCat
+			DEALLOCATE CursorCat
+		End	
+		            
+
+      if (@Sortmode = 'desc' or @Sortmode Is Null)
+		Begin
+			SELECT
+			  *, (Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = A.ItemId and IsApproved = 1) as 'Comments'
+			From
+			  {objectQualifier}pnc_NewsItems A, #PageIndexForNews P
+			where
+			  A.ItemID = P.ItemID
+			and
+			  P.IndexId >= @PageLowerBound AND P.IndexId <= @PageUpperBound
+			Order by 
+			  A.PublishDate desc			
+		End
+	  else
+		Begin
+			SELECT
+			  *, (Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = A.ItemId and IsApproved = 1) as 'Comments'			 
+			From
+			  {objectQualifier}pnc_NewsItems A, #PageIndexForNews P
+			where
+			  A.ItemID = P.ItemID
+			and
+			  P.IndexId >= @PageLowerBound AND P.IndexId <= @PageUpperBound
+			Order by 
+			  A.PublishDate asc
+		End      
+    SELECT  TotalRecords = COUNT(*)
+    FROM    #PageIndexForNews
+    
+GO
+
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_GetExpired
+    @ModuleId  int,
+	@CurrentDate datetime
+as
+	Select 
+		*
+	from 
+		{objectQualifier}pnc_NewsItems
+	where 
+		(ExpiryDate <= @CurrentDate)
+	and
+		(ModuleID = @ModuleID or @ModuleID is Null)
+	Order By
+		PublishDate desc
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_Get
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_Get
+    @CategoryID int
+as
+    SELECT CategoryID, ModuleID, PortalID, ParentID, ViewOrder,
+	(
+		Select 
+			Count(*) 
+		from 
+			{objectQualifier}pnc_NewsCatRelation r inner join {objectQualifier}pnc_NewsItems n on n.ItemID = r.ItemID
+		where 
+			r.CategoryID = {objectQualifier}pnc_NewsCategories.CategoryID			
+	) as 'Count' 	
+	FROM
+        {objectQualifier}pnc_NewsCategories
+    WHERE
+        CategoryID = @CategoryID            
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_CategoryItem_List]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_CategoryItem_List
+    @ModuleID int,
+    @StartDate datetime,
+    @ShowFutureItems bit,
+    @ShowPastItems bit    
+as
+    Select 
+	CategoryID, 
+	ModuleID, 
+	PortalID, 
+	ParentID, 
+	ViewOrder,
+	(
+		Select 
+			Count(*) 
+		from 
+			{objectQualifier}pnc_NewsCatRelation r inner join {objectQualifier}pnc_NewsItems n on n.ItemID = r.ItemID
+		where 
+			r.CategoryID = {objectQualifier}pnc_NewsCategories.CategoryID
+		and
+			(
+				(n.PublishDate >= @StartDate and @ShowFutureItems = 1)
+			or 
+				(n.PublishDate <= @StartDate and @ShowPastItems = 1)
+			)	
+		and
+			(n.ExpiryDate >= @StartDate or n.ExpiryDate Is Null)		
+	) as 'Count'
+			
+    From
+	    {objectQualifier}pnc_NewsCategories
+    WHERE
+        ModuleID = @ModuleID
+    ORDER BY 
+        ParentID Asc, ViewOrder Asc            
+GO
+
+/* =====================================================================================
+/   TABLE: NewsComment
+/  ===================================================================================== */
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsComment' AND COLUMN_NAME = 'Displayname')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] ADD [Displayname] nvarchar(255) NULL
+END
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsComment' AND COLUMN_NAME = 'Email')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] ADD [Email] nvarchar(255) NULL
+END
+
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{objectQualifier}pnc_NewsComment' AND COLUMN_NAME = 'LoadGravatar')
+BEGIN
+   ALTER TABLE {databaseOwner}[{objectQualifier}pnc_NewsComment] ADD [LoadGravatar] bit NULL
+END
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentGet    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Get
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentList    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_List') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_List
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentAdd    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Add
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentUpdate    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Update') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Update
+GO
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_NewsCommentDelete    Script Date: Donnerstag, 17. September 2009 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsComment_Delete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Delete
+GO
+
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Get
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Get
+	@ItemId int
+	
+AS
+
+SELECT
+	[ItemId],
+	[NewsId],
+	[CreatedBy],
+	[CreatedDate],
+	[Comment],
+	[IsApproved],
+	[ApprovedBy],
+	[RemoteAddress],
+    [Displayname],
+    [Email],
+    [LoadGravatar]
+FROM {objectQualifier}pnc_NewsComment
+WHERE
+	[ItemId] = @ItemId
+	
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_List 
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_List
+    @ArticleId int
+AS
+
+SELECT
+	[ItemId],
+	[NewsId],
+	[CreatedBy],
+	[CreatedDate],
+	[Comment],
+	[IsApproved],
+	[ApprovedBy],
+	[RemoteAddress],
+    [Displayname],
+    [Email],
+    [LoadGravatar]
+FROM {objectQualifier}pnc_NewsComment
+WHERE
+    [NewsId] = @ArticleId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Add
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Add
+	@ArticleId int,
+	@CreatedBy int,
+	@CreatedDate datetime,
+	@Comment ntext,
+	@IsApproved bit,
+	@ApprovedBy int,
+	@RemoteAddress nvarchar(50),
+    @Displayname nvarchar(255),
+    @Email nvarchar(255),
+    @LoadGravatar bit
+AS
+
+INSERT INTO {objectQualifier}pnc_NewsComment (
+	[NewsId],
+	[CreatedBy],
+	[CreatedDate],
+	[Comment],
+	[IsApproved],
+	[ApprovedBy],
+	[RemoteAddress],
+    [Displayname],
+    [Email],
+    [LoadGravatar]
+) VALUES (
+	@ArticleId,
+	@CreatedBy,
+	@CreatedDate,
+	@Comment,
+	@IsApproved,
+	@ApprovedBy,
+	@RemoteAddress,
+    @Displayname,
+    @Email,
+    @LoadGravatar
+)
+
+select SCOPE_IDENTITY()
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Update
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Update
+	@ItemId int, 
+	@ArticleId int, 
+	@CreatedBy int, 
+	@CreatedDate datetime, 
+	@Comment ntext, 
+	@IsApproved bit, 
+	@ApprovedBy int, 
+	@RemoteAddress nvarchar(50),
+    @Displayname nvarchar(255),
+    @Email nvarchar(255),
+    @LoadGravatar bit
+AS
+
+UPDATE {objectQualifier}pnc_NewsComment SET
+	[NewsId] = @ArticleId,
+	[CreatedBy] = @CreatedBy,
+	[CreatedDate] = @CreatedDate,
+	[Comment] = @Comment,
+	[IsApproved] = @IsApproved,
+	[ApprovedBy] = @ApprovedBy,
+	[RemoteAddress] = @RemoteAddress,
+    [Displayname] = @Displayname,
+    [Email] = @Email,
+    [LoadGravatar] = @LoadGravatar
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO
+
+/* -------------------------------------------------------------------------------------
+/   NewsComment_Delete
+/  ------------------------------------------------------------------------------------- */
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsComment_Delete
+	@ItemId int
+AS
+
+DELETE FROM {objectQualifier}pnc_NewsComment
+WHERE
+	[ItemId] = @ItemId
+GO
+
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS ON 
+GO

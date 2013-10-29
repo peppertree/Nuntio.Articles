@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rsd version="0.4">
+  <service>
+    <engineName>Magic</engineName>
+    <engineLink>http://magic</engineLink>
+    <homePageLink>http://magic</homePageLink>
+    <apis>
+      <api name="MetaWeblog" preferred="true" apiLink="http://magic/Desktopmodules/Nuntio.Articles/ArticlePost.ashx" />
+    </apis>
+  </service>
+</rsd>

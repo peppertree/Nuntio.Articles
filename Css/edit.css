@@ -1,0 +1,255 @@
+﻿.DNNAlignRight 
+{
+	text-align: left !important;
+}
+div.pfEdit 
+{
+	font-family: Verdana;
+	font-size: 0.7em;
+	color: #222;
+	background: #eee;
+	margin:0;
+	padding:0;
+	padding-top: 10px;
+}
+/* encloses the tabstrip controls*/
+.frmMulti
+{
+	margin: 0px;
+	font-style: italic;
+}
+/*encloses the tabstrip */
+.tabStripContainer 
+{
+	height: 28px;
+	overflow: hidden;
+	width: 850px;
+	z-index: 999;
+	position: relative;
+	/*background: url(img/tabsBorder.jpg) bottom left repeat-x;*/
+}
+/*tabstrip */
+.tabs 
+{
+	z-index: 10000;
+	top: 2;
+	position: absolute;
+}
+/*Encloses all tab views */
+.tabviewContainer 
+{
+	border: 1px solid #888;
+	border-top: none;
+	margin-top: -2px;
+	z-index: 9000;
+	top: 25px;
+	width: 848px;
+	min-height: 445px;
+}
+/*single tab view container */
+.tabView 
+{
+	padding: 15px;
+	background: #fff;
+	min-height:350px;
+}
+.advView 
+{
+	background: #fff;
+}
+/*Common alignment styles */
+.left 
+{
+	float: left;
+}
+.right 
+{
+	float: right;
+	text-align: right;
+}
+.clearfix 
+{
+	clear: both;
+}
+/* Common Containers*/
+.frmMenu 
+{
+	height: 35px;
+	background: #999;
+	overflow: hidden;
+}
+.frmRow 
+{
+	clear: both;
+	width: 700px;
+	margin: 8px 15px 0 15px;
+}
+.frmLabel 
+{
+	margin-top: 10px;
+	font-weight: bold;
+	padding: 5px 20px 0 3px;
+	float:left;
+}
+.frmRow .frmLabel 
+{
+	width: 100px;
+}
+.frmHelp 
+{
+	padding: 7px 0 7px 0;
+}
+.frmRow .frmControl 
+{
+	padding: 10px 0 10px 0;
+	margin-right: 0px;
+	float:left;
+}
+.advBlock .frmControl 
+{
+	padding: 10px 0 10px 0;
+	width: 350px;
+}
+div.categories 
+{
+	overflow: auto;
+}
+.frmLocale 
+{
+	margin-top: 10px;
+	margin-left: 20px;
+	float:left;
+}
+/* Block containers in advanced tab */
+.advBlock 
+{
+	float:left;
+	width: 400px;
+	margin: 15px 0 0 15px;
+}
+.hdEdit 
+{
+	background: url(img/hdEdit.jpg) repeat-x;
+	border: 1px solid #8f8f8f;	
+}
+.hdEditIcon
+{
+	background: transparent;
+	float:left;
+	margin: 11px 0 0 20px;
+}
+.hdEditText 
+{
+	float:left;
+	background: transparent;
+	font-size: 16px;
+	color: #404040;
+	font-family: Georgia;
+	font-weight: bold;
+	margin: 9px 0 9px 10px;
+	line-height: 16px;
+}
+.ctEdit 
+{
+	background: #fdfcfc;
+	border: 1px solid #8f8f8f;
+	border-top: none;	
+	padding: 15px;
+	min-height: 240px;
+}
+
+/***********************************/
+/* Special controls                */
+/***********************************/
+a.pncComboLink {
+    text-decoration: none;
+}
+a.pncComboLink table td
+{
+    font-size:11px;
+	font-family: Tahoma;
+    color: #333;
+}
+a.pncComboLink:hover table td
+{
+    font-size:11px;
+	font-family: Tahoma;
+    color: #333;
+    background-color: #cecece;
+    cursor: default;
+}
+
+/*Radiobuttonlist */
+.pfRBL
+{
+	font-family: Verdana;
+	font-size: 0.9em;
+	color: #333;
+	margin-left: -7px;	
+}
+
+/*checkboxes */
+.pfCheck 
+{
+	margin-left: -3px;
+}
+
+/* textboxes */
+.pfTextbox
+{
+	font-size: 16px;
+}
+
+/* Messagebox */
+.frmMessage 
+{
+	margin: 0px 15px 0 15px;
+	padding: 15px 15px 0 15px;
+	border: 1px dashed red;
+	background: #f3d780;
+	width: 700px;
+}
+.frmMessage .MessageIcon 
+{
+	float: left;
+}
+.frmMessage .MessageText
+{
+	float: left;
+	padding-top: 5px;
+	font-size: 16px;
+	font-weight: normal;
+	color: #444;
+	margin-left: 30px;
+}
+.lblMessage 
+{
+	margin: 5px;
+	font-family: Verdana;
+	font-size: 14px;
+	font-weight: bold;
+}
+.RadInput_Sunset
+{
+    height:20px !important;
+}
+.RadInput_Sunset .riTextBox 
+{
+    padding-bottom:0 !important;
+    padding-top:0 !important;
+}
+.rwTitlebarControls ul, .rwTitlebarControls ul li 
+{
+    list-style-type: none !important;
+}
+.TelerikModalOverlay
+{
+    background-color: #333 !important;
+    opacity: 0.8 !important;
+}
+.alert
+{
+    background: yellow;
+    padding:0 10px 0 10px;
+    border: 1px dashed #ccc;
+}

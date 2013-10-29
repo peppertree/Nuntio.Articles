@@ -1,0 +1,4 @@
+<h3>Ausgabe [PUBLISHMONTH]/[PUBLISHYEAR]</h3>
+<h2>[TITLE]</h2>
+[CONTENT]
+[HASIMAGES]<div class="images">[IMAGEGALLERY]</div>[/HASIMAGES]

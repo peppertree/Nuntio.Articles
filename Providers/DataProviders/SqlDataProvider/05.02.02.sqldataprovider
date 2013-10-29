@@ -1,0 +1,32 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}pnc_NewsItem_ListForNotify]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    drop procedure {databaseOwner}{objectQualifier}pnc_NewsItem_ListForNotify
+GO
+
+CREATE Procedure {databaseOwner}{objectQualifier}pnc_NewsItem_ListForNotify
+   @StartDate datetime
+as
+SELECT
+	*, 0 as 'Comments'  
+FROM
+	{objectQualifier}pnc_NewsItems
+WHERE
+	IsNotified = 0
+AND
+	PublishDate <= @StartDate
+AND
+	IsApproved = 1
+ORDER BY
+	PortalID, ModuleID, PublishDate
+
+GO

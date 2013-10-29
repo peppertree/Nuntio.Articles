@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LocaleVersion.Text" xml:space="preserve">
+    <value>Locale Version</value>
+  </data>
+  <data name="PortalDefault.Text" xml:space="preserve">
+    <value> (Portal Default)</value>
+  </data>
+  <data name="CouldNotLoadTemplate.Text" xml:space="preserve">
+    <value>Could not load template!</value>
+  </data>
+  <data name="YouSelected.Text" xml:space="preserve">
+    <value>
+      You selected &lt;span class="pnc_editform_highlight="&gt;{0}&lt;/span&gt; as the base skin for your new template.&lt;br /&gt;
+    </value>
+  </data>
+  <data name="PleaseEnterName.Text" xml:space="preserve">
+    <value>
+      &lt;br /&gt;Please enter a name for your new template
+    </value>
+  </data>
+  <data name="SelectWetherToStore.Text" xml:space="preserve">
+    <value> You must also select wether to store the new template as a host template (globally available in all portals) or only for the current portal.</value>
+  </data>
+  <data name="OnlyFiles.Text" xml:space="preserve">
+    <value>You may only select skins, not files!</value>
+  </data>
+  <data name="SelectBaseSkin.Text" xml:space="preserve">
+    <value>You must select a base skin first in the tree!</value>
+  </data>
+  <data name="MustProvideName.Text" xml:space="preserve">
+    <value>You must provide a name for the new template!</value>
+  </data>
+  <data name="SaveFile.Text" xml:space="preserve">
+    <value>Save File</value>
+  </data>
+  <data name="CopySelected.Text" xml:space="preserve">
+    <value>Copy selected</value>
+  </data>
+  <data name="DeleteSelected.Text" xml:space="preserve">
+    <value>Delete selected</value>
+  </data>
+  <data name="SelectLanguage.Text" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
+  <data name="TemplateName.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="TemplateMode.Text" xml:space="preserve">
+    <value>Mode:</value>
+  </data>
+  <data name="TemplateCreate.Text" xml:space="preserve">
+    <value>Create Template</value>
+  </data>
+  <data name="TemplateCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SUMMARY.Token" xml:space="preserve">
+    <value>Renders the summary of the article</value>
+  </data>
+  <data name="CONTENT.Token" xml:space="preserve">
+    <value>Renders the content of the article</value>
+  </data>
+  <data name="PORTALNAME.Token" xml:space="preserve">
+    <value>Renders the portalname the e-mail is being sent from</value>
+  </data>
+  <data name="NEWSLINKURL.Token" xml:space="preserve">
+    <value>Renders the url of the link that the article is associated with</value>
+  </data>
+  <data name="CREATEDBYUSER.Token" xml:space="preserve">
+    <value>Renders the displayname of the user who has created the article</value>
+  </data>
+  <data name="PUBLISHDATE.Token" xml:space="preserve">
+    <value>Renders the date the article was published on</value>
+  </data>
+  <data name="Css.Help" xml:space="preserve">
+    <value>The css file for the theme, no tokens are allowed here</value>
+  </data>
+  <data name="DETAILLINKURL.Token" xml:space="preserve">
+    <value>Renders the url that links to the detail view of the article</value>
+  </data>
+  <data name="EDIT.Token" xml:space="preserve">
+    <value>Renders an edit icon that, when clicked, opens the article edit form</value>
+  </data>
+  <data name="FooterTemplate.Help" xml:space="preserve">
+    <value>This template is used for displaying html content below all articles</value>
+  </data>
+  <data name="RECIPIENT_NAME.Token" xml:space="preserve">
+    <value>Renders the recipient's name of the notification e-mail</value>
+  </data>
+  <data name="HeaderTemplate.Help" xml:space="preserve">
+    <value>This template is used for displaying html content on top of all articles</value>
+  </data>
+  <data name="RECIPIENT_EMAIL.Token" xml:space="preserve">
+    <value>Renders the recipient's e-mail address of the notification e-mail</value>
+  </data>
+  <data name="UNSUBSCRIBEURL:TabId.Token" xml:space="preserve">
+    <value>Renders a url that links to the tabid specified in the token. This is where you must place an article module in subscriptionform mode which is then responsible for unsubscribing a subscriber. This is the so-called one-click-unsubscribe mechanism.</value>
+  </data>
+  <data name="ISROLESUBSCRIBED.Token" xml:space="preserve">
+    <value>Everything in between this token and [/ISROLESUBSCRIBED] will be rendered to recipients if they were auto-subscribed by role membership</value>
+  </data>
+  <data name="/ISROLESUBSCRIBED.Token" xml:space="preserve">
+    <value>Everything in between [ISROLESUBSCRIBED] and this token will be rendered to recipients if they were auto-subscribed by role membership</value>
+  </data>
+  <data name="ISSUBSCRIBED.Token" xml:space="preserve">
+    <value>Everything in between this token and [/ISSUBSCRIBED] will be rendered to recipients if they were subscribed by using the subscription form</value>
+  </data>
+  <data name="/ISSUBSCRIBED.Token" xml:space="preserve">
+    <value>Everything in between [ISSUBSCRIBED] and this token will be rendered to recipients if they were auto-subscribed by using the subscription form</value>
+  </data>
+  <data name="ItemDetailTemplate.Help" xml:space="preserve">
+    <value>This template is used for the detail view of an article</value>
+  </data>
+  <data name="ItemTemplate.Help" xml:space="preserve">
+    <value>This template is repeated for every single article in the list of all links</value>
+  </data>
+  <data name="ItemAlternateTemplate.Help" xml:space="preserve">
+    <value>This template is repeated for every second article in the list of all links</value>
+  </data>
+  <data name="ItemFirstTemplate.Help" xml:space="preserve">
+    <value>This template is used once for the first article in the list of all links</value>
+  </data>
+  <data name="NoTokens.Token" xml:space="preserve">
+    <value>No tokens are available for this template type</value>
+  </data>
+  <data name="TITLE.Token" xml:space="preserve">
+    <value>Renders the title of the article</value>
+  </data>
+  <data name="ITEMID.Token" xml:space="preserve">
+    <value>Render the database id of the article.</value>
+  </data>
+  <data name="ArticleId.Token" xml:space="preserve">
+    <value>Render the database id in the form "NEWS_ID"</value>
+  </data>
+  <data name="ORIGINALLINK.Token" xml:space="preserve">
+    <value>Renders a link to the original locale version of the article</value>
+  </data>
+  <data name="PUBLISHDATELONG.Token" xml:space="preserve">
+    <value>Renders the publishdate in long format</value>
+  </data>
+  <data name="PUBLISHDAY.Token" xml:space="preserve">
+    <value>Renders the daypart of the date the article was published on</value>
+  </data>
+  <data name="PUBLISHMONTH.Token" xml:space="preserve">
+    <value>Renders the monthpart of the date the article was published on</value>
+  </data>
+  <data name="PUBLISHMONTHNAME.Token" xml:space="preserve">
+    <value>Renders the monthpartname of the date the article was published on</value>
+  </data>
+  <data name="PUBLISHYEAR.Token" xml:space="preserve">
+    <value>Renders the yearpart of the date the article was published on</value>
+  </data>
+  <data name="TEMPLATEPATH.Token" xml:space="preserve">
+    <value>Renders the path to the current template. Can be useful for image links</value>
+  </data>
+  <data name="CannotSaveDefault.Text" xml:space="preserve">
+    <value>The default template cannot be edited. Please copy the template into a new theme.</value>
+  </data>
+  <data name="ALLNEWSLINKURL.Token" xml:space="preserve">
+    <value>Renders an url that points back to main listing. This can be used in the detail view</value>
+  </data>
+  <data name="APPROVE.Token" xml:space="preserve">
+    <value>Renders a link to the approval form (for authors only)</value>
+  </data>
+  <data name="AUTHORLINKURL.Token" xml:space="preserve">
+    <value>Renders an url that links to a view where all articles from the same author of the current article are shown</value>
+  </data>
+  <data name="CATEGORYLIST.Token" xml:space="preserve">
+    <value>Renders a comma separated list of links for each category an article is associated with. Each link points to a view for the given category</value>
+  </data>
+  <data name="COMMENT.Token" xml:space="preserve">
+    <value>Renders the comment</value>
+  </data>
+  <data name="COMMENTCOUNT.Token" xml:space="preserve">
+    <value>Renders the amount of comments that are linked to the article</value>
+  </data>
+  <data name="COMMENTLIST.Token" xml:space="preserve">
+    <value>Renders the comments that are linked to the article</value>
+  </data>
+  <data name="CommentTemplate.Help" xml:space="preserve">
+    <value>This template is repeated for every comment in the comment list</value>
+  </data>
+  <data name="COMMENTURL.Token" xml:space="preserve">
+    <value>Renders the url that points to the comment entry form</value>
+  </data>
+  <data name="CONTENT:xxx.Token" xml:space="preserve">
+    <value>Renders the specified number of chars of the article content. To use this token, replace xxx by an integer value</value>
+  </data>
+  <data name="CREATEDATE.Token" xml:space="preserve">
+    <value>Renders the creation date of the comment</value>
+  </data>
+  <data name="CREATEDBY.Token" xml:space="preserve">
+    <value>Renders the displayname of the comment author</value>
+  </data>
+  <data name="CREATEDBYUSERID.Token" xml:space="preserve">
+    <value>Renders the userid of the user who has created the article</value>
+  </data>
+  <data name="CREATEDDATELONG.Token" xml:space="preserve">
+    <value>Renders the creation date of the article in long format</value>
+  </data>
+  <data name="CREATEDDATESHORT.Token" xml:space="preserve">
+    <value>Renders the creation date of the article in short format</value>
+  </data>
+  <data name="CREATETIME.Token" xml:space="preserve">
+    <value>Renders the creation time of the comment</value>
+  </data>
+  <data name="DETAILWINDOWLINK:W:H:S.Token" xml:space="preserve">
+    <value>Renders a link that opens the article in a modal ajax styled dialog. The W has to be replaced by the width of the dialog in pixels, H stands for the height and S for the skin of the dialog. Possible values for S include "Default", "Hay", "Sunset", "Black", "Web20".</value>
+  </data>
+  <data name="HASCATEGORY.Token" xml:space="preserve">
+    <value>Must be used together with [/HASCATEGORY]. Everything in between those two tokens will be rendered if the article is associated with one ore more categories</value>
+  </data>
+  <data name="HASCOMMENTS.Token" xml:space="preserve">
+    <value>Must be used together with [/HASCOMMENTS]. Everything in between those two tokens will be rendered if the article contains comments</value>
+  </data>
+  <data name="HASCONTENT.Token" xml:space="preserve">
+    <value>Must be used together with [/HASCONTENT]. Everything in between those two tokens will be rendered if the article contains content</value>
+  </data>
+  <data name="HASLINK.Token" xml:space="preserve">
+    <value>Must be used together with [/HASLINK]. Everything in between those two tokens will be rendered if the article is associated with a link</value>
+  </data>
+  <data name="HASNOCOMMENTS.Token" xml:space="preserve">
+    <value>Must be used together with [/HASNOCOMMENTS]. Everything in between those two tokens will be rendered if the article does NOT contain comments yet</value>
+  </data>
+  <data name="HASNOCONTENT.Token" xml:space="preserve">
+    <value>Must be used together with [/HASNOSUMMARY]. Everything in between those two tokens will be rendered if the article does NOT contain content</value>
+  </data>
+  <data name="HASNOSUMMARY.Token" xml:space="preserve">
+    <value>Must be used together with [/HASNOSUMMARY]. Everything in between those two tokens will be rendered if the article does NOT contain a summary</value>
+  </data>
+  <data name="HASSUMMARY.Token" xml:space="preserve">
+    <value>Must be used together with [/HASSUMMARY]. Everything in between those two tokens will be rendered if the article contains a summary</value>
+  </data>
+  <data name="ISARTICLEOWNER.Token" xml:space="preserve">
+    <value>Must be used together with [/ISARTICLEOWNER]. This renders everything in between those two tokens if the article owner is viewing the comment</value>
+  </data>
+  <data name="MONTHLINKURL.Token" xml:space="preserve">
+    <value>Renders an url that links to a view where all articles from the same month of the current article are shown</value>
+  </data>
+  <data name="NEWSLINKTARGET.Token" xml:space="preserve">
+    <value>Renders the target of the link that an article is associated with (_blank,_self)</value>
+  </data>
+  <data name="NEWSLINKTITLE.Token" xml:space="preserve">
+    <value>Renders the title of the link that an article is associated with. In case the link is an internal page, this will return the tabname of the url. In case the link is an internal file, the filename will be returned. In case the link is a useraccount, the displayname of the account will be used. Otherwise, a localized ReadMore string is returned.</value>
+  </data>
+  <data name="PUBLISHDATESHORT.Token" xml:space="preserve">
+    <value>Renders the publish date in short format</value>
+  </data>
+  <data name="SUMMARY:xxx.Token" xml:space="preserve">
+    <value>Renders the specified number of chars of the article summary.To use this token, replace xxx by an integer value</value>
+  </data>
+  <data name="YEARLINKURL.Token" xml:space="preserve">
+    <value>Renders an url that links to a view where all articles from the same year of the current article are shown</value>
+  </data>
+  <data name="MORENEWSURL.Token" xml:space="preserve">
+    <value>Renders a link to articles from the same month / year</value>
+  </data>
+  <data name="ALLNEWSURL.Token" xml:space="preserve">
+    <value>Renders a link to all articles in the module (e.g. the main listing)</value>
+  </data>
+  <data name="MONTHNEWSURL.Token" xml:space="preserve">
+    <value>Renders a link to all articles in the same month than the current article</value>
+  </data>
+  <data name="UNSUBSCRIBEURL.Token" xml:space="preserve">
+    <value>Renders a link to a one-click unsubscription from the article list</value>
+  </data>
+  <data name="MailingFooterTemplate.Help" xml:space="preserve">
+    <value>This template is being used for rendering the footer for each e-mail</value>
+  </data>
+  <data name="MailingHeaderTemplate.Help" xml:space="preserve">
+    <value>This template is being used for rendering the header for each e-mail</value>
+  </data>
+  <data name="SUBJECT:Custom.Token" xml:space="preserve">
+    <value>This will alter the default subject of the notification e-mail (Portalname: Moduletitle). Simply replace "Custom" by your custom subject.</value>
+  </data>
+  <data name="PUBLISHMONTHSHORT.Token" xml:space="preserve">
+    <value>Renders the first three characters of the monthpart of the date the article was published on</value>
+  </data>
+  <data name="ISLINKEDTOIMAGE.Token" xml:space="preserve">
+    <value>Must be used together with [/HASIMAGE]. Everything in between those two tokens will be rendered if the article is linked with an image file. Use this token to display images with an article by using &lt;img src="[NEWSLINKURL]"&gt;</value>
+  </data>
+  <data name="ISNOTLINKEDTOIMAGE.Token" xml:space="preserve">
+    <value>Must be used together with [/ISNOTIMAGE]. Everything in between those two tokens will be rendered only if the article is linked with anythin else than an image file. Use this token to display download links while excluding downloads if images.</value>
+  </data>
+  <data name="HASNOCATEGORY.Token" xml:space="preserve">
+    <value>Must be used together with [/HASNOCATEGORY]. Everything in between those two tokens will be rendered only if the article is not assigned to any category.</value>
+  </data>
+  <data name="HASNOLINK.Token" xml:space="preserve">
+    <value>Must be used together with [/HASNOLINK]. Everything in between those two tokens will be rendered only if the article is not linked with any other resource. Use this token to render HTML specific to articles that do not have a link set.</value>
+  </data>
+  <data name="TemplateClose.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="HASIMAGES.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASIMAGES] will be rendered if the article has images assigned to it.</value>
+  </data>
+  <data name="HASNOIMAGES.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASNOIMAGES] will be rendered if the article has no images assigned to it.</value>
+  </data>
+  <data name="HASNOPRIMARYIMAGE.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASNOPRIMARYIMAGE] will be rendered if none of the assigned images of an articles is marked as the primary image.</value>
+  </data>
+  <data name="HASPRIMARYIMAGE.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASPRIMARYIMAGE] will be rendered if one of the assigned images of an articles is marked as the primary image.</value>
+  </data>
+  <data name="IMAGEGALLERY.Token" xml:space="preserve">
+    <value>Renders the image_item template for each attached image in of an article</value>
+  </data>
+  <data name="LASTUPDATEDBYUSER.Token" xml:space="preserve">
+    <value>Displayname of the user that has updated the article last.</value>
+  </data>
+  <data name="LASTUPDATEDBYUSERID.Token" xml:space="preserve">
+    <value>UserId of the user that has updated the article last.</value>
+  </data>
+  <data name="LASTUPDATEDDATE.Token" xml:space="preserve">
+    <value>Date in short date format when the article has been updated last.</value>
+  </data>
+  <data name="LASTUPDATEDTIME.Token" xml:space="preserve">
+    <value>Time in short time format when the article has been updated last.</value>
+  </data>
+  <data name="PRIMARYIMAGEDESCRIPTION.Token" xml:space="preserve">
+    <value>Description of the primary image.</value>
+  </data>
+  <data name="PRIMARYIMAGETITLE.Token" xml:space="preserve">
+    <value>Title of the primary image.</value>
+  </data>
+  <data name="PRIMARYIMAGEURL.Token" xml:space="preserve">
+    <value>URL of the primary image. </value>
+  </data>
+  <data name="SHAREDTITLE.Token" xml:space="preserve">
+    <value>Encoded Title, can be used for generating share links for facebook, google, etc...</value>
+  </data>
+  <data name="SHAREDURL.Token" xml:space="preserve">
+    <value>Encoded Url to the article, can be used for generating share links for facebook, google, etc...</value>
+  </data>
+  <data name="TWITTERTEXT.Token" xml:space="preserve">
+    <value>Renders the first 160 chars of the article summary or content in url-encoded format. This can be used to generate twitter share links.</value>
+  </data>
+  <data name="ARTICLECONTENT.Token" xml:space="preserve">
+    <value>Content of the article that the file (image or attachment) is assigned to.</value>
+  </data>
+  <data name="ARTICLESUMMARY.Token" xml:space="preserve">
+    <value>Summary of the article that the file (image or attachment) is assigned to.</value>
+  </data>
+  <data name="ARTICLETITLE.Token" xml:space="preserve">
+    <value>Title of the article that the file (image or attachment) is assigned to.</value>
+  </data>
+  <data name="FILEEXTENSION.Token" xml:space="preserve">
+    <value>Extension of the file (image or attachment), including the dot (.)</value>
+  </data>
+  <data name="FILEID.Token" xml:space="preserve">
+    <value>Renders the FileId of the image, taken from the DNN files table</value>
+  </data>
+  <data name="FILENAME.Token" xml:space="preserve">
+    <value>Filename of the file (image or attachment), including extension</value>
+  </data>
+  <data name="FOLDERNAME.Token" xml:space="preserve">
+    <value>Renders the Foldername of the file (image or attachment), taken from the DNN folders table</value>
+  </data>
+  <data name="IMAGEDESCRIPTION.Token" xml:space="preserve">
+    <value>Description of the image</value>
+  </data>
+  <data name="IMAGEID.Token" xml:space="preserve">
+    <value>Id of the image</value>
+  </data>
+  <data name="IMAGETITLE.Token" xml:space="preserve">
+    <value>Title of the image</value>
+  </data>
+  <data name="IMAGEURL.Token" xml:space="preserve">
+    <value>Renders the Url of the image</value>
+  </data>
+  <data name="DETAILWINDOWURL:W:H:S.Token" xml:space="preserve">
+    <value>Renders a url that opens the article in a modal ajax styled dialog. The W has to be replaced by the width of the dialog in pixels, H stands for the height and S for the skin of the dialog. Possible values for S include "Default", "Hay", "Sunset", "Black", "Web20".</value>
+  </data>
+  <data name="ANCHORLINK.Token" xml:space="preserve">
+    <value>Renders the anchor link url of an article</value>
+  </data>
+  <data name="ATTACHMENTS.Token" xml:space="preserve">
+    <value>Renders the attachment_item template for each attached file in an article</value>
+  </data>
+  <data name="AttachmentTemplate.Help" xml:space="preserve">
+    <value>This template is repeated for each attached file</value>
+  </data>
+  <data name="CSS:URL.Token" xml:space="preserve">
+    <value>Loads the css file specified by the URL portion of the token</value>
+  </data>
+  <data name="FILEDESCRIPTION.Token" xml:space="preserve">
+    <value>Renders the localized description of a file</value>
+  </data>
+  <data name="FILETITLE.Token" xml:space="preserve">
+    <value>Renders the localized title of a file</value>
+  </data>
+  <data name="FILEURL.Token" xml:space="preserve">
+    <value>Renders the URL to a file</value>
+  </data>
+  <data name="HASATTACHMENTS.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASATTACHMENTS] will be rendered if the article has files attached to it.</value>
+  </data>
+  <data name="HASNOATTACHMENTS.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASNOATTACHMENTS] will be rendered if the article has NO files attached to it.</value>
+  </data>
+  <data name="HASNOPRIMARYATTACHMENT.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASNOPRIMARYATTACHMENT] will be rendered if the article has NO primary file attached to it.</value>
+  </data>
+  <data name="HASPRIMARYATTACHMENT.Token" xml:space="preserve">
+    <value>Everything in between this token and [/HASPRIMARYATTACHMENT] will be rendered if the article has a primary file attached to it.</value>
+  </data>
+  <data name="ImageTemplate.Help" xml:space="preserve">
+    <value>This template is repeated for each attached image</value>
+  </data>
+  <data name="JournalTemplate.Help" xml:space="preserve">
+    <value>This template is used to publish content to the DotNetNuke journal</value>
+  </data>
+  <data name="PORTALID.Token" xml:space="preserve">
+    <value>Renders the portal's ID</value>
+  </data>
+  <data name="PRIMARYATTACHMENTDESCRIPTION.Token" xml:space="preserve">
+    <value>Renders the localized description of the primary attachment file</value>
+  </data>
+  <data name="PRIMARYATTACHMENTTITLE.Token" xml:space="preserve">
+    <value>Renders the localized title of the primary attachment file</value>
+  </data>
+  <data name="PRIMARYATTACHMENTURL.Token" xml:space="preserve">
+    <value>Renders the URL of the primary attachment file</value>
+  </data>
+  <data name="SCRIPT:URL.Token" xml:space="preserve">
+    <value>Loads the script specified by the URL portion of the token</value>
+  </data>
+</root>

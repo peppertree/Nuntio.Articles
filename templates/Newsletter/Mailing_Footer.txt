@@ -1,0 +1,17 @@
+<hr size="1">
+<p class="small">
+[ISROLESUBSCRIBED]
+	You are receiving this newsletter because you are a member of a security role that is auto-subscribed to this content.
+[/ISROLESUBSCRIBED]
+[ISSUBSCRIBED]
+  	You are receiving this newsletter because you have request newsletter notfications on our website with the e-mail address [RECIPIENT_EMAIL].
+[/ISSUBSCRIBED]
+</p>
+<p class="small">			
+[ISROLESUBSCRIBED]
+	You cannot unsubscribe from these notifications. You may contact us though to remove you from the security role associated with this content.
+[/ISROLESUBSCRIBED]
+[ISSUBSCRIBED]
+	You can cancel your subscription to this newsletter anytime by clicking here: <a href="[UNSUBSCRIBEURL]">Cancel Newsletter Subscription</a>
+[/ISSUBSCRIBED]				
+</p>

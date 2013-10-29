@@ -1,0 +1,40 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+
+/****** Object:  Stored Procedure {databaseOwner}{objectQualifier}pnc_News_EmailQueueGet    Script Date: Freitag, 12. März 2010 ******/
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}pnc_NewsItem_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Get
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}pnc_NewsItem_Get
+    @ItemId   int,
+    @ModuleId int
+as
+    Select                      
+        ItemID,
+        ModuleID,
+        CreatedByUser,
+        CreatedDate,    
+        PublishDate,
+        ViewOrder,
+        IsNotified,
+        IsApproved,
+        ApprovedBy,
+        ApprovedDate,
+        (Select Count(*) from {objectQualifier}pnc_NewsComment Where NewsId = @ItemId and IsApproved = 1) as 'Comments'
+    from
+         {objectQualifier}pnc_NewsItems
+    where 
+         ItemId = @ItemId
+    and     
+         ModuleId = @ModuleId
+GO
+         

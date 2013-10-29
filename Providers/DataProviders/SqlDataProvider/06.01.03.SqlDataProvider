@@ -1,0 +1,45 @@
+
+Delete 
+	From {objectQualifier}pnc_Localization_LocalizedItems 
+Where
+	[SourceItemID] not in (Select ItemId from {objectQualifier}pnc_NewsItems)
+AND 
+	(
+		[Key] = 'TITLE' or [Key] = 'SUMMARY' or [Key] = 'CONTENT' or [Key] = 'URL'
+	)
+GO
+
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_DeleteArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteArticle
+GO
+
+CREATE PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteArticle
+    @ItemId int,
+    @ModuleID int
+AS
+    BEGIN
+		
+		-- delete relations
+        DELETE FROM {objectQualifier}pnc_NewsRelation where RelatedArticleID = @ItemId or ArticleId = @ItemId
+		
+		-- delete comments
+		DELETE FROM {objectQualifier}pnc_NewsComment where NewsId = @ItemId
+		
+		-- delete attachments
+		DELETE FROM {objectQualifier}pnc_NewsFile where ArticleId = @ItemId
+		
+		-- remove from categories
+		DELETE FROM {objectQualifier}pnc_NewsCatRelation where ItemId = @ItemId
+		
+		-- make sure it publication articles do not belong to the article
+		UPDATE {objectQualifier}pnc_NewsItems SET ParentId = -1 WHERE ParentId = @ItemId
+
+		-- delete actual item
+		DELETE FROM {objectQualifier}pnc_NewsItems where ItemId = @ItemId
+		
+		-- delete localization entries		
+        DELETE FROM {objectQualifier}pnc_Localization_LocalizedItems where SourceItemID = @ItemID and ModuleID = @ModuleID
+
+    END     
+GO

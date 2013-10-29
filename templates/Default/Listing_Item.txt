@@ -1,0 +1,30 @@
+<div class="nuntio-listitem">
+	<div class="nuntio-listitem-inner" id="[ANCHORLINK]">
+
+		<div class="nuntio-list-date">
+			[PUBLISHDATE]
+		</div>
+	
+		<div class="nuntio-list-title">
+			<a href="[DETAILLINKURL]">[TITLE]</a>[EDIT][EMAIL]
+			<br /><span>written by <strong>[CREATEDBYUSER]</strong></span>
+		</div>
+	
+	
+		<div class="nuntio-list-summary clearfix">
+			[HASSUMMARY][HASPRIMARYIMAGE]<img src="[PRIMARYIMAGEURL]" alt="[IMAGETITLE]" class="imgListingPrimary" />[/HASPRIMARYIMAGE]	[SUMMARY][/HASSUMMARY][HASNOSUMMARY][HASPRIMARYIMAGE]<img src="[PRIMARYIMAGEURL]" alt="[TITLE]" class="imgListingPrimary" />[/HASPRIMARYIMAGE][CONTENT:200][/HASNOSUMMARY]	
+		</div>		
+
+		<div class="nuntio-list-footer">
+	
+			<div class="nuntio-list-readmore">
+				<a href="[DETAILLINKURL]" class="dnnwerk_Detaillink">[ISPUBLICATION]Read publication[/ISPUBLICATION][ISNOPUBLICATION]Read full story[/ISNOPUBLICATION]</a>			
+			</div>
+        
+			<div class="nuntio-list-comments">
+			   <span>Comments: [COMMENTCOUNT]</span>
+			</div>
+				
+		</div>
+	</div>
+</div>
