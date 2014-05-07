@@ -402,58 +402,62 @@ Namespace dnnWerk.Modules.Nuntio.Articles
 
             If Not objNewsItem Is Nothing Then
 
-                Dim ctrlAttachments As New ArticleFileController
-                objNewsItem.Images = ctrlAttachments.GetImages(objNewsItem.ItemId, NewsModuleId, CurrentLocale, UseOriginalVersion)
-                objNewsItem.Attachments = ctrlAttachments.GetAttachments(objNewsItem.ItemId, NewsModuleId, CurrentLocale, UseOriginalVersion)
+                If objNewsItem.IsApproved = True OrElse (CanAdmin Or CanPublish Or CanEditArticle) Then
 
-                Dim articles As New List(Of ArticleInfo)
-                articles.Add(objNewsItem)
+                    Dim ctrlAttachments As New ArticleFileController
+                    objNewsItem.Images = ctrlAttachments.GetImages(objNewsItem.ItemId, NewsModuleId, CurrentLocale, UseOriginalVersion)
+                    objNewsItem.Attachments = ctrlAttachments.GetAttachments(objNewsItem.ItemId, NewsModuleId, CurrentLocale, UseOriginalVersion)
 
-                rptNews.DataSource = articles
-                rptNews.DataBind()
+                    Dim articles As New List(Of ArticleInfo)
+                    articles.Add(objNewsItem)
 
-                'update page description and title
-                Dim strDescription As String = articles(0).Summary
-                If String.IsNullOrEmpty(strDescription) Then
-                    strDescription = articles(0).Content
-                End If
+                    rptNews.DataSource = articles
+                    rptNews.DataBind()
 
-                Dim count As Integer = 155
-                If (StripHtml(Server.HtmlDecode(strDescription)).TrimStart().Length > count) Then
-                    strDescription = Left(StripHtml(Server.HtmlDecode(strDescription)).TrimStart(), count) & "..."
-                Else
-                    strDescription = Left(StripHtml(Server.HtmlDecode(strDescription)).TrimStart(), count)
-                End If
-
-                Dim strTitle As String = articles(0).Title
-
-                Me.BasePage.Description = strDescription
-                Me.BasePage.Title = strTitle
-
-                'support for Facebook meta tags
-                Dim ctlTitle As New HtmlMeta
-                ctlTitle.Name = "og:title"
-                ctlTitle.Content = strTitle
-                Page.Header.Controls.Add(ctlTitle)
-
-                Dim ctlDescription As New HtmlMeta
-                ctlDescription.Name = "og:description"
-                ctlDescription.Content = strDescription
-                Page.Header.Controls.Add(ctlDescription)
-
-                Try
-                    If objNewsItem.Images.Count > 0 Then
-                        For Each objImage As ArticleFileInfo In objNewsItem.Images
-                            If objImage.IsPrimary Then
-                                Dim ctlImage As New HtmlMeta
-                                ctlImage.Name = "og:image"
-                                ctlImage.Content = "http://" & PortalSettings.PortalAlias.HTTPAlias & objImage.Url
-                                Page.Header.Controls.Add(ctlImage)
-                            End If
-                        Next
+                    'update page description and title
+                    Dim strDescription As String = articles(0).Summary
+                    If String.IsNullOrEmpty(strDescription) Then
+                        strDescription = articles(0).Content
                     End If
-                Catch
-                End Try
+
+                    Dim count As Integer = 155
+                    If (StripHtml(Server.HtmlDecode(strDescription)).TrimStart().Length > count) Then
+                        strDescription = Left(StripHtml(Server.HtmlDecode(strDescription)).TrimStart(), count) & "..."
+                    Else
+                        strDescription = Left(StripHtml(Server.HtmlDecode(strDescription)).TrimStart(), count)
+                    End If
+
+                    Dim strTitle As String = articles(0).Title
+
+                    Me.BasePage.Description = strDescription
+                    Me.BasePage.Title = strTitle
+
+                    'support for Facebook meta tags
+                    Dim ctlTitle As New HtmlMeta
+                    ctlTitle.Name = "og:title"
+                    ctlTitle.Content = strTitle
+                    Page.Header.Controls.Add(ctlTitle)
+
+                    Dim ctlDescription As New HtmlMeta
+                    ctlDescription.Name = "og:description"
+                    ctlDescription.Content = strDescription
+                    Page.Header.Controls.Add(ctlDescription)
+
+                    Try
+                        If objNewsItem.Images.Count > 0 Then
+                            For Each objImage As ArticleFileInfo In objNewsItem.Images
+                                If objImage.IsPrimary Then
+                                    Dim ctlImage As New HtmlMeta
+                                    ctlImage.Name = "og:image"
+                                    ctlImage.Content = "http://" & PortalSettings.PortalAlias.HTTPAlias & objImage.Url
+                                    Page.Header.Controls.Add(ctlImage)
+                                End If
+                            Next
+                        End If
+                    Catch
+                    End Try
+
+                End If
 
             End If
 

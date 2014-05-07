@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="Nuntio Articles" type="Module" version="6.1.3">
+    <package name="Nuntio Articles" type="Module" version="6.2.1">
       <friendlyName>Nuntio Articles</friendlyName>
       <description>
         An article module for news articles in multiple languages.

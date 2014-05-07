@@ -1256,9 +1256,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57088</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://dnn6/DesktopModules/Nuntio.Articles</IISUrl>
+          <IISUrl>http://nuntio/DesktopModules/Nuntio.Articles</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://dnn6</IISAppRootUrl>
+          <IISAppRootUrl>http://nuntio</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
