@@ -348,14 +348,14 @@ Namespace dnnWerk.Modules.Nuntio.Articles
 
                         VerifyActionIcons()
 
-                        Actions.Add(GetNextActionID, Localize("TEMPLATES.Action"), Entities.Modules.Actions.ModuleActionType.ModuleSettings, "", "nuntio_templates.png", "", "NuntioArticlesTemplateForm('" & ArticleTheme & "')", False, Security.SecurityAccessLevel.Admin, True, False)
+                        Actions.Add(GetNextActionID, Localize("TEMPLATES.Action"), Entities.Modules.Actions.ModuleActionType.ModuleSettings, "", "nuntio_templates.png", "javascript:NuntioArticlesTemplateForm('" & ArticleTheme & "')", "", False, Security.SecurityAccessLevel.Admin, True, False)
 
                         If AllowSubscriptions() Then
                             Actions.Add(GetNextActionID, Localize("LISTSUBSCRIPTIONS.Action"), Entities.Modules.Actions.ModuleActionType.ModuleSettings, "", "icon_users_16px.gif", NavigateURL(TabId, "", "mid=" & NewsModuleId, "act=ManageSubscriptions"), False, Security.SecurityAccessLevel.Edit, True, False)
                         End If
 
                         If blnCanAdd Then
-                            Actions.Add(GetNextActionID, Localize("ADDARTICLE.Action"), Entities.Modules.Actions.ModuleActionType.AddContent, "", "nuntio_add.png", "", "NuntioArticlesAddForm('" & ModuleId.ToString & "', '" & NewsModuleId.ToString & "', '-1')", False, Security.SecurityAccessLevel.View, True, False)
+                            Actions.Add(GetNextActionID, Localize("ADDARTICLE.Action"), Entities.Modules.Actions.ModuleActionType.AddContent, "", "nuntio_add.png", "javascript:NuntioArticlesAddForm('" & ModuleId.ToString & "', '" & NewsModuleId.ToString & "', '-1')", "", False, Security.SecurityAccessLevel.View, True, False)
                         End If
 
                         Dim iUnapproved As Integer = UnapprovedArticlesCount
@@ -492,7 +492,7 @@ Namespace dnnWerk.Modules.Nuntio.Articles
                     strScript += "      oWnd.set_height(550);" & vbCrLf
                     strScript += "      oWnd.set_width(950);" & vbCrLf
                     strScript += "      oWnd.center();   " & vbCrLf
-                    strScript += "      return false;" & vbCrLf
+                    'strScript += "      return false;" & vbCrLf
                     strScript += "  }" & vbCrLf & vbCrLf
 
                     strScript += "  function NuntioArticlesEditForm(ItemId,NewsModuleId,ModuleId) {" & vbCrLf
@@ -517,7 +517,7 @@ Namespace dnnWerk.Modules.Nuntio.Articles
                     strScript += "      oWnd.set_height(height);" & vbCrLf
                     strScript += "      oWnd.set_width(width);" & vbCrLf
                     strScript += "      oWnd.center();   " & vbCrLf
-                    strScript += "      return false;" & vbCrLf
+                    'strScript += "      return true;" & vbCrLf
                     strScript += "  }" & vbCrLf & vbCrLf
 
                     strScript += "  function NuntioArticlesPublishForm(ModuleId,NewsModuleId,CategoryId) {" & vbCrLf
