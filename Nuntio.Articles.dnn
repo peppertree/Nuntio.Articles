@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="Nuntio Articles" type="Module" version="6.2.1">
+    <package name="Nuntio Articles" type="Module" version="6.2.2">
       <friendlyName>Nuntio Articles</friendlyName>
       <description>
         An article module for news articles in multiple languages.
@@ -103,6 +103,10 @@
       </license>
       <releaseNotes>
       	<![CDATA[ 
+          <h2>Version 06.02.02</h2>
+          <ul>
+            <li>Fix: edit dialog does not open in DNN 7+</li>
+          </ul> 
           <h2>Version 06.01.03</h2>
           <ul>
             <li>Fix: unpublished articles do not save last updated version correctly</li>

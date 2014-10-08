@@ -1,15 +1,4 @@
 
-Delete 
-	From {objectQualifier}pnc_Localization_LocalizedItems 
-Where
-	[SourceItemID] not in (Select ItemId from {objectQualifier}pnc_NewsItems)
-AND 
-	(
-		[Key] = 'TITLE' or [Key] = 'SUMMARY' or [Key] = 'CONTENT' or [Key] = 'URL'
-	)
-GO
-
-
 if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}NuntioArticles_DeleteArticle]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
     DROP PROCEDURE {databaseOwner}{objectQualifier}NuntioArticles_DeleteArticle
 GO

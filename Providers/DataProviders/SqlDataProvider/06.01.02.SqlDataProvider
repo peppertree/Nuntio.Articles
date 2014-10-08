@@ -226,6 +226,8 @@ AND
 	[Content] Like 'FileId=%'
 AND
 	[IsApproved] = 1
+AND
+	[SourceItemId] in (Select ItemId from {objectQualifier}pnc_NewsItems)
 GO
 
 /* Re-Create SPROCs */

@@ -1,1 +1,1 @@
-C:\Nant\nant-0.90\bin\nant.exe -buildfile:D:\Development\Websites\dev_Nuntio\wwwRoot\DesktopModules\Nuntio.Articles\Nuntio.Articles.build
+C:\Nant\nant-0.90\bin\nant.exe -buildfile:C:\Users\Philipp\Development\Projekte\DNN.Nuntio\wwwRoot\DesktopModules\Nuntio.Articles\Nuntio.Articles.build
