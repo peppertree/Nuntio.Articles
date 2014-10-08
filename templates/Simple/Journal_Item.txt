@@ -1,0 +1,4 @@
+<div>
+	[HASPRIMARYIMAGE]<img src="[PRIMARYIMAGEURL]" alt="" style="float:left;width:150px;margin-right:20px;"/>[/HASPRIMARYIMAGE]
+	[HASSUMMARY][SUMMARY][/HASSUMMARY][HASNOSUMMARY][CONTENT:300][/HASNOSUMMARY]
+</div>

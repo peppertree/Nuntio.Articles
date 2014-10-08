@@ -1,0 +1,4 @@
+<li class="nuntio-attachment [FILEEXTENSION]">
+	<a href="[FILEURL]" title="[FILETITLE]: [FILEDESCRIPTION]">[FILETITLE]</a>
+	<div>[FILEDESCRIPTION]</div>
+</li>
