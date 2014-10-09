@@ -809,60 +809,6 @@
     <Content Include="Modules\ThreadedList\uc_List.ascx" />
     <Content Include="Modules\ThreadedList\uc_ListSettings.ascx" />
     <Content Include="nuntio.articles.extension.jpg" />
-    <Content Include="templates\Copy of Default\Attachment_Item.txt" />
-    <Content Include="templates\Copy of Default\Comment_Item.txt" />
-    <Content Include="templates\Copy of Default\Comment_Notify.txt" />
-    <Content Include="templates\Copy of Default\Detail_View.txt" />
-    <Content Include="templates\Copy of Default\Email_Container.txt" />
-    <Content Include="templates\Copy of Default\Email_Item.txt" />
-    <Content Include="templates\Copy of Default\fancybox\blank.gif" />
-    <Content Include="templates\Copy of Default\fancybox\custom.js" />
-    <Content Include="templates\Copy of Default\fancybox\fancybox-x.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancybox-y.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancybox.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_close.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_loading.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_nav_left.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_nav_right.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_e.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_n.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_ne.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_nw.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_s.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_se.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_sw.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_shadow_w.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_title_left.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_title_main.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_title_over.png" />
-    <Content Include="templates\Copy of Default\fancybox\fancy_title_right.png" />
-    <Content Include="templates\Copy of Default\fancybox\jquery.easing-1.3.pack.js" />
-    <Content Include="templates\Copy of Default\fancybox\jquery.fancybox-1.3.4.css" />
-    <Content Include="templates\Copy of Default\fancybox\jquery.fancybox-1.3.4.js" />
-    <Content Include="templates\Copy of Default\fancybox\jquery.fancybox-1.3.4.pack.js" />
-    <Content Include="templates\Copy of Default\fancybox\jquery.mousewheel-3.0.4.pack.js" />
-    <Content Include="templates\Copy of Default\fancybox\jQuery.query.js" />
-    <Content Include="templates\Copy of Default\images\bullet.png" />
-    <Content Include="templates\Copy of Default\images\calendar.png" />
-    <Content Include="templates\Copy of Default\images\comment-shadow.gif" />
-    <Content Include="templates\Copy of Default\images\docx.gif" />
-    <Content Include="templates\Copy of Default\images\icon_comment.gif" />
-    <Content Include="templates\Copy of Default\images\next.gif" />
-    <Content Include="templates\Copy of Default\images\pdf.gif" />
-    <Content Include="templates\Copy of Default\images\summer-comment-arrow.gif" />
-    <Content Include="templates\Copy of Default\images\zip.gif" />
-    <Content Include="templates\Copy of Default\Image_Item.txt" />
-    <Content Include="templates\Copy of Default\Journal_Item.txt" />
-    <Content Include="templates\Copy of Default\Listing_Footer.txt" />
-    <Content Include="templates\Copy of Default\Listing_Header.txt" />
-    <Content Include="templates\Copy of Default\Listing_Item.txt" />
-    <Content Include="templates\Copy of Default\Listing_ItemAlternate.txt" />
-    <Content Include="templates\Copy of Default\Listing_ItemFeatured.txt" />
-    <Content Include="templates\Copy of Default\Listing_ItemFirst.txt" />
-    <Content Include="templates\Copy of Default\Mailing_Subscribe.txt" />
-    <Content Include="templates\Copy of Default\Mailing_Unsubscribe.txt" />
-    <Content Include="templates\Copy of Default\Scroller_Item.txt" />
-    <Content Include="templates\Copy of Default\Template.css" />
     <Content Include="templates\Default\Attachment_Item.txt" />
     <Content Include="templates\Default\Email_Container.txt" />
     <Content Include="templates\Default\Email_Item.txt" />
@@ -1205,7 +1151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
-    <Folder Include="templates\Copy of Default\fancybox\fancybox\" />
     <Folder Include="templates\Default\fancybox\fancybox\" />
     <Folder Include="templates\Newsletter\" />
   </ItemGroup>
@@ -1256,9 +1201,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57088</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://nuntio/DesktopModules/Nuntio.Articles</IISUrl>
+          <IISUrl>http://dnn.nuntio/DesktopModules/Nuntio.Articles</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://nuntio</IISAppRootUrl>
+          <IISAppRootUrl>http://dnn.nuntio</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
