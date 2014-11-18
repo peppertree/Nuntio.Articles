@@ -157,7 +157,7 @@
             $find('<%= ctlFiles.ClientID %>').open('DocumentManager', args);
         }
         function SetExplorerImage(sender, args) {
-            var path = args.value.getAttribute("src", 2);
+            var path = args.value[0].getAttribute("src", 2);
             $find("<%= ctlAjax.ClientID %>").ajaxRequest('bindgallery,' + path);
         }
         function SetExplorerFile(sender, args) {
